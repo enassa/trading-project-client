@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { ROUTES } from "./constants/route-links";
+import Home from "./pages/home/Home";
+import Dashboard from "./pages/dashboard/Dashboard";
+import PageNotFound from "./components/page-not-found/page-not-found";
+import Login from "./pages/auth/login/Login";
+import LandingPage from "./pages/landing-page/LandingPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <ToastContainer />
+      <Routes>
+        <Route path={ROUTES.base.route} element={<LandingPage />} />
+        <Route path={ROUTES.login.route} element={<Login />} />
+        {/*====== Protected routes  */}
+        <Route path={ROUTES.home.route} element={<Home />}>
+          <Route path={ROUTES.dashboard.route} element={<Dashboard />} />
+        </Route>
+        <Route path={ROUTES.notFound} element={<PageNotFound />} />
+      </Routes>
+      {/*====== Non Protected routes  */}
+    </Router>
   );
 }
 
