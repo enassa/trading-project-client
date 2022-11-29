@@ -12,7 +12,7 @@ export default function PageWrapper({ children }) {
         <div className="h-auto w-full flex">
           <NavBar />
         </div>
-        <div className="h-full px-2 w-full flex flex-col justify-start">
+        <div className="h-full w-full flex flex-col justify-start">
           {children}
         </div>
       </div>

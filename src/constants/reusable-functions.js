@@ -14,3 +14,19 @@ export const isMappable = (array) => {
   //Otherwise, return FALSE.
   return true;
 };
+
+export const replaceSpaceWithUnderscore = (stringToReplace) => {
+  let results;
+  try {
+    results = stringToReplace.replace(/ /g, "_");
+  } catch {}
+  return results;
+};
+
+export const replaceUnderscoreWithSpace = (stringToReplace) => {
+  let results;
+  try {
+    results = stringToReplace.replace(/_/g, " ");
+  } catch {}
+  return results;
+};
