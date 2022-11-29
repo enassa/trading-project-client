@@ -4,15 +4,13 @@ import SideBar from "./side-bar/SideBar";
 
 export default function PageWrapper({ children }) {
   return (
-    <div className="flex w-full flex-row">
-      <div className="w-auto">
-        <SideBar />
-      </div>
+    <div className="flex w-full flex-row overflow-hidden m-0 p-0">
+      <SideBar />
       <div className="w-full flex justify-start flex-col">
         <div className="h-auto w-full flex">
           <NavBar />
         </div>
-        <div className="h-full w-full flex flex-col justify-start">
+        <div className="h-full w-full max-w-[100%] flex flex-col justify-start">
           {children}
         </div>
       </div>

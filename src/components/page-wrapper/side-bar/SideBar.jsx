@@ -51,7 +51,7 @@ export default function SideBar({ menuItems = [] }) {
       });
   };
   return (
-    <div className="shadow-neumoNav w-[220px] h-full  bg-white flex flex-col px-[20.89px]">
+    <div className="shadow-neumoNav w-[220px] min-w-[220px] h-full  bg-white flex flex-col px-[20.89px]">
       <div className="">
         <div className="flex justify-center mb-[5px] mt-[20px]">
           <Logo

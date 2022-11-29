@@ -10,35 +10,56 @@ export default function Dashboard() {
       symbol: "GOOGL",
       balance: 20000,
       currentProfit: 200,
-      icon: images.logoPng,
+      icon: images.google,
     },
     {
       title: "Microsoft cooperation",
-      symbol: "MSFT COP.",
+      symbol: "MSFT",
       balance: 20000,
       currentProfit: 200,
-      icon: images.logoPng,
+      icon: images.microsoft,
     },
     {
       title: "Tesla",
-      symbol: "TESLA",
+      symbol: "TSLA",
       balance: 20000,
       currentProfit: 200,
-      icon: images.logoPng,
+      icon: images.tesla,
     },
     {
       title: "IBM",
       symbol: "IBM",
       balance: 20000,
       currentProfit: 200,
-      icon: images.logoPng,
+      icon: images.ibm,
     },
     {
       title: "Apple",
-      symbol: "APPL",
+      symbol: "AAPL",
       balance: 20000,
       currentProfit: 200,
-      icon: images.logoPng,
+      icon: images.apple,
+    },
+    {
+      title: "Amazon",
+      symbol: "AMZN",
+      balance: 20000,
+      currentProfit: 200,
+      icon: images.amazon,
+    },
+    {
+      title: "Oracle",
+      symbol: "ORCL",
+      balance: 20000,
+      currentProfit: 200,
+      icon: images.oracle,
+    },
+    {
+      title: "Netflix",
+      symbol: "NFLX",
+      balance: 20000,
+      currentProfit: 200,
+      icon: images.netflix,
     },
   ];
   const ejectPortfolio = () => {
@@ -54,7 +75,7 @@ export default function Dashboard() {
     );
   };
   return (
-    <div className="w-full h-auto flex flex-col">
+    <div className="w-full max-w-[100%] h-auto flex flex-col overflow-x-hidden ">
       <div className="w-full flex justify-center py-[20px]">
         <HorizontalBar>{ejectPortfolio()}</HorizontalBar>
       </div>

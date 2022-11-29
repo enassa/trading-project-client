@@ -6,18 +6,23 @@
 * {
   font-family: "Cairo", sans-serif;
 }
-html,
-body,
-#root {
-  display: flex;
-  height: 100%;
+html {
   width: 100%;
-  max-width: 100%;
-  padding: 0px;
-  margin: 0px;
-  /* overflow: hidden; */
+  height: 100%;
+  display: flex;
 }
 
+body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
