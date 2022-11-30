@@ -29,6 +29,7 @@ module.exports = {
         dtext: "#151567",
         blight: "#e9ecef",
         bglblue: "#eff0f8",
+        bgTrade: "#374f63",
       },
       boxShadow: {
         blend: "0 1px 0 0 transparent, 0 2px 10px 0 rgb(0 0 0 / 10%)",

@@ -1,6 +1,9 @@
 import React from "react";
 import { images } from "../../assets/images/images";
+import { FIELDS } from "../../components/form-generator/FormFields";
+import FormGenerator from "../../components/form-generator/FormGenerator";
 import HorizontalBar from "../../components/horizontal-bar/HorizontalBar";
+import OrderForm from "../../components/order-form/OrderForm";
 import PortfolioCard from "../../components/portfolio-card/PortfolioCard";
 
 export default function Dashboard() {
@@ -62,6 +65,7 @@ export default function Dashboard() {
       icon: images.netflix,
     },
   ];
+  const handleSubmit = () => {};
   const ejectPortfolio = () => {
     return (
       Array.isArray(dummyPortfolios) &&
@@ -82,7 +86,17 @@ export default function Dashboard() {
       <div className="w-full justify-center flex  h-full">
         <div className="w-[1300px] h-full flex  rounded-md  justify-between">
           <div className="w-full h-full shadow-md mr-[20px] shadow-[20px] bg-white rounded-md"></div>
-          <div className="min-w-[379px] h-full rounded-[20px] bg-white"></div>
+          <div className="min-w-[379px] h-full rounded-[20px] bg-white flex flex-col p-5">
+            <div className="w-full flex flex-col items-center ">
+              <span className="text-gray-400 ">{"GOOGL"}</span>
+              <span className="text-gray-600 text-sm font-extrabold">
+                Average Buy/Sell - ${3.1} / ${4.56}
+              </span>
+            </div>
+            <div className="w-full h-full">
+              <OrderForm />
+            </div>
+          </div>
         </div>
       </div>
     </div>

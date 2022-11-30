@@ -25,7 +25,7 @@ export default function SideBar({ menuItems = [] }) {
           activeMenu === menuItem.route
             ? "bg-[#F5F7F9]  text-[#000]"
             : "hover:bg-[#F5F7F9] text-[#374F63]"
-        } flex px-[9px] w-full items-center mb-3  transition-all rounded-md cursor-pointer hover:text-[#202e3a] h-[33px] overflow-hidden`}
+        } flex px-[9px] w-full items-center mb-3  transition-all rounded-md cursor-pointer hover:text-[#202e3a] h-[43px] overflow-hidden`}
       >
         <div className="flex justify-start items-center mr-2">
           <span style={{ fontSize: 25 }}>{menuItem?.icon}</span>
