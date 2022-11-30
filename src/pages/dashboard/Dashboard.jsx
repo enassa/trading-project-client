@@ -75,9 +75,15 @@ export default function Dashboard() {
     );
   };
   return (
-    <div className="w-full max-w-[100%] h-auto flex flex-col overflow-x-hidden ">
-      <div className="w-full flex justify-center py-[20px]">
+    <div className="w-full  h-full flex flex-col px-5 justify-start pb-[20px]">
+      <div className="w-full  flex-wrap  flex  h-[200px] py-[20px] justify-center">
         <HorizontalBar>{ejectPortfolio()}</HorizontalBar>
+      </div>
+      <div className="w-full justify-center flex  h-full">
+        <div className="w-[1300px] h-full flex  rounded-md  justify-between">
+          <div className="w-full h-full shadow-md mr-[20px] shadow-[20px] bg-white rounded-md"></div>
+          <div className="min-w-[379px] h-full rounded-[20px] bg-white"></div>
+        </div>
       </div>
     </div>
   );

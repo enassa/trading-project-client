@@ -20,5 +20,3 @@ export default function PortfolioCard({ data }) {
     </div>
   );
 }
-/* Rectangle 27 */
-/* Rectangle 27 */

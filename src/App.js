@@ -11,11 +11,12 @@ import Login from "./pages/auth/login/Login";
 import LandingPage from "./pages/landing-page/LandingPage";
 import Portfolio from "./pages/portfolio/Portfolio";
 import TradeHistroy from "./pages/trade-history/TradeHistroy";
+import PageWrapper from "./components/page-wrapper/PageWrapper";
 
 function App() {
   return (
     <Router>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       <Routes>
         <Route path={ROUTES.base.route} element={<LandingPage />} />
         <Route path={ROUTES.login.route} element={<Login />} />

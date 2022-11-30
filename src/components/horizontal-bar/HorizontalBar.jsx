@@ -22,7 +22,7 @@ export default function HorizontalBar({ children }) {
     });
   };
   return (
-    <div className="relative w-[90%] max-w-[90%] self-start">
+    <div className="relative w-[1300px]">
       <div
         ref={containerRef}
         className="flex h-[150px] scrollbar-hidden justify-start items-center overflow-auto w-full px-[20px] bg-white shadow-neumoNav  rounded-[20px] relative"

@@ -3,13 +3,26 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  font-family: "Cairo", sans-serif;
+.fit-bg {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
-html {
+:root {
+  --hover-custom-new-color: #2c262260;
+}
+/* set the input data calender icon to white */
+/* input {
+  color-scheme: dark;
+} */
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+/* html {
   width: 100%;
   height: 100%;
   display: flex;
+  position: fixed;
 }
 
 body {
@@ -22,27 +35,73 @@ body {
   width: 100%;
   height: 100%;
   display: flex;
+} */
+html,
+#root,
+body {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  margin: 0px;
+  overflow: hidden;
 }
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.gradient-icon {
+  font-size: 40px;
+  background: -moz-linear-gradient(top, #e72c83 0%, #a742c6 100%);
+  background: -webkit-linear-gradient(top, #e72c83 0%, #a742c6 100%);
+  background: linear-gradient(to bottom, #e72c83 0%, #a742c6 100%);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 body {
+  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-  line-height: 1.7;
-  position: relative;
-  background-color: #ffffff;
-  height: 100vh;
-  background-color: #ffffff;
-  background-image: url("../src/assets/svg/appbgImg.svg");
+  background-color: #f2f3f3;
+  background-image: url("/src/assets/svg/appbgImg.svg");
 }
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+#pulser {
+  /* position: absolute;
+    min-width: 100vw;
+    min-height: 100vh; */
+  background: red;
+  animation-name: pulser;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  z-index: 0;
+}
+
+@keyframes pulser {
+  0% {
+    background-color: red;
+  }
+  49% {
+    background-color: red;
+  }
+  50% {
+    background-color: white;
+  }
+  100% {
+    background-color: white;
+  }
+}
+
 .balance-card {
   /* Rectangle 23 */
   background: linear-gradient(83.88deg, #374f63 0%, #061018 129.9%);
