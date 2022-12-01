@@ -29,6 +29,7 @@ module.exports = {
         dtext: "#151567",
         blight: "#e9ecef",
         bglblue: "#eff0f8",
+        bgTrade: "#374f63",
       },
       boxShadow: {
         blend: "0 1px 0 0 transparent, 0 2px 10px 0 rgb(0 0 0 / 10%)",
@@ -37,6 +38,8 @@ module.exports = {
           "9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px  rgba(255,255,255, 0.5);",
         neuroFlat: " 20px 20px 60px #bebebe,-20px -20px 60px #ffffff",
         neuroInward: "",
+        neumoNav:
+          " 0 0.5rem 1rem rgb(0 0 0 / 5%), inset 0 -1px 0 rgb(0 0 0 / 15%)",
       },
       fontFamily: {
         "arial-arounded": ["Arial Rounded MT Bold"],

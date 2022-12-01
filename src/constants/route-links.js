@@ -31,6 +31,10 @@ export const ROUTES = {
     route: "/reset-password",
     url: "/reset-password",
   },
+  logOut: {
+    route: "/logout",
+    url: "/logout",
+  },
 
   // PROTECTED ROUTES
   dashboard: {
@@ -40,6 +44,10 @@ export const ROUTES = {
   portfolio: {
     route: "portfolio",
     url: protectedBaseRoute.url + "/portfolio",
+  },
+  tradeHistory: {
+    route: "trade-history",
+    url: protectedBaseRoute.url + "/trade-history",
   },
   notFound: "*",
 };
