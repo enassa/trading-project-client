@@ -5,6 +5,7 @@ export default function InputField({
   type,
   name,
   onChange,
+  onValidated,
   errorMessage,
   regexPattern,
   placeholder,
@@ -52,32 +53,29 @@ export default function InputField({
       errorLog?.maxCharLengthErr ||
       errorLog?.minCharLengthErr
     ) {
-      console.log(errorLog);
       setError({ ...errorLog, status: true });
       return;
     } else {
       setError({ ...errorLog, status: false });
+      return true;
     }
   };
   const getErrorMessage = () => {
-    switch (error) {
-      case error.requiredErr:
-        console.log("jjjj");
-        return `${name || "This field"} is required`;
-      case error.patternErr:
-        return `${errorMessage || "Your input is invalid"}`;
-      case error.minCharLengthErr:
-        return `Minimum of ${minCharLength} characters required`;
-      case error.maxCharLengthErr:
-        return `Maximum of ${maxCharLength} characters exceeded`;
-      default:
-        break;
-    }
+    if (error.requiredErr) return `${name || "This field"} is required`;
+    else if (error.patternErr)
+      return `${errorMessage || "Your input is invalid"}`;
+    else if (error.minCharLengthErr)
+      return `Minimum of ${minCharLength} characters required`;
+    else if (error.maxCharLengthErr)
+      return `Maximum of ${maxCharLength} characters exceeded`;
   };
-
   const handleChange = (e) => {
-    console.log(e.target.value);
-    onChange && validate(e) && onChange(e, e.target.value);
+    // validate input
+    const validated = validate(e);
+    //get event and validation state
+    onChange && onChange(e, validated);
+    // get event only
+    validated && onValidated && onValidated(e, e.target.value);
   };
   const errorClass = "text-red-400 text-xs mt-1";
   return (
@@ -104,26 +102,7 @@ export default function InputField({
         />
       )}
       {description && <span className={errorClass}>{description}</span>}
-      <span className={errorClass}>{error.status && getErrorMessage()}</span>
-
-      {/* 
-      {error.requiredErr && (
-        <span className={errorClass}>{name || "This field"} is required</span>
-      )}
-
-      {error.maxCharLengthErr && !error.requiredErr && (
-        <span>Maximum characters of {maxCharLength} exceeded</span>
-      )}
-
-      {error.minCharLengthErr && !error.requiredErr && (
-        <span className={errorClass}>Minimum of {minCharLength} required</span>
-      )}
-
-      {error.patternErr && !error.requiredErr && (
-        <span className={errorClass}>
-          {errorMessage || "Your input is invalid"}
-        </span>
-      )} */}
+      <span className={`${errorClass}`}>{getErrorMessage()}</span>
     </div>
   );
 }

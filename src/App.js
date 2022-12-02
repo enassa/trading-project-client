@@ -12,11 +12,12 @@ import LandingPage from "./pages/landing-page/LandingPage";
 import Portfolio from "./pages/portfolio/Portfolio";
 import TradeHistroy from "./pages/trade-history/TradeHistroy";
 import PageWrapper from "./components/page-wrapper/PageWrapper";
+import { createRipple } from "./constants/reusable-functions";
 
 function App() {
   return (
     <Router>
-      {/* <ToastContainer /> */}
+      <ToastContainer />
       <Routes>
         <Route path={ROUTES.base.route} element={<LandingPage />} />
         <Route path={ROUTES.login.route} element={<Login />} />
