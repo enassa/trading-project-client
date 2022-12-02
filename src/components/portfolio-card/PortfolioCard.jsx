@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function PortfolioCard({ data }) {
+export default function TPortfolioCard({ data }) {
   return (
     <div className="shadow-neuro w-[193px] h-[80px] bg-white rounded-[10px] cursor-pointer p-3 flex">
       <div className="h-full flex items-center">

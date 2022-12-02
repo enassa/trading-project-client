@@ -1,7 +1,7 @@
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import React from "react";
 
-export default function HorizontalBar({ children }) {
+export default function THorizontalBar({ children }) {
   const containerRef = React.createRef();
   let scrollValue = 0;
   const scrollLeft = () => {

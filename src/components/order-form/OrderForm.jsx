@@ -1,12 +1,19 @@
-import { AccountBalance, AccountBalanceWallet } from "@mui/icons-material";
+import {
+  AccountBalance,
+  AccountBalanceWallet,
+  AutoGraph,
+  BarChart,
+  TrendingDown,
+  TrendingUp,
+} from "@mui/icons-material";
 import React from "react";
 import { emailRegex } from "../../constants/reusable-functions";
-import Button from "../button/Button";
-import FormValidator from "../form-validator/FormValidator";
-import InputField from "../input-field/InputField";
-import InputSelector from "../input-selector/InputSelector";
+import TFormValidator from "../form-validator/FormValidator";
+import TSelector from "../input-selector/Selector";
+import TInput from "../input-field/Input";
+import TButton from "../button/Button";
 
-export default function OrderForm() {
+export default function TOrderForm() {
   const handleSubmit = (data) => {
     console.log(data);
   };
@@ -32,7 +39,7 @@ export default function OrderForm() {
     <div className="w-full h-full flex flex-col justify-end">
       <div className=""></div>
       <div className="w-full h-full flex items-center justify-around flex-col ">
-        <FormValidator
+        <TFormValidator
           validationSchema={validationSchema}
           initialValues={initialValues}
           onSubmit={handleSubmit}
@@ -41,9 +48,16 @@ export default function OrderForm() {
             console.log(errors, values);
             return (
               <>
-                <InputSelector />
-                <input className="border-4" type="text" name="trial" />
-                <InputField
+                <TSelector
+                  onChange={(data) => alert(data)}
+                  placeholder="Select order type"
+                  disabled={false}
+                >
+                  <option icon={<BarChart />}>Market order</option>
+                  <option icon={<TrendingUp />}> Limit Order</option>
+                  <option icon={<AutoGraph />}>Limit Market</option>
+                </TSelector>
+                <TInput
                   onChange={(e) => {
                     //   console.log(e.target.value);
                   }}
@@ -52,11 +66,11 @@ export default function OrderForm() {
                   minCharLength={5}
                   name="myname"
                 />
-                <Button icon={<AccountBalanceWallet />}>Submit</Button>
+                <TButton icon={<AccountBalanceWallet />}>Submit</TButton>
               </>
             );
           }}
-        </FormValidator>
+        </TFormValidator>
       </div>
     </div>
   );
