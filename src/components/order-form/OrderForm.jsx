@@ -1,9 +1,7 @@
 import {
-  AccountBalance,
   AccountBalanceWallet,
   AutoGraph,
   BarChart,
-  TrendingDown,
   TrendingUp,
 } from "@mui/icons-material";
 import React from "react";
@@ -45,7 +43,6 @@ export default function TOrderForm() {
           onSubmit={handleSubmit}
         >
           {({ errors, values }) => {
-            console.log(errors, values);
             return (
               <>
                 <TSelector
