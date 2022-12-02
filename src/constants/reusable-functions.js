@@ -1,17 +1,14 @@
 export const makeCall = (phoneNumber) => {
   window.open(`tel:${phoneNumber}`, "_self");
 };
+
 export const isMappable = (array) => {
-  //If it's not an array, return FALSE.
   if (!Array.isArray(array)) {
     return false;
   }
-  //If it is an array, check its length property
   if (array.length === 0) {
-    //Return TRUE if the array is empty
     return false;
   }
-  //Otherwise, return FALSE.
   return true;
 };
 
@@ -30,6 +27,7 @@ export const replaceUnderscoreWithSpace = (stringToReplace) => {
   } catch {}
   return results;
 };
+
 export const cssModules = (styleObject) => (classList) => {
   const generateClassString = (list, myClass) => {
     let output = list;
@@ -68,4 +66,21 @@ export const checkRegexPattern = (myString, pattern) => {
 };
 export const emailRegex = (max = 50) => {
   return "^[A-Za-z0-9\\._%+-]+@[A-Za-z0-9\\.-]+\\.[A-Za-z]{2," + max + "}$";
+};
+
+export const createRipple = (event) => {
+  console.log("clicked");
+  const button = event.currentTarget;
+  const circle = document.createElement("span");
+  const diameter = Math.max(button.clientWidth, button.clientHeight);
+  const radius = diameter / 2;
+  circle.style.width = circle.style.height = `${diameter}px`;
+  circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+  circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+  circle.classList.add("ripple");
+  const ripple = button.getElementsByClassName("ripple")[0];
+  if (ripple) {
+    ripple.remove();
+  }
+  button.appendChild(circle);
 };

@@ -13,7 +13,6 @@ export default function SideBar({ menuItems = [] }) {
     Array.isArray(menuItems) && menuItems.length ? menuItems : defaultMenuList;
 
   const MenuItem = ({ menuItem }) => {
-    console.log(activeMenu, menuItem.route);
     return (
       <a
         href={menuItem?.url} //just here for screen reader
