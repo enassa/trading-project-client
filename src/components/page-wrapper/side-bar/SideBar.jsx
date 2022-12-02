@@ -4,7 +4,7 @@ import { SideBarData as defaultMenuList } from "./side-bar-data/side-bar-data";
 import BalanceCard from "./../../balance-card/BalanceCard";
 import Logo from "../nav-bar/logo-container/Logo";
 import { ROUTES } from "./../../../constants/route-links";
-export default function SideBar({ menuItems = [] }) {
+export default function TSideBar({ menuItems = [] }) {
   const navigate = useNavigate();
 
   const activeMenu = useLocation().pathname.split("/")[2]; //get active route from url

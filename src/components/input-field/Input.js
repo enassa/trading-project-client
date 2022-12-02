@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { checkRegexPattern } from "../../constants/reusable-functions";
 
-export default function InputField({
+export default function TInput({
   type,
   name,
   onChange,
@@ -82,7 +82,7 @@ export default function InputField({
     <div className="w-full flex flex-col justify-start">
       {value ? (
         <input
-          className="w-full border-2"
+          className={` ${className} h-[40px] p-3 w-full border-bgTrade border-[1px] rounded-[5px] outline-none`}
           onChange={(e) => handleChange(e)}
           type={type}
           placeholder={placeholder}

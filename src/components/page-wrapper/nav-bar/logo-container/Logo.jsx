@@ -1,6 +1,6 @@
 import React from "react";
-import { images } from "./../../../../assets/images/images";
-export default function Logo({
+import { images } from "../../../../assets/images/images";
+export default function TLogo({
   containerClassName,
   imageClassName,
   textClassName,

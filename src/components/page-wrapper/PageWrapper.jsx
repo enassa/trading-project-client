@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "./nav-bar/NavBar";
 import SideBar from "./side-bar/SideBar";
 
-export default function PageWrapper({ children }) {
+export default function TPageWrapper({ children }) {
   return (
     <div className="flex w-full h-full max-w-full  overflow-hidden justify-center">
       <div className="flex w-full h-full max-w-full overflow-hidden items-start justify-start">

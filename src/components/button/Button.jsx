@@ -15,7 +15,7 @@ import React, { Component } from "react";
  *
  */
 
-function Button({
+function TButton({
   classes,
   styles,
   children,
@@ -54,4 +54,4 @@ function Button({
     </ButtonBase>
   );
 }
-export default Button;
+export default TButton;
