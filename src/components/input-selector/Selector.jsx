@@ -25,7 +25,6 @@ export default function TSelector({
   const getOptions = () => {
     return children.map((option, index) => {
       if (option.type !== "option") return;
-      console.log(option.props.icon);
       return (
         <div
           onClick={() => {
