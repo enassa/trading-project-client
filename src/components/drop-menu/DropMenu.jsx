@@ -1,23 +1,16 @@
-import { getOptionsFromChildren } from "@mui/base";
-import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import React, { useState } from "react";
-import { checkRegexPattern } from "../../constants/reusable-functions";
+import { useState } from "react";
+import { ExpandLess } from "@mui/icons-material";
+import { ExpandMore } from "@mui/icons-material";
 import { ClickAwayListener } from "@mui/material";
-
-export default function TSelector({
-  type,
-  name,
+export default function DropMenu({
   onChange,
-  errorMessage,
-  placeholder,
   value,
-  description,
   styles,
   className,
   required = false,
   disabled = false,
   children,
-  label,
+  listClassName,
 }) {
   const [dropOptions, setDropOptions] = useState();
   const [error, setError] = useState(false);
@@ -32,14 +25,21 @@ export default function TSelector({
             setSelected(option.props.children);
             if (option.props.children === selected) return;
             error && setError(false);
-            // onChange && onChange(option.props.children);
+            onChange && onChange(option.props.children, option.props.data);
             setDropOptions(false);
           }}
           key={index}
-          className="w-full min-h-[40px] h-[40px] px-4 cursor-pointer hover:bg-gray-50 flex items-center"
+          className="w-full min-h-[40px] h-[40px] px-4 cursor-pointer hover:bg-gray-50 flex items-center mt-2 mb-2 py-2"
         >
           {option.props?.icon && (
             <div className="mr-3">{option.props?.icon}</div>
+          )}
+          {option.props?.image && (
+            <img
+              alt={option.props.children}
+              src={option.props?.image}
+              className="mr-3 h-full"
+            />
           )}
 
           <span className="w-full whitespace-nowrap text-ellipsis overflow-hidden">
@@ -51,35 +51,18 @@ export default function TSelector({
   };
   const errorClass = "text-red-400 text-xs mt-1";
   return (
-    <div className="w-full flex flex-col justify-start mb-2 relative">
-      <label
-        htmlFor={name}
-        className="w-full text-gray-500 relative b-[30px] text-[18px]"
-      >
-        {label}
-      </label>
+    <div
+      className={`w-full flex flex-col justify-start mb-2 relative py-1 ${className}`}
+    >
       <div
         onClick={(e) => {
           e.stopPropagation();
           !disabled && setDropOptions(true);
         }}
         className={` ${className} ${
-          disabled && "bg-gray-100"
-        } h-[40px] flex flex-row items-center w-full border-[#8b8b8b] border-[1px] rounded-[5px] outline-none cursor-pointer`}
+          disabled && ""
+        } h-[40px] flex flex-row items-center w-full  border-[1px] rounded-[5px] outline-none cursor-pointer py-3`}
       >
-        <input
-          onFocusCapture={() => {
-            !disabled && setDropOptions(true);
-          }}
-          onChange={(e) => onChange && onChange(e.target.value)}
-          className={` ${className} h-full p-3 w-full  rounded-[5px] outline-none pointer-events-none`}
-          type={type}
-          placeholder={placeholder}
-          name={name}
-          value={selected || ""}
-          disabled={disabled}
-          id={name}
-        />
         {dropOptions ? (
           <ExpandLess
             onClick={(e) => {
@@ -99,17 +82,13 @@ export default function TSelector({
             setDropOptions(false);
           }}
         >
-          <div className="w-full rounded-md animate-rise bg-white shadow-neumoNav z-[10]  flex flex-col absolute top-[110%]  border-t-4 border-t-black">
+          <div
+            className={`w-[300px] rounded-md animate-rise overflow-y-auto bg-white shadow-neumoNav z-[10]  flex flex-col absolute top-[130%] max-h-[400px]   ${listClassName}`}
+          >
             {getOptions()}
           </div>
         </ClickAwayListener>
       )}
-
-      {description && <span className={errorClass}>{description}</span>}
-
-      <span className={`${errorClass}`}>
-        {error && `${name || "This field"} is required`}
-      </span>
     </div>
   );
 }
