@@ -3,17 +3,73 @@ import { images } from "../../assets/images/images";
 import { FIELDS } from "../../components/form-generator/FormFields";
 import FormGenerator from "../../components/form-generator/FormGenerator";
 import HorizontalBar from "../../components/horizontal-bar/HorizontalBar";
-import OrderForm from "./order-form/OrderForm";
+import OrderForm from "../../components/order-form/OrderForm";
 import PortfolioCard from "../../components/portfolio-card/PortfolioCard";
-import StockStrend from "./stock-trend/StockStrend";
-import { portfolios } from "../../constants/dummy-data";
 
 export default function Dashboard() {
+  const dummyPortfolios = [
+    {
+      title: "Google",
+      symbol: "GOOGL",
+      balance: 20000,
+      currentProfit: 200,
+      icon: images.google,
+    },
+    {
+      title: "Microsoft cooperation",
+      symbol: "MSFT",
+      balance: 20000,
+      currentProfit: 200,
+      icon: images.microsoft,
+    },
+    {
+      title: "Tesla",
+      symbol: "TSLA",
+      balance: 20000,
+      currentProfit: 200,
+      icon: images.tesla,
+    },
+    {
+      title: "IBM",
+      symbol: "IBM",
+      balance: 20000,
+      currentProfit: 200,
+      icon: images.ibm,
+    },
+    {
+      title: "Apple",
+      symbol: "AAPL",
+      balance: 20000,
+      currentProfit: 200,
+      icon: images.apple,
+    },
+    {
+      title: "Amazon",
+      symbol: "AMZN",
+      balance: 20000,
+      currentProfit: 200,
+      icon: images.amazon,
+    },
+    {
+      title: "Oracle",
+      symbol: "ORCL",
+      balance: 20000,
+      currentProfit: 200,
+      icon: images.oracle,
+    },
+    {
+      title: "Netflix",
+      symbol: "NFLX",
+      balance: 20000,
+      currentProfit: 200,
+      icon: images.netflix,
+    },
+  ];
   const handleSubmit = () => {};
   const ejectPortfolio = () => {
     return (
-      Array.isArray(portfolios) &&
-      portfolios.map((portfolio, index) => {
+      Array.isArray(dummyPortfolios) &&
+      dummyPortfolios.map((portfolio, index) => {
         return (
           <div key={index} className="mr-4">
             <PortfolioCard data={portfolio} />
@@ -29,13 +85,11 @@ export default function Dashboard() {
       </div>
       <div className="w-full justify-center flex  h-full">
         <div className="w-full h-full flex  rounded-md  justify-between">
-          <div className="w-full h-full shadow-md mr-[20px] shadow-[20px] bg-white rounded-md overflow-hidden p-[40px]">
-            <StockStrend />
-          </div>
+          <div className="w-full h-full shadow-md mr-[20px] shadow-[20px] bg-white rounded-md"></div>
           <div className="min-w-[379px] h-full rounded-[20px] bg-white flex flex-col p-5">
             <div className="w-full flex flex-col items-center ">
-              <span className="text-gray-400 text-lg">{"GOOGL"}</span>
-              <span className="text-gray-500 text-lg font-bold mb-[15px] mt-[10px]">
+              <span className="text-gray-400 ">{"GOOGL"}</span>
+              <span className="text-gray-600 text-sm font-extrabold">
                 Average Buy/Sell - ${3.1} / ${4.56}
               </span>
             </div>

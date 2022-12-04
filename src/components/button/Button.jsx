@@ -16,7 +16,7 @@ import React, { Component } from "react";
  */
 
 function TButton({
-  className,
+  classes,
   styles,
   children,
   iconColor,
@@ -24,29 +24,34 @@ function TButton({
   icon,
   onClick,
 }) {
+  const handleOnClick = (e) => {
+    onClick && onClick(e);
+  };
+
   return (
-    <button
-      style={{ ...styles }}
-      onClick={(e) => onClick && onClick(e)}
-      className={`bg-bgTrade  h-[47px]  w-full rounded-[5px] flex justify-center border border-[#8b8b8b] text-white overflow-hidden ${className}`}
+    <ButtonBase
+      className={
+        classes +
+        "bg-bgTrade px-[40px] h-[47px]  flex shadow-neuroFlat w-[150px]"
+      }
+      style={{
+        backgroundColor: "#374f63",
+        color: "white",
+        borderRadius: 5,
+        ...styles,
+      }}
+      onClick={(e) => handleOnClick(e)}
     >
       {icon && (
-        <>
-          <div
-            className={`${iconColor}} h-full  flex justify-center items-center`}
-            style={{ marginRight: 5, color: iconColor }}
-          >
-            {icon}
-          </div>
-        </>
+        <span
+          className={`${iconColor}}`}
+          style={{ marginRight: 5, color: iconColor }}
+        >
+          {icon}
+        </span>
       )}
-      <div
-        className={`${iconColor}}  h-full  flex justify-center items-center`}
-        style={{ marginRight: 5, color: iconColor }}
-      >
-        {children}
-      </div>
-    </button>
+      {children}
+    </ButtonBase>
   );
 }
 export default TButton;

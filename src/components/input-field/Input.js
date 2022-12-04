@@ -17,7 +17,6 @@ export default function TInput({
   disabled = false,
   maxCharLength,
   minCharLength,
-  label,
 }) {
   const [error, setError] = useState({
     status: false,
@@ -81,15 +80,9 @@ export default function TInput({
   const errorClass = "text-red-400 text-xs mt-1";
   return (
     <div className="w-full flex flex-col justify-start">
-      <label
-        htmlFor={name}
-        className="w-full text-gray-500 relative b-[30px] text-[18px]"
-      >
-        {label}
-      </label>
       {value ? (
         <input
-          className={` ${className} h-[40px] p-3 w-full border-[#8b8b8b]  border-[1px] rounded-[5px] outline-none`}
+          className={` ${className} h-[40px] p-3 w-full border-bgTrade border-[1px] rounded-[5px] outline-none`}
           onChange={(e) => handleChange(e)}
           type={type}
           placeholder={placeholder}
@@ -98,7 +91,7 @@ export default function TInput({
         />
       ) : (
         <input
-          className={` ${className} h-[40px] p-3 w-full  border-[1px] rounded-[5px] outline-none`}
+          className={` ${className} h-[40px] p-3 w-full border-bgTrade border-[1px] rounded-[5px] outline-none`}
           onChange={(e) => handleChange(e)}
           type={type}
           placeholder={placeholder}
