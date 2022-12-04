@@ -84,7 +84,7 @@ export default function Dashboard() {
         <HorizontalBar>{ejectPortfolio()}</HorizontalBar>
       </div>
       <div className="w-full justify-center flex  h-full">
-        <div className="w-[1300px] h-full flex  rounded-md  justify-between">
+        <div className="w-full h-full flex  rounded-md  justify-between">
           <div className="w-full h-full shadow-md mr-[20px] shadow-[20px] bg-white rounded-md"></div>
           <div className="min-w-[379px] h-full rounded-[20px] bg-white flex flex-col p-5">
             <div className="w-full flex flex-col items-center ">
