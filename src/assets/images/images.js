@@ -8,6 +8,7 @@ import netflix from "./netflix.png";
 import ibm from "./ibm.png";
 import microsoft from "./microsoft.png";
 import google from "./google.png";
+import dummytradeImage from "./graph.webp";
 export const images = {
   logoPng,
   logoIco,
@@ -19,4 +20,5 @@ export const images = {
   ibm,
   microsoft,
   google,
+  dummytradeImage,
 };

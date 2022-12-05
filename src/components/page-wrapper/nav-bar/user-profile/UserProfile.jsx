@@ -26,7 +26,7 @@ export default function TUserProfile() {
       )}
       {dropProfile && (
         <ClickAwayListener onClickAway={() => setDropProfile(false)}>
-          <div className="w-[200px] animate-rise h-[200px] bg-white shadow-neumoNav rounded-md absolute top-[60px] right-5"></div>
+          <div className="w-[200px] animate-rise h-[200px] bg-white shadow-neumoNav rounded-md absolute top-[70px] right-5 z-[10]"></div>
         </ClickAwayListener>
       )}
     </div>

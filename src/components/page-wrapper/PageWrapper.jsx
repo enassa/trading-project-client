@@ -9,11 +9,11 @@ export default function TPageWrapper({ children }) {
         <div className="w-auto h-full items-center">
           <SideBar />
         </div>
-        <div className="w-[calc(100%-260px)] h-full flex justify-start flex-col">
+        <div className="w-[calc(100%-260px)] h-full max-h-full flex justify-start flex-col">
           <div className="h-auto w-full flex">
             <NavBar />
           </div>
-          <div className="h-full w-full flex flex-col justify-start max-w-full max-h-full px-2 ">
+          <div className="h-[calc(100%-60px)]  overflow-y-auto  w-full flex flex-col justify-start max-w-full max-h-full px-2 ">
             {children}
           </div>
         </div>
