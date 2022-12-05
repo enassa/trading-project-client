@@ -122,7 +122,7 @@ export default function ComboInput({
         >
           <div
             className={`w-full rounded-md animate-rise bg-white shadow-neumoNav z-[10] max-h-[160px] overflow-y-auto  flex flex-col absolute top-[110%]   ${
-              !noBorder && "border-t-black border-t-4"
+              !noBorder && "border-t-black border-t-4 "
             } `}
           >
             {getOptions()}
