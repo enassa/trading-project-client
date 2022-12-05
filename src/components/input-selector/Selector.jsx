@@ -17,6 +17,8 @@ export default function TSelector({
   required = false,
   disabled = false,
   children,
+  label,
+  noBorder,
 }) {
   const [dropOptions, setDropOptions] = useState();
   const [error, setError] = useState(false);
@@ -31,7 +33,7 @@ export default function TSelector({
             setSelected(option.props.children);
             if (option.props.children === selected) return;
             error && setError(false);
-            onChange(option.props.children);
+            // onChange && onChange(option.props.children);
             setDropOptions(false);
           }}
           key={index}
@@ -54,6 +56,12 @@ export default function TSelector({
   const errorClass = "text-red-400 text-xs mt-1";
   return (
     <div className="w-full flex flex-col justify-start mb-2 relative">
+      <label
+        htmlFor={name}
+        className="w-full text-gray-900 relative b-[30px] text-[18px]"
+      >
+        {label}
+      </label>
       <div
         onClick={(e) => {
           // e.stopPropagation();
@@ -61,21 +69,29 @@ export default function TSelector({
         }}
         className={` ${className} ${
           disabled && "bg-gray-100"
-        } h-[40px] flex flex-row items-center w-full border-bgTrade border-[1px] rounded-[5px] outline-none cursor-pointer`}
+        } h-[40px] flex flex-row items-center w-full border-[#8b8b8b] border-[1px] rounded-[5px] outline-none cursor-pointer`}
       >
         <input
           onFocusCapture={() => {
             !disabled && setDropOptions(true);
           }}
-          className={` ${className} h-full p-3 w-full border-bgTrade rounded-[5px] outline-none pointer-events-none`}
+          onChange={(e) => onChange && onChange(e.target.value)}
+          className={` ${className} h-full p-3 w-full  rounded-[5px] outline-none pointer-events-none`}
           type={type}
           placeholder={placeholder}
           name={name}
           value={selected || ""}
           disabled={disabled}
+          id={name}
         />
         {dropOptions ? (
-          <ExpandLess className="cursor-pointer" />
+          <ExpandLess
+            onClick={(e) => {
+              setDropOptions(false);
+              e.stopPropagation();
+            }}
+            className="cursor-pointer"
+          />
         ) : (
           <ExpandMore className="cursor-pointer" />
         )}
@@ -87,7 +103,11 @@ export default function TSelector({
             setDropOptions(false);
           }}
         >
-          <div className="w-full rounded-md animate-rise bg-white shadow-neumoNav z-[10]  flex flex-col absolute top-[50px]  border-t-4 border-t-black">
+          <div
+            className={`w-full rounded-md animate-rise bg-white shadow-neumoNav z-[10] max-h-[160px] overflow-y-auto  flex flex-col absolute top-[110%]   ${
+              !noBorder && "border-t-black border-t-4"
+            } `}
+          >
             {getOptions()}
           </div>
         </ClickAwayListener>

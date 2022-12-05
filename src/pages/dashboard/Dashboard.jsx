@@ -3,7 +3,7 @@ import { images } from "../../assets/images/images";
 import { FIELDS } from "../../components/form-generator/FormFields";
 import FormGenerator from "../../components/form-generator/FormGenerator";
 import HorizontalBar from "../../components/horizontal-bar/HorizontalBar";
-import OrderForm from "../../components/order-form/OrderForm";
+import OrderForm from "./order-form/OrderForm";
 import PortfolioCard from "../../components/portfolio-card/PortfolioCard";
 import StockStrend from "./stock-trend/StockStrend";
 import { portfolios } from "../../constants/dummy-data";
@@ -17,69 +17,11 @@ import {
 } from "@mui/icons-material";
 
 export default function Dashboard() {
-  const dummyPortfolios = [
-    {
-      title: "Google",
-      symbol: "GOOGL",
-      balance: 20000,
-      currentProfit: 200,
-      icon: images.google,
-    },
-    {
-      title: "Microsoft cooperation",
-      symbol: "MSFT",
-      balance: 20000,
-      currentProfit: 200,
-      icon: images.microsoft,
-    },
-    {
-      title: "Tesla",
-      symbol: "TSLA",
-      balance: 20000,
-      currentProfit: 200,
-      icon: images.tesla,
-    },
-    {
-      title: "IBM",
-      symbol: "IBM",
-      balance: 20000,
-      currentProfit: 200,
-      icon: images.ibm,
-    },
-    {
-      title: "Apple",
-      symbol: "AAPL",
-      balance: 20000,
-      currentProfit: 200,
-      icon: images.apple,
-    },
-    {
-      title: "Amazon",
-      symbol: "AMZN",
-      balance: 20000,
-      currentProfit: 200,
-      icon: images.amazon,
-    },
-    {
-      title: "Oracle",
-      symbol: "ORCL",
-      balance: 20000,
-      currentProfit: 200,
-      icon: images.oracle,
-    },
-    {
-      title: "Netflix",
-      symbol: "NFLX",
-      balance: 20000,
-      currentProfit: 200,
-      icon: images.netflix,
-    },
-  ];
   const handleSubmit = () => {};
   const ejectPortfolio = () => {
     return (
-      Array.isArray(dummyPortfolios) &&
-      dummyPortfolios.map((portfolio, index) => {
+      Array.isArray(portfolios) &&
+      portfolios.map((portfolio, index) => {
         return (
           <div key={index} className="mr-4">
             <PortfolioCard data={portfolio} />
