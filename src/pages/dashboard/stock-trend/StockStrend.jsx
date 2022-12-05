@@ -9,6 +9,7 @@ import { ClickAwayListener } from "@mui/material";
 import DropMenu from "../../../components/drop-menu/DropMenu";
 import { exchangeData, portfolios } from "../../../constants/dummy-data";
 import ExchangeStatCard from "../exchange-stat-card/ExchangeStatCard";
+import ApexChart from "./stock chart/StockChart";
 
 export default function StockStrend() {
   const ejectMenuItems = () => {
@@ -78,7 +79,7 @@ export default function StockStrend() {
           }
           className="w-full h-[300px] bg-gray-50 rounded-md fit-bg"
         >
-          <img src={images.dummytradeImage} className="w-full h-full" />
+          <ApexChart />
         </div>
       </div>
     </div>

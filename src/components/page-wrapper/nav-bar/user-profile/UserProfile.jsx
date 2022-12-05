@@ -11,7 +11,13 @@ export default function TUserProfile() {
   const [dropProfile, setDropProfile] = useState(false);
   return (
     <div className="flex h-full items-center px-2 py-3 relative">
-      <img alt="logo" className="h-[100%]  mr-2" src={images.logoPng} />
+      <span
+        style={{
+          backgroundImage: `url(${images.dummyProfile})`,
+          backgroundColor: "red",
+        }}
+        className="w-[30px] h-[30px] mr-[10px] rounded-full flex justify-center fit-bg items-center overflow-hidden"
+      ></span>
       <span>ToukanyaFX</span>
       {dropProfile ? (
         <ExpandLessOutlined

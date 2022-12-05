@@ -61,7 +61,7 @@ export default function DropMenu({
         }}
         className={` ${className} ${
           disabled && ""
-        } h-[40px] flex flex-row items-center w-full  border-[1px] rounded-[5px] outline-none cursor-pointer py-3`}
+        } h-[40px] flex flex-row items-center w-full  rounded-[5px] outline-none cursor-pointer py-3`}
       >
         {dropOptions ? (
           <ExpandLess

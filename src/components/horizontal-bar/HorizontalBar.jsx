@@ -25,7 +25,7 @@ export default function THorizontalBar({ children }) {
     <div className="relative w-full">
       <div
         ref={containerRef}
-        className="flex h-[150px] scrollbar-hidden justify-start items-center overflow-auto w-full px-[20px] bg-white shadow-neumoNav  rounded-[20px] relative"
+        className="flex h-[150px] rounded-md scrollbar-hidden justify-start items-center overflow-auto w-full px-[20px] bg-white shadow-neumoNav  rounded-[20px] relative"
       >
         {children}
       </div>
