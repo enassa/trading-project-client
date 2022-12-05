@@ -1,10 +1,11 @@
 import { getOptionsFromChildren } from "@mui/base";
-import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import { ExpandLess, ExpandMore, GolfCourse } from "@mui/icons-material";
 import React, { useState } from "react";
 import { checkRegexPattern } from "../../constants/reusable-functions";
 import { ClickAwayListener } from "@mui/material";
+import { images } from "./../../assets/images/images";
 
-export default function TSelector({
+export default function ComboInput({
   type,
   name,
   onChange,
@@ -19,19 +20,27 @@ export default function TSelector({
   children,
   label,
   noBorder,
+  data,
+  displayProperty,
 }) {
+  const inputRef = React.createRef();
   const [dropOptions, setDropOptions] = useState();
   const [error, setError] = useState(false);
   const [selected, setSelected] = useState(value);
-
+  const [searchValue, setSearchValue] = useState(value);
+  let reg = new RegExp("[^,]*" + searchValue + "[^,]*", "ig");
   const getOptions = () => {
-    return children.map((option, index) => {
-      if (option.type !== "option") return;
+    const datForMapping =
+      searchValue !== "" && searchValue !== undefined
+        ? data.filter((item) => item[displayProperty].match(reg))
+        : data;
+    return datForMapping.map((option, index) => {
       return (
         <div
           onClick={() => {
-            setSelected(option.props.children);
-            if (option.props.children === selected) return;
+            // inputRef.node.current = option.title;
+            setSearchValue(option.title);
+            if (option.title === selected) return;
             error && setError(false);
             // onChange && onChange(option.props.children);
             setDropOptions(false);
@@ -39,15 +48,15 @@ export default function TSelector({
           key={index}
           className="w-full min-h-[40px] h-[40px] px-4 cursor-pointer hover:bg-gray-50 flex items-center"
         >
-          {option.props?.icon && (
-            <div className="mr-3">{option.props?.icon}</div>
+          {typeof option.icon === "object" && (
+            <div className="mr-3">{option.icon}</div>
           )}
-          {option.props?.image && (
-            <img className="h-[50%] mr-3" src={option.props?.image} />
+          {typeof option.icon === "string" && (
+            <img className="h-[50%] mr-3" src={option.icon} />
           )}
 
           <span className="w-full whitespace-nowrap text-ellipsis overflow-hidden">
-            {option.props.children}
+            {option.title}
           </span>
         </div>
       );
@@ -72,15 +81,23 @@ export default function TSelector({
         } h-[40px] flex flex-row items-center w-full border-[#8b8b8b] border-[1px] rounded-[5px] outline-none cursor-pointer`}
       >
         <input
-          onFocusCapture={() => {
+          ref={inputRef}
+          onFocusCapture={(e) => {
+            e.stopPropagation();
             !disabled && setDropOptions(true);
           }}
-          onChange={(e) => onChange && onChange(e.target.value)}
-          className={` ${className} h-full p-3 w-full  rounded-[5px] outline-none pointer-events-none`}
+          onBlur={(e) => {
+            if (onChange()) setSearchValue("");
+          }}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+          onChange={(e) => setSearchValue(e.target.value)}
+          className={` ${className} h-full p-3 w-full  rounded-[5px] outline-none `}
           type={type}
           placeholder={placeholder}
           name={name}
-          value={selected || ""}
+          value={searchValue}
           disabled={disabled}
           id={name}
         />

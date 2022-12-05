@@ -70,7 +70,16 @@ export default function StockStrend() {
         {ejectExchangeData()}
       </div>
       <div className="w-full h-full flex justify-start items-start ">
-        <div className="w-full h-full bg-gray-50 rounded-md">jgjhgj</div>
+        <div
+          style={
+            {
+              // backgroundImage: `url(${images.dummytradeImage})`,
+            }
+          }
+          className="w-full h-[300px] bg-gray-50 rounded-md fit-bg"
+        >
+          <img src={images.dummytradeImage} className="w-full h-full" />
+        </div>
       </div>
     </div>
   );

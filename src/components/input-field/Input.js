@@ -83,7 +83,7 @@ export default function TInput({
     <div className="w-full flex flex-col justify-start">
       <label
         htmlFor={name}
-        className="w-full text-gray-500 relative b-[30px] text-[18px]"
+        className="w-full text-gray-900 relative b-[30px] text-[18px]"
       >
         {label}
       </label>

@@ -84,3 +84,16 @@ export const createRipple = (event) => {
   }
   button.appendChild(circle);
 };
+
+export const searchContains = (dataToSearchIn, searchValue, property) => {
+  try {
+    let reg = new RegExp("[^,]*" + searchValue + "[^,]*", "ig");
+    // console.log(dataToSearchIn)
+    const searchResults = dataToSearchIn.filter((item) =>
+      item[property].match(reg)
+    );
+    return searchResults;
+  } catch {
+    return;
+  }
+};

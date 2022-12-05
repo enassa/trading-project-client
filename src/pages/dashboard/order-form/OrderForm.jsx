@@ -10,6 +10,8 @@ import TFormValidator from "../../../components/form-validator/FormValidator";
 import TSelector from "../../../components/input-selector/Selector";
 import TInput from "../../../components/input-field/Input";
 import TButton from "../../../components/button/Button";
+import { portfolios } from "../../../constants/dummy-data";
+import ComboInput from "../../../components/combo-input-box/ComboInput";
 
 export default function TOrderForm() {
   const handleSubmit = (data) => {
@@ -29,6 +31,18 @@ export default function TOrderForm() {
       regexPattern: "",
     },
   };
+  const ejectMenuItems = () => {
+    return (
+      Array.isArray(portfolios) &&
+      portfolios.map((data, index) => {
+        return (
+          <option data={data} image={data.icon} key={index} className="mr-4">
+            {data.title}
+          </option>
+        );
+      })
+    );
+  };
   const initialValues = {
     trial: "sometrialtext",
     myname: "second trial text",
@@ -46,20 +60,19 @@ export default function TOrderForm() {
           {({ errors, values }) => {
             return (
               <>
-                <TSelector
-                  onChange={(data) => alert(data)}
+                <ComboInput
+                  // onChange={(data) => alert(data)}
                   placeholder="Select order type"
                   label="Select portfolio"
                   name="portfolio"
-                >
-                  <option icon={<BarChart />}>Market order</option>
-                  <option icon={<TrendingUp />}> Limit Order</option>
-                  <option icon={<AutoGraph />}>Limit Market</option>
-                </TSelector>
+                  data={portfolios}
+                  displayProperty={"title"}
+                  noBorder
+                />
                 <TSelector
                   // onChange={(data) => alert(data)}
                   placeholder="Select order type"
-                  label="Trade"
+                  label="Trade type"
                   name="trade-type"
                 >
                   <option icon={<BarChart />}>Market order</option>
@@ -91,7 +104,7 @@ export default function TOrderForm() {
                 <TButton
                   onClick={(e) => e.preventDefault()}
                   className={
-                    "uppercase mb-[10px] bg-white text-bgTrade mt-[30px]"
+                    "uppercase mb-[10px] bg-black text-white border-2  mt-[30px]"
                   }
                   icon={<AccountBalanceWallet />}
                 >
