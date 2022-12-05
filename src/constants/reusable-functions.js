@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 export const makeCall = (phoneNumber) => {
   window.open(`tel:${phoneNumber}`, "_self");
 };
@@ -97,3 +99,10 @@ export const searchContains = (dataToSearchIn, searchValue, property) => {
     return;
   }
 };
+var newFormat = require("dayjs/plugin/advancedFormat");
+dayjs.extend(newFormat);
+export function formatDate(dateString) {
+  if (!dateString) return "";
+  const date = dayjs(dateString);
+  return date.format("Do MMMM, YYYY");
+}

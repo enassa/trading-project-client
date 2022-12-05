@@ -50,10 +50,10 @@ export default function Dashboard() {
           <div className="w-full h-full shadow-md mr-[20px] shadow-[20px] bg-white rounded-md overflow-hidden p-[40px]">
             <StockStrend />
           </div>
-          <div className="min-w-[379px] h-full rounded-[20px] flex bg-white flex-col p-5">
+          <div className="min-w-[379px] h-full rounded-md flex bg-white flex-col p-5">
             <div className="w-full flex flex-col items-center ">
-              <span className="text-gray-400 text-lg">{"GOOGL"}</span>
-              <div className="text-gray-900 text-lg font-bold mt-[10px] flex items-center w-[80%] justify-start">
+              {/* <span className="text-gray-400 text-lg">{"GOOGL"}</span> */}
+              <div className="text-gray-500 text-lg font-bold mt-[10px] flex items-center w-[80%] justify-start">
                 <AddCircle className="mr-[10px]" />
                 <span className="mr-[30px]">${3.1}</span>
                 <FiberManualRecord
@@ -62,7 +62,7 @@ export default function Dashboard() {
                 />
                 <span className="mr-[10px]">Average Buy</span>
               </div>
-              <div className="text-gray-900 text-lg font-bold mt-[10px] flex items-center w-[80%] justify-start">
+              <div className="text-gray-500 text-lg font-bold  flex items-center w-[80%] justify-start">
                 <RemoveCircle className="mr-[10px]" />
                 <span className="mr-[30px]">${3.1}</span>
                 <FiberManualRecord
@@ -72,7 +72,7 @@ export default function Dashboard() {
                 <span className="mr-[10px]">Average Sell</span>
               </div>
             </div>
-            <div className="w-full h-full">
+            <div className="w-full ">
               <OrderForm />
             </div>
           </div>

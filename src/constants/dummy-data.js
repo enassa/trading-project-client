@@ -74,3 +74,235 @@ export const exchangeData = [
     askPrice: 1.3,
   },
 ];
+export const portfolioRecords = [
+  {
+    name: "Kane Nathaniel",
+    age: 20,
+    email: "assanenathaniel@gmail.com",
+  },
+  {
+    name: "Gyateng Emma",
+    age: 11,
+    email: "yatang@gmail.com",
+  },
+  {
+    name: "Ewudzi Jeff",
+    age: 19,
+    email: "saejeff@gmail.com",
+  },
+  {
+    name: "Isaac Nathaniel",
+    age: 13,
+    email: "saacnate@gmail.com",
+  },
+  {
+    name: "Kwame Nathaniel",
+    age: 15,
+    email: "imanuel@gmail.com",
+  },
+  {
+    name: "Abena Nathaniel",
+    age: 17,
+    email: "umah@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+  {
+    name: "Justice Nathaniel",
+    age: 12,
+    email: "rastaer@gmail.com",
+  },
+];

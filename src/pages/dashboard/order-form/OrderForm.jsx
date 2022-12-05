@@ -48,11 +48,11 @@ export default function TOrderForm() {
     myname: "second trial text",
   };
   return (
-    <div className="w-full h-full flex flex-col justify-end mt-[40px]">
+    <div className="w-full h-full flex flex-col justify-end mt-[10px]">
       <div className=""></div>
       <div className="w-full h-full flex items-center justify-between flex-col ">
         <TFormValidator
-          className={"w-[80%] h-full flex justify-start flex-col"}
+          className={"w-[80%] h-full flex justify-center flex-col mt-[20px]"}
           validationSchema={validationSchema}
           initialValues={initialValues}
           onSubmit={handleSubmit}
@@ -60,63 +60,117 @@ export default function TOrderForm() {
           {({ errors, values }) => {
             return (
               <>
-                <ComboInput
-                  // onChange={(data) => alert(data)}
-                  placeholder="Select order type"
-                  label="Select portfolio"
-                  name="portfolio"
-                  data={portfolios}
-                  displayProperty={"title"}
-                  noBorder
-                />
-                <TSelector
-                  // onChange={(data) => alert(data)}
-                  placeholder="Select order type"
-                  label="Trade type"
-                  name="trade-type"
-                >
-                  <option icon={<BarChart />}>Market order</option>
-                  <option icon={<TrendingUp />}> Limit Order</option>
-                  <option icon={<AutoGraph />}>Limit Market</option>
-                </TSelector>
+                <div className="">
+                  <ComboInput
+                    // onChange={(data) => alert(data)}
+                    placeholder="Select order type"
+                    label="Select portfolio"
+                    name="portfolio"
+                    data={portfolios}
+                    displayProperty={"title"}
+                    noBorder
+                    className="bg-[#F5F7F9] border-0 w-full"
+                  />
+                </div>
+                <div className="">
+                  <TSelector
+                    // onChange={(data) => alert(data)}
+                    placeholder="Select order type"
+                    label="Trade type"
+                    name="trade-type"
+                    className="bg-[#F5F7F9] border-0"
+                  >
+                    <option icon={<BarChart />}>Market order</option>
+                    <option icon={<TrendingUp />}> Limit Order</option>
+                    <option icon={<AutoGraph />}>Limit Market</option>
+                  </TSelector>
+                </div>
 
-                <TInput
-                  onChange={(e) => {
-                    //   console.log(e.target.value);
-                  }}
-                  onValidated={(e) => console.log(e.target.value)}
-                  regexPattern={emailRegex(5)}
-                  minCharLength={5}
-                  name="amount"
-                  label={"Amount"}
-                />
-
-                <TInput
-                  onChange={(e) => {
-                    //   console.log(e.target.value);
-                  }}
-                  onValidated={(e) => console.log(e.target.value)}
-                  regexPattern={emailRegex(5)}
-                  minCharLength={5}
-                  name="quantity"
-                  label={"Quantity"}
-                />
-                <TButton
-                  onClick={(e) => e.preventDefault()}
-                  className={
-                    "uppercase mb-[10px] bg-black text-white border-2  mt-[30px]"
-                  }
-                  icon={<AccountBalanceWallet />}
-                >
-                  Sell
-                </TButton>
-                <TButton
-                  onClick={(e) => e.preventDefault()}
-                  className={"uppercase  mb-[10px] "}
-                  icon={<AccountBalanceWallet />}
-                >
-                  Buy
-                </TButton>
+                <div className="">
+                  <TInput
+                    onChange={(e) => {
+                      //   console.log(e.target.value);
+                    }}
+                    onValidated={(e) => console.log(e.target.value)}
+                    regexPattern={emailRegex(5)}
+                    minCharLength={5}
+                    name="amount"
+                    label={"Amount"}
+                    className="bg-[#F5F7F9] border-0"
+                  />
+                </div>
+                <div className="">
+                  <TInput
+                    onChange={(e) => {
+                      //   console.log(e.target.value);
+                    }}
+                    onValidated={(e) => console.log(e.target.value)}
+                    regexPattern={emailRegex(5)}
+                    minCharLength={5}
+                    name="quantity"
+                    label={"Quantity"}
+                    className="bg-[#F5F7F9] border-0"
+                  />
+                </div>
+                {/* <div className=" mt-[15px]">
+                  <TSelector
+                    // onChange={(data) => alert(data)}
+                    placeholder="Select order type"
+                    label="Action"
+                    name="action"
+                    className="bg-[#F5F7F9] border-0"
+                  >
+                    <option icon={<BarChart />}>Sell</option>
+                    <option icon={<TrendingUp />}>Buy</option>
+                  </TSelector>
+                </div> */}
+                {/* <div className="mb-[1%]">
+                  <TButton
+                    onClick={(e) => e.preventDefault()}
+                    className={
+                      "uppercase mb-[10px] bg-bgTrade text-white border-2  mt-[30px]"
+                    }
+                    icon={<AccountBalanceWallet />}
+                  >
+                    Sell
+                  </TButton>
+                </div>
+                <div className="mb-[2%]">
+                  <TButton
+                    onClick={(e) => e.preventDefault()}
+                    className={"uppercase  mb-[10px] "}
+                    icon={<AccountBalanceWallet />}
+                  >
+                    Buy
+                  </TButton>
+                </div> */}
+                <div className="w-full justify-between flex items-center mt-[20px]">
+                  <TButton
+                    onClick={(e) => e.preventDefault()}
+                    className={
+                      "uppercase mr-[10px] bg-bgTrade text-white border-2 "
+                    }
+                    icon={<AccountBalanceWallet />}
+                  >
+                    Sell
+                  </TButton>
+                  <TButton
+                    onClick={(e) => e.preventDefault()}
+                    className={"uppercase  "}
+                    icon={<AccountBalanceWallet />}
+                  >
+                    Buy
+                  </TButton>
+                </div>
+                {/* <div className="mb-[2%]">
+                  <TButton
+                    onClick={(e) => e.preventDefault()}
+                    className={"uppercase  mb-[10px] "}
+                    icon={<AccountBalanceWallet />}
+                  >
+                    Submit
+                  </TButton>
+                </div> */}
               </>
             );
           }}

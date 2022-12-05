@@ -22,6 +22,8 @@ export default function ComboInput({
   noBorder,
   data,
   displayProperty,
+  dropClassName,
+  icon,
 }) {
   const inputRef = React.createRef();
   const [dropOptions, setDropOptions] = useState();
@@ -84,6 +86,7 @@ export default function ComboInput({
           ref={inputRef}
           onFocusCapture={(e) => {
             e.stopPropagation();
+            inputRef.current.select();
             !disabled && setDropOptions(true);
           }}
           onBlur={(e) => {
@@ -93,7 +96,7 @@ export default function ComboInput({
             e.stopPropagation();
           }}
           onChange={(e) => setSearchValue(e.target.value)}
-          className={` ${className} h-full p-3 w-full  rounded-[5px] outline-none `}
+          className={` ${className} h-full p-3  rounded-[5px] outline-none w-auto `}
           type={type}
           placeholder={placeholder}
           name={name}
@@ -101,17 +104,23 @@ export default function ComboInput({
           disabled={disabled}
           id={name}
         />
-        {dropOptions ? (
-          <ExpandLess
-            onClick={(e) => {
-              setDropOptions(false);
-              e.stopPropagation();
-            }}
-            className="cursor-pointer"
-          />
-        ) : (
-          <ExpandMore className="cursor-pointer" />
+        {!icon && (
+          <div>
+            {dropOptions ? (
+              <ExpandLess
+                onClick={(e) => {
+                  setDropOptions(false);
+                  e.stopPropagation();
+                }}
+                className="cursor-pointer"
+              />
+            ) : (
+              <ExpandMore className="cursor-pointer" />
+            )}
+          </div>
         )}
+
+        {icon && <div className=""> {icon}</div>}
       </div>
       {dropOptions && (
         <ClickAwayListener
@@ -121,7 +130,7 @@ export default function ComboInput({
           }}
         >
           <div
-            className={`w-full rounded-md animate-rise bg-white shadow-neumoNav z-[10] max-h-[160px] overflow-y-auto  flex flex-col absolute top-[110%]   ${
+            className={`w-full rounded-md animate-rise bg-white shadow-neumoNav z-[10] max-h-[160px] overflow-y-auto  flex flex-col absolute top-[110%] ${dropClassName}   ${
               !noBorder && "border-t-black border-t-4"
             } `}
           >
