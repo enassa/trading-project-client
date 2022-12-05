@@ -9,6 +9,8 @@ import ibm from "./ibm.png";
 import microsoft from "./microsoft.png";
 import google from "./google.png";
 import dummytradeImage from "./graph.webp";
+import dummyProfile from "./dummyprofile.jpg";
+import toukanyaLogo from "./toukanyaLogo.png";
 export const images = {
   logoPng,
   logoIco,
@@ -21,4 +23,6 @@ export const images = {
   microsoft,
   google,
   dummytradeImage,
+  dummyProfile,
+  toukanyaLogo,
 };

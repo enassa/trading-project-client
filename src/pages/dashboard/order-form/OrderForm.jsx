@@ -69,7 +69,7 @@ export default function TOrderForm() {
                     data={portfolios}
                     displayProperty={"title"}
                     noBorder
-                    className="bg-[#F5F7F9] border-0 w-full"
+                    className="bg-[#F5F7F9] border-0 max-w-full w-full"
                   />
                 </div>
                 <div className="">

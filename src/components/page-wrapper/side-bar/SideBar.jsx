@@ -4,6 +4,7 @@ import { SideBarData as defaultMenuList } from "./side-bar-data/side-bar-data";
 import BalanceCard from "./../../balance-card/BalanceCard";
 import Logo from "../nav-bar/logo-container/Logo";
 import { ROUTES } from "./../../../constants/route-links";
+import { images } from "./../../../assets/images/images";
 export default function TSideBar({ menuItems = [] }) {
   const navigate = useNavigate();
 
@@ -52,12 +53,15 @@ export default function TSideBar({ menuItems = [] }) {
   return (
     <div className="shadow-neumoNav w-[260px] min-w-[260px] h-full z-10  bg-white flex flex-col px-[20.89px]">
       <div className="">
-        <div className="flex justify-center mb-[5px] mt-[20px]">
-          <Logo
+        <div className="flex justify-center mb-[20px] mt-[20px]">
+          {/* <Logo
             containerClassName="flex-row"
             imageClassName="h-5 w-5"
             textClassName="text-lg text-bold"
-          />
+          /> */}
+          <div className="py-3">
+            <img className="mb-[]" src={images.toukanyaLogo} />
+          </div>
         </div>
       </div>
       <div className="w-full justify-center font-exrabold mt-[10px] mb-[20px]">

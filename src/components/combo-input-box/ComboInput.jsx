@@ -96,7 +96,7 @@ export default function ComboInput({
             e.stopPropagation();
           }}
           onChange={(e) => setSearchValue(e.target.value)}
-          className={` ${className} h-full p-3  rounded-[5px] outline-none w-auto `}
+          className={` ${className} h-full p-3  rounded-[5px] outline-none`}
           type={type}
           placeholder={placeholder}
           name={name}

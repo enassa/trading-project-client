@@ -37,7 +37,7 @@ export default function Portfolio() {
   return (
     <div className="w-full  h-full max-h-full overflow-y-hidden flex flex-col px-5 justify-start pb-[20px]">
       <div className="w-full  flex-wrap  flex  h-[200px] py-[20px] justify-start mb-[60px]">
-        <div className="flex items-center w-full justify-between mb-[30px]">
+        <div className="flex items-center w-full justify-between mb-[30px] bg-white p-[20px] rounded-md">
           <div className="flex ">
             <span className="text-2xl h-[40px] mb-3  text-[#364E62] whitespace-nowrap flex items-center">
               My Portfolios |
@@ -66,13 +66,45 @@ export default function Portfolio() {
             </TButton>
           </div>
         </div>
-        <div className="w-full h-[200px] bg-white flex">
-          <div></div>
+        <div className="w-full ">
+          <div className="w-full h-[180px] bg-white flex p-[20px] rounded-md ">
+            <div className="w-[270px] flex flex-col ">
+              <div className="w-full mb-[10px]">
+                <span className="w-full flex font-extrabold text-3xl">
+                  <span className="text-sm">$</span>74,520.88
+                </span>
+              </div>
+              <div className="flex justify-between font-bold text-md w-full">
+                <span className="w-full flex justify-between">
+                  Cash holdings
+                </span>
+                <span className="w-full flex justify-end">$5328.12</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="w-full flex justify-between">Day gain</span>
+                <span className="w-full flex justify-end text-[#009432]">
+                  $5328.12 (+0.17%)
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span className="w-full flex justify-between">Total gain</span>
+                <span className="w-full flex justify-end text-[#009432]">
+                  $5328.12 (+0.12%)
+                </span>
+              </div>
+              <div className="w-full mb-[10px] mt-1">
+                <span className="w-full flex  text-sm">
+                  As of Tuesday, May 2022, 9:21AM GMT+0
+                </span>
+              </div>
+            </div>
+            <div className="flex"></div>
+          </div>
         </div>
       </div>
-      <div className="w-full justify-center flex  h-full">
+      <div className="w-full justify-center flex  h-full mt-[40px]">
         <div className="w-full h-full flex  rounded-md  justify-between ">
-          <div className="w-full h-full shadow-md mr-[20px] shadow-[20px] bg-white rounded-md overflow-hidden p-[40px]">
+          <div className="w-full h-full shadow-md  shadow-[20px] bg-white rounded-md overflow-hidden p-[40px]">
             {/* <StockStrend /> */}
             <DynamicTable
               tableData={[...portfolioRecords]}
