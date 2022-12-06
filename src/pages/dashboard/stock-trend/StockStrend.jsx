@@ -9,7 +9,7 @@ import { ClickAwayListener } from "@mui/material";
 import DropMenu from "../../../components/drop-menu/DropMenu";
 import { exchangeData, portfolios } from "../../../constants/dummy-data";
 import ExchangeStatCard from "../exchange-stat-card/ExchangeStatCard";
-import ApexChart from "./stock chart/StockChart";
+import StockChart from "./stock chart/StockChart";
 
 export default function StockStrend() {
   const ejectMenuItems = () => {
@@ -40,7 +40,7 @@ export default function StockStrend() {
   };
   const [activeStock, setActiveStock] = useState(portfolios[0]);
   return (
-    <div className="w-full h-full flex flex-col justify-start">
+    <div className="w-full h-full flex flex-col justify-start ">
       <div className="max-h-[100px] min-h-[20%]  w-full flex justify-start items-start ">
         <div className="w-[193px] h-[80px] flex items-center">
           <div className="h-full flex items-center">
@@ -77,9 +77,9 @@ export default function StockStrend() {
               // backgroundImage: `url(${images.dummytradeImage})`,
             }
           }
-          className="w-full h-[300px] bg-gray-50 rounded-md fit-bg"
+          className="w-full h-auto bg-gray-50 rounded-md"
         >
-          <ApexChart />
+          <StockChart />
         </div>
       </div>
     </div>
