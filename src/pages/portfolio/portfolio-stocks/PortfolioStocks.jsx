@@ -86,7 +86,7 @@ export default function PortfolioStocks() {
               return (
                 <div className="w-[100px]">
                   {/* k */}
-                  <SingleChart height={70} />
+                  <SingleChart height={65} />
                 </div>
               );
             },
