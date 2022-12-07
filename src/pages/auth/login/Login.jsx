@@ -11,8 +11,11 @@ import TFormValidator from "../../../components/form-validator/FormValidator";
 import { emailRegex } from "../../../constants/reusable-functions";
 import { images } from "./../../../assets/images/images";
 import { svgs } from "./../../../assets/svg/svg";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "./../../../constants/route-links";
 
 export default function Login() {
+  const navigate = useNavigate();
   const handleSubmit = (data) => {
     console.log(data);
   };
@@ -88,7 +91,13 @@ export default function Login() {
                     className="shadow-neuroInsert border-0"
                     rightIcon={<RemoveRedEyeOutlined />}
                   />
-                  <TButton className="mt-[40px]" icon={<LoginSharp />}>
+                  <TButton
+                    onClick={() => {
+                      navigate(ROUTES.dashboard.url);
+                    }}
+                    className="mt-[40px]"
+                    icon={<LoginSharp />}
+                  >
                     Login
                   </TButton>
                 </div>

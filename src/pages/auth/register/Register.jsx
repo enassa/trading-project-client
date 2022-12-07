@@ -12,8 +12,11 @@ import TFormValidator from "../../../components/form-validator/FormValidator";
 import { emailRegex } from "../../../constants/reusable-functions";
 import { images } from "./../../../assets/images/images";
 import { svgs } from "./../../../assets/svg/svg";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "./../../../constants/route-links";
 
 export default function Register() {
+  const navigate = useNavigate();
   const handleSubmit = (data) => {
     console.log(data);
   };
@@ -114,7 +117,13 @@ export default function Register() {
                     className="mb-[10px] border-0 shadow-neuroInsert"
                     rightIcon={<RemoveRedEyeOutlined />}
                   />
-                  <TButton className="mt-[20px]" icon={<VpnKey />}>
+                  <TButton
+                    onClick={() => {
+                      navigate(ROUTES.login.url);
+                    }}
+                    className="mt-[20px]"
+                    icon={<VpnKey />}
+                  >
                     Register
                   </TButton>
                 </div>

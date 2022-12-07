@@ -43,6 +43,7 @@ module.exports = {
           " 0 0.5rem 1rem rgb(0 0 0 / 5%), inset 0 -1px 0 rgb(0 0 0 / 15%)",
         neuroInsert:
           "-1px -1px 0px #ffffff, -2px -2px 2px #b8cce0, inset -1px -1px 0px #ffffff, inset -2px -2px 2px #b8cce0",
+        neuroRaise: "8px 8px 16px #C9D9E8, -8px -8px 16px #FFFFFF",
       },
       fontFamily: {
         "arial-arounded": ["Arial Rounded MT Bold"],
