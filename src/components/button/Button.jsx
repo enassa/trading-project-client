@@ -34,7 +34,7 @@ function TButton({
         <>
           <div
             className={`${iconColor}} h-full  flex justify-center items-center`}
-            style={{ marginRight: 5, color: iconColor }}
+            style={{ marginRight: children !== "" && 5, color: iconColor }}
           >
             {icon}
           </div>

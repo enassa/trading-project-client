@@ -8,6 +8,7 @@ import {
 import React from "react";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { replaceUnderscoreWithSpace } from "../../constants/reusable-functions";
 
 export default function DynamicTable({
   handleCellClick = () => {},
@@ -33,6 +34,7 @@ export default function DynamicTable({
   hideActionBar,
   showRowCount,
   hidePagination,
+  defaultFIlterIndex,
 }) {
   const [data, setData] = useState(!!tableData ? tableData : []);
   const headers = Object.keys(!!data[0] ? data[0] : {});
@@ -63,13 +65,17 @@ export default function DynamicTable({
   };
 
   // ---------------------------------Dynamic styles------------------------
-  const getcellStyless = (index) => {
-    const styledColumns = cellStyles.find((item) => item.column === index);
-    const styleForAllCoumns = cellStyles.find((item) => item.column === "*");
+  const getcellStyless = (headerName) => {
+    const styledColumns = cellStyles.find(
+      (item) => item.columnName === headerName
+    );
+    const styleForAllCoumns = cellStyles.find(
+      (item) => item.columnName === "*"
+    );
     if (!!styledColumns || !!styleForAllCoumns) {
       return {
         styles: !!styledColumns ? styledColumns.styles : {},
-        className: styledColumns ? styledColumns.classNames : {},
+        classNames: styledColumns ? styledColumns.classNames : {},
         allColumnStyles: !!styleForAllCoumns ? styleForAllCoumns.styles : {},
         allColumnClassNames: styleForAllCoumns
           ? styleForAllCoumns.classNames
@@ -137,25 +143,25 @@ export default function DynamicTable({
     }
     return null;
   };
-  const getColumnsInsertedBefore = (cellData, colName) => {
+  const getColumnsInsertedBefore = (cellData, colName, rowData) => {
     const columnsToInsert = insertColumnsBefore?.find(
       (item) => item.columnName === colName
     );
     if (!!columnsToInsert) {
       return columnsToInsert.columns.map((item, index) => {
-        return <td key={index}>{item.component(cellData)}</td>;
+        return <td key={index}>{item.component(cellData, rowData)}</td>;
       });
     }
     return null;
   };
   // After
-  const getColumnsInsertedAfter = (cellData, colName) => {
+  const getColumnsInsertedAfter = (cellData, colName, rowData) => {
     const columnsToInsert = insertColumnsAfter?.find(
       (item) => item.columnName === colName
     );
     if (!!columnsToInsert) {
       return columnsToInsert.columns.map((item, index) => {
-        return <td key={index}>{item.component(cellData)}</td>;
+        return <td key={index}>{item.component(cellData, rowData)}</td>;
       });
     }
     return null;
@@ -202,9 +208,9 @@ export default function DynamicTable({
               handleHeaderHover();
             }}
           >
-            {getHeaderName(head)}
+            {replaceUnderscoreWithSpace(getHeaderName(head))}
           </th>
-          {getHeadersAfter(head)}
+          {replaceUnderscoreWithSpace(getHeadersAfter(head))}
         </>
       );
     });
@@ -246,7 +252,7 @@ export default function DynamicTable({
   };
 
   const [searchFilter, setSearchFilter] = useState(headers[0]);
-  const [filterValue, setFilter] = useState(headers[0]);
+  const [filterValue, setFilter] = useState(defaultFIlterIndex || headers[0]);
 
   const executeLocalSearch = (searchInput) => {
     const searchContains = (dataToSearchIn, searchValue, property) => {
@@ -322,13 +328,13 @@ export default function DynamicTable({
             className={rowStyles?.classNames}
           >
             {cells.map((headerName, index2) => {
-              const styles = getcellStyless(index2);
+              const styles = getcellStyless(headerName);
               const customeCell = getCustomComponents(headerName);
               console.log(customeCell);
               const cellData = row[headerName];
               return (
                 <>
-                  {getColumnsInsertedBefore(cellData, headerName)}
+                  {getColumnsInsertedBefore(cellData, headerName, row)}
                   <td
                     key={index2 + "cell"}
                     onClick={() => handleCellClick(cellData, row)}
@@ -339,7 +345,7 @@ export default function DynamicTable({
                     <div
                       style={{ ...styles?.allColumnStyles, ...styles?.styles }}
                       className={
-                        styles?.allColumnClassNames + " " + styles?.classNames
+                        styles?.classNames + " " + styles?.allColumnClassNames
                       }
                     >
                       {customeCell !== null
@@ -347,7 +353,7 @@ export default function DynamicTable({
                         : cellData}
                     </div>
                   </td>
-                  {getColumnsInsertedAfter(cellData, headerName)}
+                  {getColumnsInsertedAfter(cellData, headerName, row)}
                 </>
               );
             })}
@@ -359,14 +365,14 @@ export default function DynamicTable({
   const ejectSearchFilters = () => {
     const filterForSearch = searchFilters.length ? searchFilters : headers;
     return filterForSearch?.map((item, index) => {
-      return <option key={index}>{item}</option>;
+      return <option key={index}>{replaceUnderscoreWithSpace(item)}</option>;
     });
   };
 
   const ejectSorters = () => {
     const filterForSorters = sorters.length ? sorters : headers;
     return filterForSorters?.map((item, index) => {
-      return <option key={index}>{item}</option>;
+      return <option key={index}>{replaceUnderscoreWithSpace(item)}</option>;
     });
   };
 
@@ -388,11 +394,11 @@ export default function DynamicTable({
       {/* -----------------------  Search and filter  bar --------------*/}
       {!hideActionBar && (
         <div className="w-full">
-          <div className="bg-gray-100 flex justify-between p-2 items-center">
+          <div className=" flex justify-between h-[60px]  items-center mb-[30px] bg-gray-50 rounded-md px-[20px]">
             <div className="flex items-center">
-              <span className="mr-2">Filter by</span>
+              <span className="mr-2  text-[#364E62] text-xl ">Filter by |</span>
               <select
-                className="cursor-pointer"
+                className="cursor-pointer text-xl capitalize outline-none bg-transparent "
                 onChange={(e) => {
                   setFilter(e.target.value);
                 }}
@@ -402,22 +408,25 @@ export default function DynamicTable({
             </div>
             <div className="flex justify-end items-center">
               <div className="mr-2">
-                <span className="mr-2">Search by</span>
+                <span className="mr-2 text-xl  text-[#364E62]">
+                  Search by |
+                </span>
                 <select
                   onChange={(e) => {
                     setSearchFilter(e.target.value);
                   }}
-                  className="cursor-pointer"
+                  className="cursor-pointer text-xl capitalize text-[#364E62] outline-none bg-transparent "
                 >
                   {ejectSearchFilters()}
                 </select>
               </div>
               <input
                 type="search"
+                placeholder="Type here to search..."
                 onChange={(e) => {
                   executeLocalSearch(e.target.value);
                 }}
-                className="border mr-1 p-2 outline-none rounded-lg border-gray-100 w-[300px] h-[40px]"
+                className=" mr-1 p-2 outline-none w-[300px]  h-[40px] text-xl bg-transparent"
               />
               <Search />
             </div>
@@ -428,15 +437,15 @@ export default function DynamicTable({
       {/*--------------------- Table entry point area ------------------- */}
       <div className="w-full h-full overflow-auto">
         <table className="w-full">
-          <thead className="w-full sticky top-0 bg-white">
+          <thead className="w-full sticky top-0 bg-white z-[2]">
             <tr>{getTableHeads()}</tr>
           </thead>
           <tbody className="w-full">{getTableRows()}</tbody>
         </table>
       </div>
       {!hidePagination && (
-        <div className="flex justify-between">
-          <div className="flex">
+        <div className="flex justify-between items-center text-xl text-[#364E62]">
+          <div className="flex items-center">
             <span className="mr-2">Page</span>
             <span className="mr-2">{currentPageNumber}</span>
             <span className="mr-2">of</span>
@@ -444,13 +453,13 @@ export default function DynamicTable({
             <div>
               <select
                 onChange={(e) => changeRowsToDisplay(e.target.value)}
-                className="ml-4 cursor-pointer"
+                className="ml-4 cursor-pointer outline-none"
               >
                 {ejectRowsToDisplayOptions()}
               </select>
             </div>
           </div>
-          <div className="flex">
+          <div className="flex ">
             <span>
               <KeyboardDoubleArrowLeft
                 className="cursor-pointer"

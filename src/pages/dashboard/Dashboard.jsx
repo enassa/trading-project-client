@@ -31,7 +31,7 @@ export default function Dashboard() {
     );
   };
   return (
-    <div className="w-full  h-full max-h-full overflow-y-hidden flex flex-col px-5 justify-start pb-[20px]">
+    <div className="w-full  h-full max-h-full overflow-y-auto flex flex-col px-5 justify-start pb-[20px] over">
       <div className="w-full  flex-wrap  flex  h-[200px] py-[20px] justify-center">
         <HorizontalBar>
           {ejectPortfolio()}{" "}
@@ -45,9 +45,9 @@ export default function Dashboard() {
           </div>
         </HorizontalBar>
       </div>
-      <div className="w-full justify-center flex  h-full">
+      <div className="w-full justify-center flex  h-full ">
         <div className="w-full h-full flex  rounded-md  justify-between ">
-          <div className="w-full h-full shadow-md mr-[20px] shadow-[20px] bg-white rounded-md overflow-hidden p-[40px]">
+          <div className="w-full h-full shadow-md mr-[20px] shadow-[20px] bg-white rounded-md overflow-hidden p-[40px] pt-[20px]">
             <StockStrend />
           </div>
           <div className="min-w-[379px] h-full rounded-md flex bg-white flex-col p-5">

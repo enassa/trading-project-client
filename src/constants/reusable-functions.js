@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import { images } from "../assets/images/images";
 
 export const makeCall = (phoneNumber) => {
   window.open(`tel:${phoneNumber}`, "_self");
@@ -97,6 +98,28 @@ export const searchContains = (dataToSearchIn, searchValue, property) => {
     return searchResults;
   } catch {
     return;
+  }
+};
+export const getImageFromSymbol = (symbol) => {
+  switch (symbol) {
+    case "GOOGL":
+      return images.google;
+    case "MSFT":
+      return images.microsoft;
+    case "TSLA":
+      return images.tesla;
+    case "IBM":
+      return images.ibm;
+    case "APPL":
+      return images.apple;
+    case "AMZN":
+      return images.amazon;
+    case "ORCL":
+      return images.oracle;
+    case "NFLX":
+      return images.netflix;
+    default:
+      break;
   }
 };
 var newFormat = require("dayjs/plugin/advancedFormat");
