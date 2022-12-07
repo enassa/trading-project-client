@@ -100,7 +100,7 @@ export default function PortfolioStocks() {
         ]}
         rowStyles={{
           styles: { color: "" },
-          classNames: "hover:bg-gray-50 mb-[20px] h-[70px]",
+          classNames: "hover:bg-gray-50 mb-[20px] h-[40px]",
         }}
         cellStyles={[
           {
