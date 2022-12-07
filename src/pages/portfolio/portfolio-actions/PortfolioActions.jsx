@@ -35,10 +35,6 @@ export default function PortfolioActions() {
       </div>
 
       <div className="flex ">
-        {/* <span className="w-full cursor-pointer flex">
-      <AddCircle className="mr-2 text-gray-500" />
-      <span>Create portfolio</span>
-    </span> */}
         <TButton className="w-[200px] mr-[10px]" icon={<AddCircle />}>
           Create Portfolio
         </TButton>
@@ -50,9 +46,9 @@ export default function PortfolioActions() {
           {showSettings && (
             <ClickAwayListener onClickAway={() => setShowSettings(false)}>
               <div className="w-auto h-auto shadow-neumoNav animate-rise bg-white absolute top-[60px] z-[10] right-[35px]">
-                <div className="w-full h-[43px] bg-red-600 text-white  flex justify-start items-center px-[35px] cursor-pointer rounded-md">
-                  <Delete className="text-white bg-red-600" />{" "}
-                  <span className="whitespace-nowrap">Delete Portfolio</span>
+                <div className="w-full h-[43px] bg-red-600 text-white  flex justify-start items-center px-[37px] cursor-pointer rounded-md">
+                  <Delete className="text-white bg-red-600 mr-1" />{" "}
+                  <span className="whitespace-nowrap">Close Portfolio</span>
                 </div>
               </div>
             </ClickAwayListener>

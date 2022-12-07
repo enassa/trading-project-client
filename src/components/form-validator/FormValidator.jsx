@@ -72,8 +72,12 @@ export default function TFormValidator({
     }
   };
   const processButton = (buttons) => {
-    buttons[0].addEventListener("click", (newValue = listenForSubmit + 1) =>
-      setListenForSubmit(newValue)
+    buttons[0].addEventListener(
+      "click",
+      (e, newValue = listenForSubmit + 1) => {
+        e.preventDefault();
+        setListenForSubmit(newValue);
+      }
     );
   };
 
