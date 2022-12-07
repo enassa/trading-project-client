@@ -167,6 +167,10 @@ export default function PortfolioStocks() {
             renameThis: "average_vol",
             withThis: "Avg.Vol",
           },
+          {
+            renameThis: "graph",
+            withThis: "trend",
+          },
         ]}
         defaultFIlterIndex={1}
         rowsToDisplayOptions={["10", "50", "100", "200"]}
