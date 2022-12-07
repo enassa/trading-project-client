@@ -1,7 +1,7 @@
 import React from "react";
 import Chart from "react-apexcharts";
 
-class PerfomanceChart extends React.Component {
+class SingleChart extends React.Component {
   constructor(props) {
     super(props);
 
@@ -10,10 +10,6 @@ class PerfomanceChart extends React.Component {
         {
           name: "GOOGL",
           data: [31, 40, 28, 51, 42, 109, 100],
-        },
-        {
-          name: "APPL",
-          data: [11, 32, 45, 32, 34, 52, 41],
         },
       ],
       options: {
@@ -105,4 +101,4 @@ class PerfomanceChart extends React.Component {
   }
 }
 
-export default PerfomanceChart;
+export default SingleChart;

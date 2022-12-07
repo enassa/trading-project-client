@@ -9,11 +9,11 @@ import {
 } from "@mui/icons-material";
 import { Tooltip } from "@mui/material";
 import React from "react";
-import DynamicTable from "../../../components/dynamic-table/DynamicTable";
-import { openTrades } from "../../../constants/dummy-data";
-import { getImageFromSymbol } from "../../../constants/reusable-functions";
+import DynamicTable from "../../components/dynamic-table/DynamicTable";
+import { openTrades } from "../../constants/dummy-data";
+import { getImageFromSymbol } from "../../constants/reusable-functions";
 
-export default function TradeHistory() {
+export default function TradeHistroyPage() {
   return (
     <div className="w-full h-full shadow-md  shadow-[20px] bg-white rounded-md overflow-hidden p-[40px]">
       <DynamicTable
@@ -153,6 +153,65 @@ export default function TradeHistory() {
           {
             renameThis: "quantity",
             withThis: "Qty",
+          },
+        ]}
+        insertColumnsAfter={[
+          {
+            columnName: "status",
+            columns: [
+              {
+                header: "Actions",
+                headerComponent: () => {
+                  return <div> Actions </div>;
+                },
+                component: (cellData, rowData) => {
+                  return (
+                    <div className="flex ">
+                      <Tooltip
+                        title={`${
+                          rowData.status !== "failed" ? "" : "Retry order"
+                        }`}
+                      >
+                        <Refresh
+                          className={`mr-3 cursor-pointer  ${
+                            rowData.status !== "failed"
+                              ? "text-gray-300"
+                              : "text-blue-700"
+                          }`}
+                        />
+                      </Tooltip>
+                      <Tooltip
+                        title={`${
+                          rowData.status === "failed" ? "" : "Cancel order "
+                        }`}
+                      >
+                        <Close
+                          className={`mr-3 cursor-pointer ${
+                            rowData.status === "canceled" ||
+                            (rowData.status === "failed"
+                              ? "text-gray-300"
+                              : "text-red-500 ")
+                          }`}
+                        />
+                      </Tooltip>
+                      <Tooltip
+                        title={`${
+                          rowData.status !== "pending" ? "" : "Delete order"
+                        }`}
+                      >
+                        <DeleteOutline
+                          className={`mr-3 cursor-pointer  ${
+                            rowData.status === "pending"
+                              ? "text-gray-300"
+                              : "text-red-900"
+                          }`}
+                        />
+                      </Tooltip>
+                    </div>
+                  );
+                },
+              },
+            ],
           },
         ]}
         defaultFIlterIndex={1}

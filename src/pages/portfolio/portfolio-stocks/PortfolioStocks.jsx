@@ -3,6 +3,8 @@ import React from "react";
 import DynamicTable from "../../../components/dynamic-table/DynamicTable";
 import { portfolioRecords } from "../../../constants/dummy-data";
 import { getImageFromSymbol } from "../../../constants/reusable-functions";
+import PerfomanceChart from "../charts/PerfomanceChart";
+import SingleChart from "./../charts/SingleChart";
 
 export default function PortfolioStocks() {
   return (
@@ -79,6 +81,17 @@ export default function PortfolioStocks() {
             },
           },
           {
+            columnName: "graph",
+            component: (cellData) => {
+              return (
+                <div className="w-[100px]">
+                  {/* k */}
+                  <SingleChart height={70} />
+                </div>
+              );
+            },
+          },
+          {
             columnName: "status",
             component: (cellData) => {
               return (
@@ -111,7 +124,7 @@ export default function PortfolioStocks() {
           {
             columnName: "last_price",
             // styles: { color: "red" },
-            classNames: " text-left text-green-600",
+            classNames: " text-left ",
           },
           {
             columnName: "change",
@@ -131,7 +144,7 @@ export default function PortfolioStocks() {
           {
             columnName: "market_cap",
             // styles: { color: "red" },
-            classNames: " text-right",
+            classNames: " text-center",
           },
         ]}
         headerStyles={[
@@ -163,15 +176,3 @@ export default function PortfolioStocks() {
     </div>
   );
 }
-// symbol: "Kane Nathaniel",
-// last_price: 20,
-// change: "assanenathaniel@gmail.com",
-// percentage_change: 1,
-// currency: "USD",
-// volume: "1.4M",
-// shares: "Add",
-// average_vol: "",
-// market_cap: "9658",
-// graph: "",
-// day_range: ["109.50", "103.30"],
-// week_range: ["1102.3", "120.5"],

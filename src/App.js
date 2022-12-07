@@ -10,9 +10,9 @@ import PageNotFound from "./components/page-not-found/page-not-found";
 import Login from "./pages/auth/login/Login";
 import LandingPage from "./pages/landing-page/LandingPage";
 import Portfolio from "./pages/portfolio/Portfolio";
-import TradeHistroy from "./pages/trade-history/TradeHistroy";
 import PageWrapper from "./components/page-wrapper/PageWrapper";
 import { createRipple } from "./constants/reusable-functions";
+import TradeHistroyPage from "./pages/trade-history/TradeHistroyPage";
 
 function App() {
   return (
@@ -25,7 +25,10 @@ function App() {
         <Route path={ROUTES.home.route} element={<Home />}>
           <Route path={ROUTES.dashboard.route} element={<Dashboard />} />
           <Route path={ROUTES.portfolio.route} element={<Portfolio />} />
-          <Route path={ROUTES.tradeHistory.route} element={<TradeHistroy />} />
+          <Route
+            path={ROUTES.tradeHistory.route}
+            element={<TradeHistroyPage />}
+          />
         </Route>
         <Route path={ROUTES.notFound} element={<PageNotFound />} />
       </Routes>

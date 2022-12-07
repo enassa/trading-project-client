@@ -143,25 +143,25 @@ export default function DynamicTable({
     }
     return null;
   };
-  const getColumnsInsertedBefore = (cellData, colName) => {
+  const getColumnsInsertedBefore = (cellData, colName, rowData) => {
     const columnsToInsert = insertColumnsBefore?.find(
       (item) => item.columnName === colName
     );
     if (!!columnsToInsert) {
       return columnsToInsert.columns.map((item, index) => {
-        return <td key={index}>{item.component(cellData)}</td>;
+        return <td key={index}>{item.component(cellData, rowData)}</td>;
       });
     }
     return null;
   };
   // After
-  const getColumnsInsertedAfter = (cellData, colName) => {
+  const getColumnsInsertedAfter = (cellData, colName, rowData) => {
     const columnsToInsert = insertColumnsAfter?.find(
       (item) => item.columnName === colName
     );
     if (!!columnsToInsert) {
       return columnsToInsert.columns.map((item, index) => {
-        return <td key={index}>{item.component(cellData)}</td>;
+        return <td key={index}>{item.component(cellData, rowData)}</td>;
       });
     }
     return null;
@@ -334,7 +334,7 @@ export default function DynamicTable({
               const cellData = row[headerName];
               return (
                 <>
-                  {getColumnsInsertedBefore(cellData, headerName)}
+                  {getColumnsInsertedBefore(cellData, headerName, row)}
                   <td
                     key={index2 + "cell"}
                     onClick={() => handleCellClick(cellData, row)}
@@ -353,7 +353,7 @@ export default function DynamicTable({
                         : cellData}
                     </div>
                   </td>
-                  {getColumnsInsertedAfter(cellData, headerName)}
+                  {getColumnsInsertedAfter(cellData, headerName, row)}
                 </>
               );
             })}
@@ -437,7 +437,7 @@ export default function DynamicTable({
       {/*--------------------- Table entry point area ------------------- */}
       <div className="w-full h-full overflow-auto">
         <table className="w-full">
-          <thead className="w-full sticky top-0 bg-white">
+          <thead className="w-full sticky top-0 bg-white z-[2]">
             <tr>{getTableHeads()}</tr>
           </thead>
           <tbody className="w-full">{getTableRows()}</tbody>
