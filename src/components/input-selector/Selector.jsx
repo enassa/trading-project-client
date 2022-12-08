@@ -3,6 +3,8 @@ import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import React, { useState } from "react";
 import { checkRegexPattern } from "../../constants/reusable-functions";
 import { ClickAwayListener } from "@mui/material";
+import { useEffect } from "react";
+import { useRef } from "react";
 
 export default function TSelector({
   type,
@@ -23,6 +25,15 @@ export default function TSelector({
   const [dropOptions, setDropOptions] = useState();
   const [error, setError] = useState(false);
   const [selected, setSelected] = useState(value);
+
+  const inputRef = React.createRef();
+  const initialLoad = useRef();
+  useEffect(() => {
+    const event = new Event("change");
+    inputRef.current?.dispatchEvent(event);
+    // console.log(  );
+    // inputRef.current.change();
+  }, [selected]);
 
   const getOptions = () => {
     return children.map((option, index) => {
@@ -72,6 +83,7 @@ export default function TSelector({
         } h-[40px] flex flex-row items-center w-full border-[#8b8b8b] border-[1px] rounded-[5px] outline-none cursor-pointer`}
       >
         <input
+          ref={inputRef}
           onFocusCapture={() => {
             !disabled && setDropOptions(true);
           }}

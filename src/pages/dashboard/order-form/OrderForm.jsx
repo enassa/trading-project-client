@@ -5,7 +5,10 @@ import {
   TrendingUp,
 } from "@mui/icons-material";
 import React from "react";
-import { emailRegex } from "../../../constants/reusable-functions";
+import {
+  emailRegex,
+  onlyPositiveNumbersRegex,
+} from "../../../constants/reusable-functions";
 import TFormValidator from "../../../components/form-validator/FormValidator";
 import TSelector from "../../../components/input-selector/Selector";
 import TInput from "../../../components/input-field/Input";
@@ -20,27 +23,15 @@ export default function TOrderForm() {
   const validationSchema = {
     portfolio: {
       required: true,
-      maxCharLength: 30,
-      minCharLength: 3,
-      regexPattern: emailRegex(),
     },
     trade_type: {
       required: true,
-      maxCharLength: 40,
-      minCharLength: 30,
-      regexPattern: "",
     },
     quantity: {
       required: true,
-      maxCharLength: 40,
-      minCharLength: 30,
-      regexPattern: "",
     },
     amount: {
       required: true,
-      maxCharLength: 40,
-      minCharLength: 30,
-      regexPattern: "",
     },
   };
   const ejectMenuItems = () => {
@@ -105,8 +96,8 @@ export default function TOrderForm() {
                       //   console.log(e.target.value);
                     }}
                     onValidated={(e) => console.log(e.target.value)}
-                    regexPattern={emailRegex(5)}
-                    minCharLength={5}
+                    regexPattern={onlyPositiveNumbersRegex()}
+                    required={true}
                     name="amount"
                     label={"Amount"}
                     className="bg-[#F5F7F9] border-0"
@@ -118,8 +109,8 @@ export default function TOrderForm() {
                       //   console.log(e.target.value);
                     }}
                     onValidated={(e) => console.log(e.target.value)}
-                    regexPattern={emailRegex(5)}
-                    minCharLength={5}
+                    regexPattern={onlyPositiveNumbersRegex()}
+                    required={true}
                     name="quantity"
                     label={"Quantity"}
                     className="bg-[#F5F7F9] border-0"
