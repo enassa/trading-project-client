@@ -9,10 +9,10 @@ export default function TLogo({
     <div className={`${containerClassName} flex h-full items-center py-3`}>
       <img
         alt="logo"
-        className={`${imageClassName} h-[100%] w-[100%] mr-2 `}
-        src={images.logoPng}
+        className={`${imageClassName} h-[40px] w-[100%] mr-2 `}
+        src={images.toukanyaLogo}
       />
-      <span className={`${textClassName}`}>ToukanyaFX</span>
+      {/* <span className={`${textClassName}`}>ToukanyaFX</span> */}
     </div>
   );
 }

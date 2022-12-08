@@ -55,7 +55,7 @@ export default function Register() {
             </div>
           </div>
         </div>
-        <div className="w-[50%] h-full bg-transparent animate-rise p-[100px] shadow-neuroInsert flex justify-center flex-col rounded-lg">
+        <div className="w-[50%] h-full bg-transparent animate-rise p-[30px] py-[50px] shadow-neuroInsert flex justify-center flex-col rounded-lg">
           <h1 className="text-3xl font-bold">Welcome back</h1>
           <span className="text-xl">
             Please fill in your credentials to continue

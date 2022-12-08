@@ -54,7 +54,7 @@ export default function Login() {
             </div>
           </div>
         </div>
-        <div className="w-[35%] h-full bg-transparent bg-[#F2F3F3] animate-rise p-[100px]  flex justify-center flex-col shadow-neuroInsert rounded-lg">
+        <div className="w-[35%] h-full bg-transparent bg-[#F2F3F3] animate-rise p-[30px]  flex justify-center flex-col shadow-neuroInsert rounded-lg">
           <h1 className="text-3xl font-bold">Welcome back</h1>
           <span className="text-xl">
             Please fill in your credentials to continue
