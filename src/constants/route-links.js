@@ -33,7 +33,7 @@ export const ROUTES = {
   },
   logOut: {
     route: "/logout",
-    url: "/logout",
+    url: "/",
   },
 
   // PROTECTED ROUTES

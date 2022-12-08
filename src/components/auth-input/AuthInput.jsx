@@ -82,7 +82,7 @@ export default function TAuthInput({
     validated && onValidated && onValidated(e, e.target.value);
   };
   const errorClass =
-    "text-red-600 text-xs mt-1 capitalize absolute  bottom-[-15px]";
+    "text-red-600 text-xs mt-1 capitalize absolute  bottom-[-15px] normal-case";
 
   const [inputType, setInputType] = useState(type);
   const changeFieldType = () => {
@@ -97,7 +97,7 @@ export default function TAuthInput({
       <span
         style={{ color: "black" }}
         htmlFor={name}
-        className="w-full text-black relative b-[30px] text-[18px] mb-[10px]"
+        className="w-full text-black relative b-[30px] text-[18px] mb-[10px] normal-case"
       >
         {label}
       </span>

@@ -35,18 +35,16 @@ export default function LandingPage() {
     <div className="w-full h-full flex bg-blue-50 flex-col">
       <div className="w-full flex justify-between h-[70px] px-[20px] py-[10px]">
         <TLogo textClassName="text-3xl" />
-        {/* <div className="shadow-neuroRaise w-[350px] py-3 flex justify-center items-center rounded-[30px]"> */}
         <TButton
           icon={<Login className="mr-2" />}
           onClick={() => {
-            navigate(ROUTES.register.url);
+            navigate(ROUTES.login.url);
           }}
           styles={{ backgroundColor: "white" }}
-          className="shadow-neuroRaise bg-white border-0 text-gray-900 w-[160px] rounded-[10px] hover:shadow-md"
+          className="shadow-neuroRaise bg-[#374F63] border-0 text-gray-900 w-[160px] rounded-[10px] hover:shadow-md"
         >
           Login
         </TButton>
-        {/* </div> */}
       </div>
       <div className="w-full h-full flex items-center mb-[160px]">
         <div className="flex h-full items-center">
@@ -86,17 +84,17 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="ml-[50px]">
-          <p className="text-5xl mb-[20px]">
+          <p className="text-5xl mb-[20px] text-bgTrade">
             There is no better place than here....
           </p>
-          <div className="shadow-neuroRaise w-[350px] py-7 flex justify-center items-center rounded-[30px] mt-[30px]">
+          <div className="shadow-neuroInsert w-[350px] py-7 flex justify-center items-center rounded-[30px] mt-[30px]">
             <TButton
               icon={<VpnKey className="mr-2" />}
               onClick={() => {
                 navigate(ROUTES.register.url);
               }}
               styles={{ backgroundColor: "white" }}
-              className="shadow-neuroRaise bg-white border-0 text-gray-900 w-[300px] rounded-[10px] h-[60px] hover:shadow-md hover:bg-[#374F63]"
+              className="shadow-neuroInsert bg-white border-0 text-gray-900 w-[300px] rounded-[10px] h-[60px] hover:shadow-md hover:bg-[#374F63]"
             >
               Get started
             </TButton>

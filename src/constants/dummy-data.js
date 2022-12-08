@@ -82,7 +82,7 @@ export const portfolioRecords = [
     percentage_change: "+1%",
     currency: "USD",
     volume: "1.4M",
-    shares: "Add",
+
     average_vol: "108M",
     market_cap: "9658",
     graph: "-",
@@ -96,7 +96,7 @@ export const portfolioRecords = [
     percentage_change: "+1%",
     currency: "USD",
     volume: "1.4M",
-    shares: "Add",
+
     average_vol: "108M",
     market_cap: "9658",
     graph: "-",
@@ -110,7 +110,7 @@ export const portfolioRecords = [
     percentage_change: "+1%",
     currency: "USD",
     volume: "1.4M",
-    shares: "Add",
+
     average_vol: "108M",
     market_cap: "9658",
     graph: "-",
@@ -124,7 +124,7 @@ export const portfolioRecords = [
     percentage_change: "+1%",
     currency: "USD",
     volume: "1.4M",
-    shares: "Add",
+
     average_vol: "108M",
     market_cap: "9658",
     graph: "-",
@@ -138,7 +138,7 @@ export const portfolioRecords = [
     percentage_change: "+1%",
     currency: "USD",
     volume: "1.4M",
-    shares: "Add",
+
     average_vol: "108M",
     market_cap: "9658",
     graph: "-",
@@ -152,7 +152,7 @@ export const portfolioRecords = [
     percentage_change: "+1%",
     currency: "USD",
     volume: "1.4M",
-    shares: "Add",
+
     average_vol: "108M",
     market_cap: "9658",
     graph: "-",
@@ -166,7 +166,7 @@ export const portfolioRecords = [
     percentage_change: "+1%",
     currency: "USD",
     volume: "1.4M",
-    shares: "Add",
+
     average_vol: "108M",
     market_cap: "9658",
     graph: "-",
@@ -180,7 +180,7 @@ export const portfolioRecords = [
     percentage_change: "+1%",
     currency: "USD",
     volume: "1.4M",
-    shares: "Add",
+
     average_vol: "108M",
     market_cap: "9658",
     graph: "-",
@@ -194,7 +194,7 @@ export const portfolioRecords = [
     percentage_change: "+1%",
     currency: "USD",
     volume: "1.4M",
-    shares: "Add",
+
     average_vol: "108M",
     market_cap: "9658",
     graph: "-",
@@ -208,7 +208,7 @@ export const portfolioRecords = [
     percentage_change: "+1%",
     currency: "USD",
     volume: "1.4M",
-    shares: "Add",
+
     average_vol: "108M",
     market_cap: "9658",
     graph: "-",
@@ -222,7 +222,7 @@ export const portfolioRecords = [
     percentage_change: "+1%",
     currency: "USD",
     volume: "1.4M",
-    shares: "Add",
+
     average_vol: "108M",
     market_cap: "9658",
     graph: "-",
@@ -236,7 +236,7 @@ export const portfolioRecords = [
     percentage_change: "+1%",
     currency: "USD",
     volume: "1.4M",
-    shares: "Add",
+
     average_vol: "108M",
     market_cap: "9658",
     graph: "-",
@@ -250,7 +250,7 @@ export const portfolioRecords = [
     percentage_change: "+1%",
     currency: "USD",
     volume: "1.4M",
-    shares: "Add",
+
     average_vol: "108M",
     market_cap: "9658",
     graph: "-",
@@ -264,7 +264,7 @@ export const portfolioRecords = [
     percentage_change: "+1%",
     currency: "USD",
     volume: "1.4M",
-    shares: "Add",
+
     average_vol: "108M",
     market_cap: "9658",
     graph: "-",

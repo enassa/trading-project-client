@@ -20,23 +20,19 @@ export default function Login() {
     console.log(data);
   };
   const validationSchema = {
-    trial: {
+    email: {
       required: true,
       maxCharLength: 30,
       minCharLength: 3,
       regexPattern: emailRegex(),
     },
-    myname: {
+    password: {
       required: true,
       maxCharLength: 40,
-      minCharLength: 30,
-      regexPattern: "",
+      minCharLength: 6,
     },
   };
-  const initialValues = {
-    trial: "sometrialtext",
-    myname: "second trial text",
-  };
+  const initialValues = {};
   return (
     <div className="w-full h-full flex justify-center items-center ">
       <div className="w-[80%] h-[80%]  flex">
@@ -66,6 +62,7 @@ export default function Login() {
             className="mt-[20px] flex justify-center flex-col "
           >
             {({ errors, values }) => {
+              console.log(errors, values);
               return (
                 <div className="w">
                   <TAuthInput
@@ -83,7 +80,6 @@ export default function Login() {
                     onChange={(e) => {}}
                     label="Password"
                     onValidated={(e) => console.log(e.target.value)}
-                    regexPattern={emailRegex(5)}
                     minCharLength={5}
                     required={true}
                     type="password"
@@ -93,7 +89,7 @@ export default function Login() {
                   />
                   <TButton
                     onClick={() => {
-                      navigate(ROUTES.dashboard.url);
+                      // navigate(ROUTES.dashboard.url);
                     }}
                     className="mt-[40px]"
                     icon={<LoginSharp />}

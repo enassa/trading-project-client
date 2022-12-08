@@ -21,16 +21,22 @@ export default function Register() {
     console.log(data);
   };
   const validationSchema = {
-    trial: {
+    email: {
       required: true,
-      maxCharLength: 30,
-      minCharLength: 3,
-      regexPattern: emailRegex(),
+      maxCharLength: 60,
     },
-    myname: {
+    first_name: {
+      required: true,
+      maxCharLength: 60,
+    },
+    last_name: {
+      required: true,
+      maxCharLength: 60,
+      regexPattern: "",
+    },
+    password: {
       required: true,
       maxCharLength: 40,
-      minCharLength: 30,
       regexPattern: "",
     },
   };
@@ -67,6 +73,7 @@ export default function Register() {
             className="mt-[20px] flex w-full justify-center flex-col"
           >
             {({ errors, values }) => {
+              console.log(errors, values);
               return (
                 <div className="w-fulll ">
                   <div className="w-full flex justify-start items-center">
@@ -90,7 +97,7 @@ export default function Register() {
                       minCharLength={5}
                       required={true}
                       type="text"
-                      name="lastname"
+                      name="last_name"
                       className="shadow-neuroInsert border-0"
                     />
                   </div>
@@ -119,7 +126,7 @@ export default function Register() {
                   />
                   <TButton
                     onClick={() => {
-                      navigate(ROUTES.login.url);
+                      // navigate(ROUTES.login.url);
                     }}
                     className="mt-[20px]"
                     icon={<VpnKey />}

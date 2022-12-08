@@ -201,7 +201,11 @@ export default function DynamicTable({
               ...styles?.styles,
               textTransform: "capitalize",
             }}
-            className={styles?.allColumnClassNames + " " + styles?.classNames}
+            className={
+              styles?.allColumnClassNames +
+              " whitespace-nowrap " +
+              styles?.classNames
+            }
             align="left"
             onClick={(row, data) => handleHeaderClick(head)}
             onMouseOver={(row, data) => {

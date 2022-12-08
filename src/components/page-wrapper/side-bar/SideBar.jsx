@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { SideBarData as defaultMenuList } from "./side-bar-data/side-bar-data";
 import BalanceCard from "./../../balance-card/BalanceCard";
-import Logo from "../nav-bar/logo-container/Logo";
-import { ROUTES } from "./../../../constants/route-links";
 import { images } from "./../../../assets/images/images";
 export default function TSideBar({ menuItems = [] }) {
   const navigate = useNavigate();

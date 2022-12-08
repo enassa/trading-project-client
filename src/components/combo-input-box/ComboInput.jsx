@@ -29,7 +29,7 @@ export default function ComboInput({
   const [dropOptions, setDropOptions] = useState();
   const [error, setError] = useState(false);
   const [selected, setSelected] = useState(value);
-  const [searchValue, setSearchValue] = useState(value);
+  const [searchValue, setSearchValue] = useState(value ?? "");
   let reg = new RegExp("[^,]*" + searchValue + "[^,]*", "ig");
   const getOptions = () => {
     const datForMapping =
@@ -90,7 +90,7 @@ export default function ComboInput({
             !disabled && setDropOptions(true);
           }}
           onBlur={(e) => {
-            if (onChange()) setSearchValue("");
+            // if (onChange()) setSearchValue("");
           }}
           onClick={(e) => {
             e.stopPropagation();
