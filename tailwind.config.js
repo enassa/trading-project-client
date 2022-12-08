@@ -30,6 +30,7 @@ module.exports = {
         blight: "#e9ecef",
         bglblue: "#eff0f8",
         bgTrade: "#374f63",
+        neuro: "#F1F5F9",
       },
       boxShadow: {
         blend: "0 1px 0 0 transparent, 0 2px 10px 0 rgb(0 0 0 / 10%)",
@@ -40,6 +41,9 @@ module.exports = {
         neuroInward: "",
         neumoNav:
           " 0 0.5rem 1rem rgb(0 0 0 / 5%), inset 0 -1px 0 rgb(0 0 0 / 15%)",
+        neuroInsert:
+          "-1px -1px 0px #ffffff, -2px -2px 2px #b8cce0, inset -1px -1px 0px #ffffff, inset -2px -2px 2px #b8cce0",
+        neuroRaise: "8px 8px 16px #C9D9E8, -8px -8px 16px #FFFFFF",
       },
       fontFamily: {
         "arial-arounded": ["Arial Rounded MT Bold"],
@@ -95,7 +99,7 @@ module.exports = {
         },
       },
       animation: {
-        rotate: "rotate 0.5s linear infinite",
+        rotate: "rotate 100s linear infinite",
         rise: "rise 0.2s ease 0s 1 normal forwards running",
         bgChange: "bgChange  2s linear 0s infinite normal forwards running",
         slideDownVanish: "slideDownVanish 0.2s linear forwards ",

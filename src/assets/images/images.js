@@ -11,6 +11,8 @@ import google from "./google.png";
 import dummytradeImage from "./graph.webp";
 import dummyProfile from "./dummyprofile.jpg";
 import toukanyaLogo from "./toukanyaLogo.png";
+import loginImage from "./loginpng.png";
+import registerImage from "./loginpng.png";
 export const images = {
   logoPng,
   logoIco,
@@ -25,4 +27,6 @@ export const images = {
   dummytradeImage,
   dummyProfile,
   toukanyaLogo,
+  loginImage,
+  registerImage,
 };

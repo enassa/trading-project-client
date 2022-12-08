@@ -18,13 +18,25 @@ export default function TOrderForm() {
     console.log(data);
   };
   const validationSchema = {
-    trial: {
+    portfolio: {
       required: true,
       maxCharLength: 30,
       minCharLength: 3,
       regexPattern: emailRegex(),
     },
-    myname: {
+    trade_type: {
+      required: true,
+      maxCharLength: 40,
+      minCharLength: 30,
+      regexPattern: "",
+    },
+    quantity: {
+      required: true,
+      maxCharLength: 40,
+      minCharLength: 30,
+      regexPattern: "",
+    },
+    amount: {
       required: true,
       maxCharLength: 40,
       minCharLength: 30,
@@ -44,8 +56,8 @@ export default function TOrderForm() {
     );
   };
   const initialValues = {
-    trial: "sometrialtext",
-    myname: "second trial text",
+    amount: "second trial text",
+    quantity: "second trial text",
   };
   return (
     <div className="w-full h-full flex flex-col justify-end mt-[10px]">
@@ -58,6 +70,7 @@ export default function TOrderForm() {
           onSubmit={handleSubmit}
         >
           {({ errors, values }) => {
+            console.log(values);
             return (
               <>
                 <div className="">
@@ -77,12 +90,12 @@ export default function TOrderForm() {
                     // onChange={(data) => alert(data)}
                     placeholder="Select order type"
                     label="Trade type"
-                    name="trade-type"
+                    name="trade_type"
                     className="bg-[#F5F7F9] border-0"
                   >
                     <option icon={<BarChart />}>Market order</option>
                     <option icon={<TrendingUp />}> Limit Order</option>
-                    <option icon={<AutoGraph />}>Limit Market</option>
+                    {/* <option icon={<AutoGraph />}>Limit Market</option> */}
                   </TSelector>
                 </div>
 
@@ -112,38 +125,6 @@ export default function TOrderForm() {
                     className="bg-[#F5F7F9] border-0"
                   />
                 </div>
-                {/* <div className=" mt-[15px]">
-                  <TSelector
-                    // onChange={(data) => alert(data)}
-                    placeholder="Select order type"
-                    label="Action"
-                    name="action"
-                    className="bg-[#F5F7F9] border-0"
-                  >
-                    <option icon={<BarChart />}>Sell</option>
-                    <option icon={<TrendingUp />}>Buy</option>
-                  </TSelector>
-                </div> */}
-                {/* <div className="mb-[1%]">
-                  <TButton
-                    onClick={(e) => e.preventDefault()}
-                    className={
-                      "uppercase mb-[10px] bg-bgTrade text-white border-2  mt-[30px]"
-                    }
-                    icon={<AccountBalanceWallet />}
-                  >
-                    Sell
-                  </TButton>
-                </div>
-                <div className="mb-[2%]">
-                  <TButton
-                    onClick={(e) => e.preventDefault()}
-                    className={"uppercase  mb-[10px] "}
-                    icon={<AccountBalanceWallet />}
-                  >
-                    Buy
-                  </TButton>
-                </div> */}
                 <div className="w-full justify-between flex items-center mt-[20px]">
                   <TButton
                     onClick={(e) => e.preventDefault()}
@@ -162,15 +143,6 @@ export default function TOrderForm() {
                     Buy
                   </TButton>
                 </div>
-                {/* <div className="mb-[2%]">
-                  <TButton
-                    onClick={(e) => e.preventDefault()}
-                    className={"uppercase  mb-[10px] "}
-                    icon={<AccountBalanceWallet />}
-                  >
-                    Submit
-                  </TButton>
-                </div> */}
               </>
             );
           }}

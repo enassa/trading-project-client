@@ -13,6 +13,7 @@ import Portfolio from "./pages/portfolio/Portfolio";
 import PageWrapper from "./components/page-wrapper/PageWrapper";
 import { createRipple } from "./constants/reusable-functions";
 import TradeHistroyPage from "./pages/trade-history/TradeHistroyPage";
+import Register from "./pages/auth/register/Register";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path={ROUTES.base.route} element={<LandingPage />} />
         <Route path={ROUTES.login.route} element={<Login />} />
+        <Route path={ROUTES.register.route} element={<Register />} />
         {/*====== Protected routes  */}
         <Route path={ROUTES.home.route} element={<Home />}>
           <Route path={ROUTES.dashboard.route} element={<Dashboard />} />

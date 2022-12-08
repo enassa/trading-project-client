@@ -23,7 +23,7 @@ export default function TFormValidator({
   let myErrors = { ...states.errors };
   let myValues = { ...states.values };
 
-  const validateInput = (inputElement) => {
+  const validateInput = (inputElement, calledFrom) => {
     const fieldsToValidate = Object.keys(validationSchema);
     const fieldName = inputElement?.name;
 
@@ -71,10 +71,16 @@ export default function TFormValidator({
       setStates({ ...states, errors: { ...allErrors }, values: myValues });
     }
   };
+  useEffect(() => {
+    console.log(listenForSubmit);
+    onSubmit(states.values);
+  }, [listenForSubmit]);
+
   const processButton = (buttons) => {
-    buttons[0].addEventListener("click", (newValue = listenForSubmit + 1) =>
-      setListenForSubmit(newValue)
-    );
+    buttons[0].addEventListener("click", (e) => {
+      e.preventDefault();
+      setListenForSubmit(Math.random() * 100);
+    });
   };
 
   const processInputs = (inputs) => {
@@ -94,11 +100,19 @@ export default function TFormValidator({
           input.setAttribute("value", initialValues[input.name]))();
 
       // ----- ADD ONCHANGE EVENTS TO  INPUTS ------
-      validateInput(input);
+      validateInput(input, "initial");
 
       // add event listener to all input fields
+      let delayId = undefined;
       input.addEventListener("input", (e) => {
-        input?.name !== undefined && validateInput(input);
+        clearTimeout(delayId);
+        delayId = setTimeout(() => {
+          // setStates({
+          //   ...states,
+          //   values: { ...states.values, [e.target.name]: e.target.value },
+          // });
+          input?.name !== undefined && validateInput(input);
+        }, 190);
       });
     });
   };
@@ -113,10 +127,6 @@ export default function TFormValidator({
     processInputs(allInputs);
     processButton(allButtons);
   }, []);
-
-  useEffect(() => {
-    onSubmit(states.values);
-  }, [listenForSubmit]);
 
   const childComponents = children({
     errors: { ...states.errors },
