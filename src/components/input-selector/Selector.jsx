@@ -28,11 +28,10 @@ export default function TSelector({
 
   const inputRef = React.createRef();
   const initialLoad = useRef();
+
   useEffect(() => {
-    const event = new Event("change");
+    const event = new Event("input");
     inputRef.current?.dispatchEvent(event);
-    // console.log(  );
-    // inputRef.current.change();
   }, [selected]);
 
   const getOptions = () => {

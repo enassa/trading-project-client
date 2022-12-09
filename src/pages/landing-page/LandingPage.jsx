@@ -32,7 +32,7 @@ export default function LandingPage() {
   };
   const navigate = useNavigate();
   return (
-    <div className="w-full h-full flex bg-blue-50 flex-col">
+    <div className="w-full h-full flex bg-white flex-col">
       <div className="w-full flex justify-between h-[70px] px-[20px] py-[10px]">
         <TLogo textClassName="text-3xl" />
         <TButton
@@ -41,7 +41,7 @@ export default function LandingPage() {
             navigate(ROUTES.login.url);
           }}
           styles={{ backgroundColor: "white" }}
-          className="shadow-neuroRaise bg-[#374F63] border-0 text-gray-900 w-[160px] rounded-[10px] hover:shadow-md"
+          className="shadow-neuroInsert bg-[#374F63] border-0 text-gray-900 w-[160px] rounded-[10px] hover:shadow-md"
         >
           Login
         </TButton>
@@ -94,7 +94,7 @@ export default function LandingPage() {
                 navigate(ROUTES.register.url);
               }}
               styles={{ backgroundColor: "white" }}
-              className="shadow-neuroInsert bg-white border-0 text-gray-900 w-[300px] rounded-[10px] h-[60px] hover:shadow-md hover:bg-[#374F63]"
+              className="shadow-neuro bg-white border-0 text-gray-900 w-[300px] rounded-[10px] h-[60px] hover:shadow-md hover:bg-[#374F63]"
             >
               Get started
             </TButton>

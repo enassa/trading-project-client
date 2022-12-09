@@ -1,6 +1,6 @@
 import { getOptionsFromChildren } from "@mui/base";
 import { ExpandLess, ExpandMore, GolfCourse } from "@mui/icons-material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { checkRegexPattern } from "../../constants/reusable-functions";
 import { ClickAwayListener } from "@mui/material";
 import { images } from "./../../assets/images/images";
@@ -31,6 +31,13 @@ export default function ComboInput({
   const [selected, setSelected] = useState(value);
   const [searchValue, setSearchValue] = useState(value ?? "");
   let reg = new RegExp("[^,]*" + searchValue + "[^,]*", "ig");
+
+  useEffect(() => {
+    console.log("Hello Nathaniel");
+    const event = new Event("input");
+    inputRef.current?.dispatchEvent(event);
+  }, [selected]);
+
   const getOptions = () => {
     const datForMapping =
       searchValue !== "" && searchValue !== undefined
@@ -40,11 +47,10 @@ export default function ComboInput({
       return (
         <div
           onClick={() => {
-            // inputRef.node.current = option.title;
             setSearchValue(option.title);
+            setSelected(option.title);
             if (option.title === selected) return;
             error && setError(false);
-            // onChange && onChange(option.props.children);
             setDropOptions(false);
           }}
           key={index}
@@ -75,7 +81,6 @@ export default function ComboInput({
       </label>
       <div
         onClick={(e) => {
-          // e.stopPropagation();
           !disabled && setDropOptions(true);
         }}
         className={` ${className} ${

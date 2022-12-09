@@ -1,7 +1,9 @@
 import {
   AccountBalanceWallet,
+  AddCircle,
   AutoGraph,
   BarChart,
+  RemoveCircle,
   TrendingUp,
 } from "@mui/icons-material";
 import React from "react";
@@ -61,7 +63,7 @@ export default function TOrderForm() {
           onSubmit={handleSubmit}
         >
           {({ errors, values }) => {
-            console.log(values);
+            console.log("errors==", errors, "values==", values);
             return (
               <>
                 <div className="">
@@ -116,20 +118,20 @@ export default function TOrderForm() {
                     className="bg-[#F5F7F9] border-0"
                   />
                 </div>
-                <div className="w-full justify-between flex items-center mt-[20px]">
+                <div className="w-full justify-between flex-col items-center mt-[20px]">
                   <TButton
                     onClick={(e) => e.preventDefault()}
                     className={
-                      "uppercase mr-[10px] bg-bgTrade text-white border-2 "
+                      "uppercase mb-[10px] bg-red-600 text-white border-0 "
                     }
-                    icon={<AccountBalanceWallet />}
+                    icon={<RemoveCircle />}
                   >
                     Sell
                   </TButton>
                   <TButton
                     onClick={(e) => e.preventDefault()}
-                    className={"uppercase  "}
-                    icon={<AccountBalanceWallet />}
+                    className={"uppercase bg-green-600 "}
+                    icon={<AddCircle />}
                   >
                     Buy
                   </TButton>

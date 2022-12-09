@@ -41,7 +41,6 @@ export const cssModules = (styleObject) => (classList) => {
       output += myClass.reduce(generateClassString, ""); // recursion to deal with Arrays
     } else if (styleObject[myClass]) {
       output += styleObject[myClass];
-      // append styleObject['myClass'] value to the list if it is defined in styleObject
     } else if (typeof myClass === "string") {
       output += myClass; // append 'myClass' directly to the list
     }
@@ -135,3 +134,23 @@ export function formatDate(dateString) {
   const date = dayjs(dateString);
   return date.format("Do MMMM, YYYY");
 }
+export const getAsObjectFromLocalStorage = (index) => {
+  try {
+    const serializedData = localStorage.getItem(index);
+    if (serializedData === null) {
+      return undefined;
+    }
+    return JSON.parse(serializedData);
+  } catch (err) {
+    return err;
+  }
+};
+
+export const saveObjectInLocalStorage = (key, value) => {
+  try {
+    const serializedData = JSON.stringify(value);
+    localStorage.setItem(key, serializedData);
+  } catch (err) {
+    return err;
+  }
+};

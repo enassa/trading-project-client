@@ -23,11 +23,13 @@ function TButton({
   iconSize,
   icon,
   onClick,
+  disabled,
 }) {
   return (
     <button
+      button={disabled}
       style={{ ...styles }}
-      onClick={(e) => onClick && onClick(e)}
+      onClick={(e) => (onClick ? onClick(e) : e.preventDefault())}
       className={`bg-bgTrade  h-[47px]  w-full rounded-[5px] flex justify-center border border-[#8b8b8b] text-white overflow-hidden ${className}`}
     >
       {icon && (

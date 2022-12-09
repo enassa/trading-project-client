@@ -8,6 +8,7 @@ export default function TFormValidator({
   style,
   className,
   onSubmit,
+  isSubmitting,
 }) {
   const [states, setStates] = useState({ errors: {}, values: {} });
   const [listenForSubmit, setListenForSubmit] = useState(0);
@@ -19,11 +20,14 @@ export default function TFormValidator({
     let regexState = regex.test(myString);
     return regexState;
   };
-
+  let count = 0;
   let myErrors = { ...states.errors };
   let myValues = { ...states.values };
-
   const validateInput = (inputElement, calledFrom) => {
+    // let myErrors = { ...states.errors };
+    // let myValues = { ...states.values };
+    count++;
+    console.log(count);
     const fieldsToValidate = Object.keys(validationSchema);
     const fieldName = inputElement?.name;
 
@@ -37,6 +41,7 @@ export default function TFormValidator({
     fieldValidationSchema.required && inputValue === ""
       ? (errorLog = { ...errorLog, requiredErr: true })
       : (errorLog = { ...errorLog, requiredErr: false });
+
     // validate max character length
     fieldValidationSchema.maxCharLength &&
     inputValue.length > fieldValidationSchema.maxCharLength
@@ -55,7 +60,7 @@ export default function TFormValidator({
       ? (errorLog = { ...errorLog, patternErr: true })
       : (errorLog = { ...errorLog, patternErr: false });
 
-    myValues = { ...myValues, [fieldName]: inputElement.value };
+    myValues = { ...states.values, [fieldName]: inputElement.value };
 
     if (
       errorLog?.requiredErr ||
@@ -63,7 +68,8 @@ export default function TFormValidator({
       errorLog?.maxCharLengthErr ||
       errorLog?.minCharLengthErr
     ) {
-      myErrors = { ...myErrors, [fieldName]: errorLog };
+      let myErrors = { ...states.errors, [fieldName]: errorLog };
+      // console.log(myErrors);
       setStates({ ...states, errors: myErrors, values: myValues });
     } else {
       let allErrors = { ...myErrors };
@@ -71,20 +77,39 @@ export default function TFormValidator({
       setStates({ ...states, errors: { ...allErrors }, values: myValues });
     }
   };
+
+  const errorState = Object.keys(states.errors)?.length;
   useEffect(() => {
-    console.log(listenForSubmit);
-    onSubmit(states.values);
+    listenForSubmit !== 0 &&
+      !isSubmitting &&
+      !errorState &&
+      onSubmit(states.values);
   }, [listenForSubmit]);
 
+  const shouldSubmit = () => {
+    return states;
+  };
+
+  // const sendDataToUser = () => {
+  //  onSubmit(states.values);
+  // };
   const processButton = (buttons) => {
-    buttons[0].addEventListener("click", (e) => {
-      e.preventDefault();
-      setListenForSubmit(Math.random() * 100);
+    buttons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        // let containsErrors = Object.keys(shouldSubmit().errors);
+        // logic for do not submit form when there are errors when the appropriate prop is passed
+        // console.log(containsErrors, shouldSubmit());
+        // if (containsErrors.length) return;
+        // // console.log(shouldSubmit().errors);
+        // ()=>
+        // return sendDataToUser(e);
+        setListenForSubmit(Math.random() * 100);
+      });
     });
   };
 
   const processInputs = (inputs) => {
-    inputs.forEach((input) => {
+    inputs.map((input, index) => {
       if (input?.type === "submit") return;
 
       // ----- PASS INITIAL VALUES ------
@@ -100,12 +125,23 @@ export default function TFormValidator({
           input.setAttribute("value", initialValues[input.name]))();
 
       // ----- ADD ONCHANGE EVENTS TO  INPUTS ------
+      // validate input on initial load
       validateInput(input, "initial");
+
+      if (index + 1 === inputs.length) {
+        setStates({ ...states, errors: myErrors, values: myValues });
+        myErrors = {};
+        myValues = {};
+      }
 
       // add event listener to all input fields
       let delayId = undefined;
+
+      // const debounceValidation
+      // const
       input.addEventListener("input", (e) => {
         clearTimeout(delayId);
+        // validate input only when user stops typing: debouncing
         delayId = setTimeout(() => {
           // setStates({
           //   ...states,

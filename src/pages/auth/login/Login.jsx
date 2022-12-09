@@ -3,6 +3,7 @@ import {
   AlternateEmailOutlined,
   LoginSharp,
   LockOutlined,
+  Error,
 } from "@mui/icons-material";
 import React from "react";
 import TAuthInput from "../../../components/auth-input/AuthInput";
@@ -12,13 +13,16 @@ import { emailRegex } from "../../../constants/reusable-functions";
 import { images } from "./../../../assets/images/images";
 import { svgs } from "./../../../assets/svg/svg";
 import { useNavigate } from "react-router-dom";
-import { ROUTES } from "./../../../constants/route-links";
+import { useAuthServices } from "../../../store/context/auth-context";
+import SlimLoader from "./../../../components/slim-loader/SlimLoader";
 
 export default function Login() {
-  const navigate = useNavigate();
+  const { loginUser, loading, authResponse } = useAuthServices();
   const handleSubmit = (data) => {
     console.log(data);
+    loginUser(data);
   };
+
   const validationSchema = {
     email: {
       required: true,
@@ -50,8 +54,11 @@ export default function Login() {
             </div>
           </div>
         </div>
-        <div className="w-[35%] h-full bg-transparent bg-[#F2F3F3] animate-rise p-[30px]  flex justify-center flex-col shadow-neuroInsert rounded-lg">
-          <h1 className="text-3xl font-bold">Welcome back</h1>
+        <div className="w-[35%] h-full bg-transparent bg-[#F2F3F3] animate-rise p-[30px]  flex justify-center flex-col shadow-neuroInsert rounded-lg overflow-hidden">
+          <div className="w-full absolute top-0 left-0  h-[5px]">
+            {loading && <SlimLoader />}
+          </div>
+          <h1 className="text-3xl font-bold">Welcome back!</h1>
           <span className="text-xl">
             Please fill in your credentials to continue
           </span>
@@ -59,17 +66,16 @@ export default function Login() {
             validationSchema={validationSchema}
             initialValues={initialValues}
             onSubmit={handleSubmit}
-            className="mt-[20px] flex justify-center flex-col "
+            isSubmitting={loading}
+            className="mt-[20px] flex justify-center flex-col"
           >
             {({ errors, values }) => {
-              console.log(errors, values);
+              console.log(errors);
               return (
                 <div className="w">
                   <TAuthInput
                     leftIcon={<AlternateEmailOutlined />}
-                    onChange={(e) => {}}
                     label="Email Address"
-                    onValidated={(e) => console.log(e.target.value)}
                     regexPattern={emailRegex(5)}
                     minCharLength={5}
                     name="email"
@@ -77,9 +83,7 @@ export default function Login() {
                   />
                   <TAuthInput
                     leftIcon={<LockOutlined />}
-                    onChange={(e) => {}}
                     label="Password"
-                    onValidated={(e) => console.log(e.target.value)}
                     minCharLength={5}
                     required={true}
                     type="password"
@@ -88,14 +92,22 @@ export default function Login() {
                     rightIcon={<RemoveRedEyeOutlined />}
                   />
                   <TButton
-                    onClick={() => {
-                      // navigate(ROUTES.dashboard.url);
+                    styles={{
+                      backgroundColor: `${loading ? "#38506494" : "#385064"}`,
                     }}
-                    className="mt-[40px]"
+                    className={`mt-[40px] `}
                     icon={<LoginSharp />}
                   >
                     Login
                   </TButton>
+                  <div className="w-full mt-[20px] h-[5px]">
+                    {authResponse?.message !== undefined && !loading && (
+                      <div className="w-full  bottom-[10%] right-0 flex  justify-center items-center text-red-400 animate-rise">
+                        <Error className="text-red-400 mr-2" />{" "}
+                        {authResponse?.message}.
+                      </div>
+                    )}
+                  </div>
                 </div>
               );
             }}
