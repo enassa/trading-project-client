@@ -113,7 +113,7 @@ export const getImageFromSymbol = (symbol) => {
       return images.tesla;
     case "IBM":
       return images.ibm;
-    case "APPL":
+    case "AAPL":
       return images.apple;
     case "AMZN":
       return images.amazon;

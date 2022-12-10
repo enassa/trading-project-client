@@ -4,18 +4,23 @@ import {
   VpnKey,
   AccountCircleOutlined,
   LockOutlined,
+  Error,
 } from "@mui/icons-material";
 import React from "react";
 import TAuthInput from "../../../components/auth-input/AuthInput";
 import TButton from "../../../components/button/Button";
 import TFormValidator from "../../../components/form-validator/FormValidator";
+import SlimLoader from "../../../components/slim-loader/SlimLoader";
 import { emailRegex } from "../../../constants/reusable-functions";
+import { useAuthServices } from "../../../store/context/auth-context";
 import { images } from "./../../../assets/images/images";
 import { svgs } from "./../../../assets/svg/svg";
 
 export default function Register() {
+  const { registerUser, loading, authResponse } = useAuthServices();
+
   const handleSubmit = (data) => {
-    console.log(data);
+    registerUser(data);
   };
   const validationSchema = {
     email: {
@@ -58,11 +63,12 @@ export default function Register() {
             </div>
           </div>
         </div>
-        <div className="w-[50%] h-full bg-transparent animate-rise p-[30px] py-[50px] shadow-neuroInsert flex justify-center flex-col rounded-lg">
-          <h1 className="text-3xl font-bold">Welcome back</h1>
-          <span className="text-xl">
-            Please fill in your credentials to continue
-          </span>
+        <div className="w-[50%] h-full bg-transparent animate-rise p-[30px] py-[50px] shadow-neuroInsert flex justify-center flex-col rounded-lg overflow-hidden relative">
+          <div className="w-full absolute top-0 left-0  h-[5px]">
+            {loading && <SlimLoader />}
+          </div>
+          <h1 className="text-3xl font-bold">Create an account</h1>
+          <span className="text-xl">Required fields have an asterisk *</span>
           <TFormValidator
             validationSchema={validationSchema}
             initialValues={initialValues}
@@ -70,7 +76,6 @@ export default function Register() {
             className="mt-[20px] flex w-full justify-center flex-col"
           >
             {({ errors, values }) => {
-              console.log(errors, values);
               return (
                 <div className="w-fulll ">
                   <div className="w-full flex justify-start items-center">
@@ -85,7 +90,6 @@ export default function Register() {
                     <TAuthInput
                       leftIcon={<AccountCircleOutlined />}
                       label="Last name*"
-                      regexPattern={emailRegex(5)}
                       required={true}
                       type="text"
                       name="last_name"
@@ -103,7 +107,7 @@ export default function Register() {
                   <TAuthInput
                     leftIcon={<LockOutlined />}
                     onChange={(e) => {}}
-                    label="Password"
+                    label="Password*"
                     minCharLength={6}
                     required={true}
                     type="password"
@@ -111,9 +115,23 @@ export default function Register() {
                     className="mb-[10px] border-0 shadow-neuroInsert"
                     rightIcon={<RemoveRedEyeOutlined />}
                   />
-                  <TButton className="mt-[20px]" icon={<VpnKey />}>
+                  <TButton
+                    styles={{
+                      backgroundColor: `${loading ? "#38506494" : "#385064"}`,
+                    }}
+                    className="mt-[20px]"
+                    icon={<VpnKey />}
+                  >
                     Register
                   </TButton>
+                  <div className="w-full mt-[20px] h-[5px]">
+                    {authResponse?.message !== undefined && !loading && (
+                      <div className="w-full  bottom-[10%] right-0 flex  justify-center items-center text-red-400 animate-rise">
+                        <Error className="text-red-400 mr-2" />{" "}
+                        {authResponse?.message}.
+                      </div>
+                    )}
+                  </div>
                 </div>
               );
             }}

@@ -12,10 +12,12 @@ import TInput from "../../../components/input-field/Input";
 import TButton from "../../../components/button/Button";
 import { portfolios } from "../../../constants/dummy-data";
 import ComboInput from "../../../components/combo-input-box/ComboInput";
+import { useOrderServices } from "../../../store/context/order-context";
 
 export default function TOrderForm() {
+  const { createOrder } = useOrderServices();
   const handleSubmit = (data) => {
-    console.log(data);
+    createOrder(data);
   };
 
   const validationSchema = {

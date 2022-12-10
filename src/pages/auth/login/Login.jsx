@@ -12,7 +12,6 @@ import TFormValidator from "../../../components/form-validator/FormValidator";
 import { emailRegex } from "../../../constants/reusable-functions";
 import { images } from "./../../../assets/images/images";
 import { svgs } from "./../../../assets/svg/svg";
-import { useNavigate } from "react-router-dom";
 import { useAuthServices } from "../../../store/context/auth-context";
 import SlimLoader from "./../../../components/slim-loader/SlimLoader";
 
@@ -69,13 +68,12 @@ export default function Login() {
             isSubmitting={loading}
             className="mt-[20px] flex justify-center flex-col"
           >
-            {({ errors, values }) => {
-              console.log("ERRORRS==", errors);
+            {({ errors }) => {
               return (
                 <div className="w">
                   <TAuthInput
                     leftIcon={<AlternateEmailOutlined />}
-                    label="Email Address"
+                    label="Email Address*"
                     regexPattern={emailRegex(5)}
                     minCharLength={5}
                     name="email"
@@ -83,7 +81,7 @@ export default function Login() {
                   />
                   <TAuthInput
                     leftIcon={<LockOutlined />}
-                    label="Password"
+                    label="Password*"
                     minCharLength={5}
                     required={true}
                     type="password"
