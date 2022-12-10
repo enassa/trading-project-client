@@ -1,15 +1,13 @@
-import { ArticleOutlined, SyncAlt } from "@mui/icons-material";
+import { SyncAlt } from "@mui/icons-material";
 import React from "react";
 import DynamicTable from "../../../components/dynamic-table/DynamicTable";
 import { portfolioRecords } from "../../../constants/dummy-data";
 import { getImageFromSymbol } from "../../../constants/reusable-functions";
-import PerfomanceChart from "../charts/PerfomanceChart";
 import SingleChart from "./../charts/SingleChart";
 
 export default function PortfolioStocks() {
   return (
     <div className="w-full h-full shadow-md  shadow-[20px] bg-white rounded-md overflow-hidden p-[40px]">
-      {/* <StockStrend /> */}
       <DynamicTable
         tableData={[...portfolioRecords]}
         customComponents={[
@@ -37,8 +35,6 @@ export default function PortfolioStocks() {
                 <div className="flex justify-start items-center">
                   <span>{cellData[0]}</span>
                   <SyncAlt className="text-blue-500 px-0 mx-2" />
-                  {/* <div className="flex justify-center mr-[20px] items-center w-[50px] h-[50px] bg-blue-50 rounded-md">
-                  </div> */}
                   <div className="flex justify-center items-center flex-col">
                     {cellData[1]}
                   </div>
@@ -53,8 +49,6 @@ export default function PortfolioStocks() {
                 <div className="flex justify-start items-center">
                   <span>{cellData[0]}</span>
                   <SyncAlt className="text-blue-500 px-0 mx-2" />
-                  {/* <div className="flex justify-center mr-[20px] items-center w-[50px] h-[50px] bg-blue-50 rounded-md">
-                  </div> */}
                   <div className="flex justify-center items-center flex-col">
                     {cellData[1]}
                   </div>
@@ -85,7 +79,6 @@ export default function PortfolioStocks() {
             component: (cellData) => {
               return (
                 <div className="w-[100px]">
-                  {/* k */}
                   <SingleChart height={65} />
                 </div>
               );
@@ -118,32 +111,26 @@ export default function PortfolioStocks() {
         cellStyles={[
           {
             columnName: "*",
-            // styles: { color: "yellow" },
             classNames: "text-left",
           },
           {
             columnName: "last_price",
-            // styles: { color: "red" },
             classNames: " text-left ",
           },
           {
             columnName: "change",
-            // styles: { color: "red" },
             classNames: " text-center text-green-600",
           },
           {
             columnName: "percentage_change",
-            // styles: { color: "red" },
             classNames: " text-center text-green-500",
           },
           {
             columnName: "currency",
-            // styles: { color: "red" },
             classNames: " text-center",
           },
           {
             columnName: "market_cap",
-            // styles: { color: "red" },
             classNames: " text-center",
           },
         ]}

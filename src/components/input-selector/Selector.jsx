@@ -1,8 +1,7 @@
-import { getOptionsFromChildren } from "@mui/base";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import React, { useState } from "react";
-import { checkRegexPattern } from "../../constants/reusable-functions";
 import { ClickAwayListener } from "@mui/material";
+import { useEffect } from "react";
 
 export default function TSelector({
   type,
@@ -24,6 +23,12 @@ export default function TSelector({
   const [error, setError] = useState(false);
   const [selected, setSelected] = useState(value);
 
+  const inputRef = React.createRef();
+  useEffect(() => {
+    const event = new Event("input");
+    inputRef.current?.dispatchEvent(event);
+  }, [selected]);
+
   const getOptions = () => {
     return children.map((option, index) => {
       if (option.type !== "option") return;
@@ -33,7 +38,6 @@ export default function TSelector({
             setSelected(option.props.children);
             if (option.props.children === selected) return;
             error && setError(false);
-            // onChange && onChange(option.props.children);
             setDropOptions(false);
           }}
           key={index}
@@ -43,7 +47,7 @@ export default function TSelector({
             <div className="mr-3">{option.props?.icon}</div>
           )}
           {option.props?.image && (
-            <img className="h-[50%] mr-3" src={option.props?.image} />
+            <img alt="" className="h-[50%] mr-3" src={option.props?.image} />
           )}
 
           <span className="w-full whitespace-nowrap text-ellipsis overflow-hidden">
@@ -53,7 +57,9 @@ export default function TSelector({
       );
     });
   };
-  const errorClass = "text-red-400 text-xs mt-1";
+
+  const errorClass = "text-red-400 text-xs mt-1 ";
+
   return (
     <div className="w-full flex flex-col justify-start mb-2 relative">
       <label
@@ -64,7 +70,6 @@ export default function TSelector({
       </label>
       <div
         onClick={(e) => {
-          // e.stopPropagation();
           !disabled && setDropOptions(true);
         }}
         className={` ${className} ${
@@ -72,6 +77,7 @@ export default function TSelector({
         } h-[40px] flex flex-row items-center w-full border-[#8b8b8b] border-[1px] rounded-[5px] outline-none cursor-pointer`}
       >
         <input
+          ref={inputRef}
           onFocusCapture={() => {
             !disabled && setDropOptions(true);
           }}

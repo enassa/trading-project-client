@@ -31,37 +31,6 @@ export const replaceUnderscoreWithSpace = (stringToReplace) => {
   return results;
 };
 
-export const cssModules = (styleObject) => (classList) => {
-  const generateClassString = (list, myClass) => {
-    let output = list;
-    if (output) {
-      output += " "; // appends a space if list is not empty
-    }
-    if (Array.isArray(myClass)) {
-      output += myClass.reduce(generateClassString, ""); // recursion to deal with Arrays
-    } else if (styleObject[myClass]) {
-      output += styleObject[myClass];
-      // append styleObject['myClass'] value to the list if it is defined in styleObject
-    } else if (typeof myClass === "string") {
-      output += myClass; // append 'myClass' directly to the list
-    }
-    return output;
-  };
-  let classArray = classList.split(" ");
-  return classArray.reduce(generateClassString, "");
-};
-
-export const deleteValueFromArray = (arr, value) => {
-  let newArr = arr.filter((item) => item !== value);
-  return newArr;
-};
-
-export const getWindowWidth = (e) => {
-  let windowWidth = window.innerWidth;
-  let windowHeight = window.innerHeight;
-  return windowWidth;
-};
-
 export const checkRegexPattern = (myString, pattern) => {
   let regex = new RegExp(pattern);
   let regexState = regex.test(myString);
@@ -69,6 +38,12 @@ export const checkRegexPattern = (myString, pattern) => {
 };
 export const emailRegex = (max = 50) => {
   return "^[A-Za-z0-9\\._%+-]+@[A-Za-z0-9\\.-]+\\.[A-Za-z]{2," + max + "}$";
+};
+export const onlyPositiveNumbersRegex = (max = 50) => {
+  return "^[1-9]+[0-9]*$";
+};
+export const onlyNumbersRegex = (max = 50) => {
+  return "^[1-9]+[0-9]*$";
 };
 
 export const createRipple = (event) => {
@@ -91,7 +66,6 @@ export const createRipple = (event) => {
 export const searchContains = (dataToSearchIn, searchValue, property) => {
   try {
     let reg = new RegExp("[^,]*" + searchValue + "[^,]*", "ig");
-    // console.log(dataToSearchIn)
     const searchResults = dataToSearchIn.filter((item) =>
       item[property].match(reg)
     );
@@ -100,6 +74,35 @@ export const searchContains = (dataToSearchIn, searchValue, property) => {
     return;
   }
 };
+
+var newFormat = require("dayjs/plugin/advancedFormat");
+dayjs.extend(newFormat);
+export function formatDate(dateString) {
+  if (!dateString) return "";
+  const date = dayjs(dateString);
+  return date.format("Do MMMM, YYYY");
+}
+export const getAsObjectFromLocalStorage = (index) => {
+  try {
+    const serializedData = localStorage.getItem(index);
+    if (serializedData === null) {
+      return undefined;
+    }
+    return JSON.parse(serializedData);
+  } catch (err) {
+    return err;
+  }
+};
+
+export const saveObjectInLocalStorage = (key, value) => {
+  try {
+    const serializedData = JSON.stringify(value);
+    localStorage.setItem(key, serializedData);
+  } catch (err) {
+    return err;
+  }
+};
+
 export const getImageFromSymbol = (symbol) => {
   switch (symbol) {
     case "GOOGL":
@@ -122,10 +125,3 @@ export const getImageFromSymbol = (symbol) => {
       break;
   }
 };
-var newFormat = require("dayjs/plugin/advancedFormat");
-dayjs.extend(newFormat);
-export function formatDate(dateString) {
-  if (!dateString) return "";
-  const date = dayjs(dateString);
-  return date.format("Do MMMM, YYYY");
-}

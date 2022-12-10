@@ -14,6 +14,7 @@ import { portfolios } from "../../../constants/dummy-data";
 
 export default function PortfolioActions() {
   const [showSettings, setShowSettings] = useState();
+
   return (
     <div className="flex items-center w-full justify-between mb-[30px] bg-white p-[20px] rounded-md mt-[20px]">
       <div className="flex ">
@@ -21,7 +22,6 @@ export default function PortfolioActions() {
           My Portfolios |
         </span>
         <ComboInput
-          // onChange={(data) => alert(data)}
           dropClassName={"h-auto max-h-[500px]"}
           placeholder="Select your Portfolio"
           label=""

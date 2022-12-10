@@ -9,9 +9,6 @@ class PieChart extends React.Component {
       series: [44, 55, 41, 17, 15],
       options: {
         labels: ["GOOGL", "APPL", "MSFT", "TSLA", "NEtFLIX"],
-        // dataLabels: {
-        //   position: "top",
-        // },
         chart: {
           type: "donut",
         },

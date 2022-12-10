@@ -8,7 +8,6 @@ module.exports = {
       lg: "1024",
       xl: "1280",
       xlg: "1536",
-      //
     },
 
     extend: {
@@ -32,6 +31,7 @@ module.exports = {
         bgTrade: "#374f63",
         neuro: "#F1F5F9",
       },
+
       boxShadow: {
         blend: "0 1px 0 0 transparent, 0 2px 10px 0 rgb(0 0 0 / 10%)",
         dcs: "0 4px 24px 0 rgb(34 41 47 / 10%)",
@@ -45,6 +45,7 @@ module.exports = {
           "-1px -1px 0px #ffffff, -2px -2px 2px #b8cce0, inset -1px -1px 0px #ffffff, inset -2px -2px 2px #b8cce0",
         neuroRaise: "8px 8px 16px #C9D9E8, -8px -8px 16px #FFFFFF",
       },
+
       fontFamily: {
         "arial-arounded": ["Arial Rounded MT Bold"],
         "helvetica-neue": ["Helvetica Neue"],
@@ -98,6 +99,7 @@ module.exports = {
           },
         },
       },
+
       animation: {
         rotate: "rotate 100s linear infinite",
         rise: "rise 0.2s ease 0s 1 normal forwards running",
@@ -106,6 +108,7 @@ module.exports = {
         zoomIn: "zoomIn 0.2s linear forwards ",
         zoomOut: "zoomOut 0.2s linear forwards ",
       },
+
       content: {
         link: 'url("/icons/link.svg")',
       },

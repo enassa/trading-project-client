@@ -4,7 +4,7 @@ const protectedBaseRoute = {
 };
 
 export const ROUTES = {
-  // BASE ROUTES
+  // =============== BASE ROUTES ===============
   base: {
     route: "/",
     url: "/",
@@ -14,7 +14,7 @@ export const ROUTES = {
     url: protectedBaseRoute.url,
   },
 
-  // AUTH ROUTES
+  // =============== AUTH ROUTES ===============
   register: {
     route: "/register",
     url: "/register",
@@ -36,7 +36,7 @@ export const ROUTES = {
     url: "/",
   },
 
-  // PROTECTED ROUTES
+  //===============  PROTECTED ROUTES ===============
   dashboard: {
     route: "dashboard",
     url: protectedBaseRoute.url + "/dashboard",

@@ -1,13 +1,12 @@
-import { ButtonBase } from "@mui/material";
-import TouchRipple from "@mui/material/ButtonBase/TouchRipple";
-import React, { Component } from "react";
+import React from "react";
+
 /**
  * A component that has the fundamental design of all buttons for the Gall... platform.
  * Replace the className prop type with a string of all the classes you would like to modify
  * the button with
  * @props className | A text of all extra classes
- * @props style | Normal css styles. Written just the way it is done
- * @props icon  | Font awesome class
+ * @props styles | Normal css styles. Written just the way it is done
+ * @props icon  | Material ui icon
  * @props iconSize | size of the icon you passed ( Eg. sm, lg, 10x, 6x 2x)
  * @props iconColor
  * @props onClick  | What should happen when the button is clicked?
@@ -23,11 +22,13 @@ function TButton({
   iconSize,
   icon,
   onClick,
+  disabled,
 }) {
   return (
     <button
+      button={disabled}
       style={{ ...styles }}
-      onClick={(e) => onClick && onClick(e)}
+      onClick={(e) => (onClick ? onClick(e) : e.preventDefault())}
       className={`bg-bgTrade  h-[47px]  w-full rounded-[5px] flex justify-center border border-[#8b8b8b] text-white overflow-hidden ${className}`}
     >
       {icon && (
