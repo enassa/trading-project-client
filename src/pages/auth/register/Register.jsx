@@ -12,11 +12,8 @@ import TFormValidator from "../../../components/form-validator/FormValidator";
 import { emailRegex } from "../../../constants/reusable-functions";
 import { images } from "./../../../assets/images/images";
 import { svgs } from "./../../../assets/svg/svg";
-import { useNavigate } from "react-router-dom";
-import { ROUTES } from "./../../../constants/route-links";
 
 export default function Register() {
-  const navigate = useNavigate();
   const handleSubmit = (data) => {
     console.log(data);
   };
@@ -79,22 +76,16 @@ export default function Register() {
                   <div className="w-full flex justify-start items-center">
                     <TAuthInput
                       leftIcon={<AccountCircleOutlined />}
-                      onChange={(e) => {}}
                       label="First name*"
-                      onValidated={(e) => console.log(e.target.value)}
-                      regexPattern={emailRegex(5)}
-                      minCharLength={5}
                       name="first_name"
+                      required={true}
                       className="mr-[20px] border-0 shadow-neuroInsert"
                       containerClassName="mr-[20px] border-0"
                     />
                     <TAuthInput
                       leftIcon={<AccountCircleOutlined />}
-                      onChange={(e) => {}}
                       label="Last name*"
-                      onValidated={(e) => console.log(e.target.value)}
                       regexPattern={emailRegex(5)}
-                      minCharLength={5}
                       required={true}
                       type="text"
                       name="last_name"
@@ -105,9 +96,7 @@ export default function Register() {
                     leftIcon={<AlternateEmailOutlined />}
                     onChange={(e) => {}}
                     label="Email Address*"
-                    onValidated={(e) => console.log(e.target.value)}
                     regexPattern={emailRegex(5)}
-                    minCharLength={5}
                     name="email"
                     className="shadow-neuroInsert border-0"
                   />
@@ -115,22 +104,14 @@ export default function Register() {
                     leftIcon={<LockOutlined />}
                     onChange={(e) => {}}
                     label="Password"
-                    onValidated={(e) => console.log(e.target.value)}
-                    regexPattern={emailRegex(5)}
-                    minCharLength={5}
+                    minCharLength={6}
                     required={true}
                     type="password"
                     name="password"
                     className="mb-[10px] border-0 shadow-neuroInsert"
                     rightIcon={<RemoveRedEyeOutlined />}
                   />
-                  <TButton
-                    onClick={() => {
-                      // navigate(ROUTES.login.url);
-                    }}
-                    className="mt-[20px]"
-                    icon={<VpnKey />}
-                  >
+                  <TButton className="mt-[20px]" icon={<VpnKey />}>
                     Register
                   </TButton>
                 </div>

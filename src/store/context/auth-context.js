@@ -1,9 +1,6 @@
 import React from "react";
-import { useContext, useEffect } from "react";
 import { useState } from "react";
 import { END_POINTS } from "../../constants/urls";
-import { useJwt, decodeToken } from "react-jwt";
-import { saveObjectInLocalStorage } from "./../../constants/reusable-functions";
 
 const AuthContext = React.createContext();
 export const AuthProvider = ({ children }) => {
@@ -22,7 +19,6 @@ export const AuthProvider = ({ children }) => {
       .then((response) => response.json())
       .then((data) => {})
       .catch((err) => console.error(err));
-    // saveObjectInLocalStorage({});
   };
 
   const processFailedAuth = (error) => {
@@ -79,12 +75,14 @@ export const AuthProvider = ({ children }) => {
   const loginUser = async (data) => {
     return request(`${END_POINTS.login}`, "POST", data, "auth");
   };
+
   const registerUser = async (data) => {
     console.log(data);
     return request(`${END_POINTS.register}`, "POST", data, "auth");
   };
 
   const logOut = (data) => {};
+
   return (
     <AuthContext.Provider
       value={{ logOut, loginUser, registerUser, loading, authResponse }}

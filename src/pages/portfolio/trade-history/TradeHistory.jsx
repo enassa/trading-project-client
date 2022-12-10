@@ -1,13 +1,4 @@
-import {
-  Cancel,
-  CancelOutlined,
-  Close,
-  Delete,
-  DeleteOutline,
-  Refresh,
-  SyncAlt,
-} from "@mui/icons-material";
-import { Tooltip } from "@mui/material";
+import { SyncAlt } from "@mui/icons-material";
 import React from "react";
 import DynamicTable from "../../../components/dynamic-table/DynamicTable";
 import { openTrades } from "../../../constants/dummy-data";

@@ -3,7 +3,9 @@ import React from "react";
 
 export default function THorizontalBar({ children }) {
   const containerRef = React.createRef();
+
   let scrollValue = 0;
+
   const scrollLeft = () => {
     scrollValue = scrollValue + 100;
     containerRef.current.scroll({
@@ -12,6 +14,7 @@ export default function THorizontalBar({ children }) {
       behavior: "smooth",
     });
   };
+
   const scrollRight = () => {
     if (scrollValue === 0) return;
     scrollValue = scrollValue + 100;
@@ -21,6 +24,7 @@ export default function THorizontalBar({ children }) {
       behavior: "smooth",
     });
   };
+
   return (
     <div className="relative w-full">
       <div

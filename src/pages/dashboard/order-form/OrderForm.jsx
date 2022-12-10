@@ -1,16 +1,11 @@
 import {
-  AccountBalanceWallet,
   AddCircle,
-  AutoGraph,
   BarChart,
   RemoveCircle,
   TrendingUp,
 } from "@mui/icons-material";
 import React from "react";
-import {
-  emailRegex,
-  onlyPositiveNumbersRegex,
-} from "../../../constants/reusable-functions";
+import { onlyPositiveNumbersRegex } from "../../../constants/reusable-functions";
 import TFormValidator from "../../../components/form-validator/FormValidator";
 import TSelector from "../../../components/input-selector/Selector";
 import TInput from "../../../components/input-field/Input";
@@ -22,6 +17,7 @@ export default function TOrderForm() {
   const handleSubmit = (data) => {
     console.log(data);
   };
+
   const validationSchema = {
     portfolio: {
       required: true,
@@ -31,27 +27,19 @@ export default function TOrderForm() {
     },
     quantity: {
       required: true,
+      regexPattern: onlyPositiveNumbersRegex(),
     },
     amount: {
       required: true,
+      regexPattern: onlyPositiveNumbersRegex(),
     },
   };
-  const ejectMenuItems = () => {
-    return (
-      Array.isArray(portfolios) &&
-      portfolios.map((data, index) => {
-        return (
-          <option data={data} image={data.icon} key={index} className="mr-4">
-            {data.title}
-          </option>
-        );
-      })
-    );
-  };
+
   const initialValues = {
-    amount: "second trial text",
-    quantity: "second trial text",
+    amount: 20,
+    quantity: 40,
   };
+
   return (
     <div className="w-full h-full flex flex-col justify-end mt-[10px]">
       <div className=""></div>
@@ -63,12 +51,10 @@ export default function TOrderForm() {
           onSubmit={handleSubmit}
         >
           {({ errors, values }) => {
-            console.log("errors==", errors, "values==", values);
             return (
               <>
                 <div className="">
                   <ComboInput
-                    // onChange={(data) => alert(data)}
                     placeholder="Select order type"
                     label="Select portfolio"
                     name="portfolio"
@@ -80,7 +66,6 @@ export default function TOrderForm() {
                 </div>
                 <div className="">
                   <TSelector
-                    // onChange={(data) => alert(data)}
                     placeholder="Select order type"
                     label="Trade type"
                     name="trade_type"
@@ -88,16 +73,11 @@ export default function TOrderForm() {
                   >
                     <option icon={<BarChart />}>Market order</option>
                     <option icon={<TrendingUp />}> Limit Order</option>
-                    {/* <option icon={<AutoGraph />}>Limit Market</option> */}
                   </TSelector>
                 </div>
 
                 <div className="">
                   <TInput
-                    onChange={(e) => {
-                      //   console.log(e.target.value);
-                    }}
-                    onValidated={(e) => console.log(e.target.value)}
                     regexPattern={onlyPositiveNumbersRegex()}
                     required={true}
                     name="amount"
@@ -107,10 +87,6 @@ export default function TOrderForm() {
                 </div>
                 <div className="">
                   <TInput
-                    onChange={(e) => {
-                      //   console.log(e.target.value);
-                    }}
-                    onValidated={(e) => console.log(e.target.value)}
                     regexPattern={onlyPositiveNumbersRegex()}
                     required={true}
                     name="quantity"

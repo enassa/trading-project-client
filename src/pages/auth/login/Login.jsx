@@ -70,7 +70,7 @@ export default function Login() {
             className="mt-[20px] flex justify-center flex-col"
           >
             {({ errors, values }) => {
-              console.log(errors);
+              console.log("ERRORRS==", errors);
               return (
                 <div className="w">
                   <TAuthInput

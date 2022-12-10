@@ -1,5 +1,8 @@
-import React, { Children, useState } from "react";
-import { checkRegexPattern } from "../../constants/reusable-functions";
+import React, { useState } from "react";
+import {
+  checkRegexPattern,
+  replaceUnderscoreWithSpace,
+} from "../../constants/reusable-functions";
 
 export default function TAuthInput({
   type,
@@ -31,22 +34,23 @@ export default function TAuthInput({
   });
   const validate = (e) => {
     let errorLog = {};
-    // validate required
+
+    // ===================== validate required =====================
     required && e.target.value === ""
       ? (errorLog = { ...errorLog, requiredErr: true })
       : (errorLog = { ...errorLog, requiredErr: false });
 
-    // validate max character length
+    // ===================== validate max character length =====================
     maxCharLength && e.target.value.length > maxCharLength
       ? (errorLog = { ...errorLog, maxCharLengthErr: true })
       : (errorLog = { ...errorLog, maxCharLengthErr: false });
 
-    // validate min character length
+    // ===================== validate min character length =====================
     minCharLength && e.target.value.length < minCharLength
       ? (errorLog = { ...errorLog, minCharLengthErr: true })
       : (errorLog = { ...errorLog, minCharLengthErr: false });
 
-    // validate regex length
+    // ===================== validate regex length =====================
     regexPattern && !checkRegexPattern(e.target.value, regexPattern)
       ? (errorLog = { ...errorLog, patternErr: true })
       : (errorLog = { ...errorLog, patternErr: false });
@@ -64,8 +68,10 @@ export default function TAuthInput({
       return true;
     }
   };
+
   const getErrorMessage = () => {
-    if (error.requiredErr) return `${name || "This field"} is required`;
+    if (error.requiredErr)
+      return `${replaceUnderscoreWithSpace(name) || "This field"} is required`;
     else if (error.patternErr)
       return `${errorMessage || "Your input is invalid"}`;
     else if (error.minCharLengthErr)
@@ -73,16 +79,18 @@ export default function TAuthInput({
     else if (error.maxCharLengthErr)
       return `Maximum of ${maxCharLength} characters exceeded`;
   };
+
   const handleChange = (e) => {
-    // validate input
+    // ======== validate input ========
     const validated = validate(e);
-    //get event and validation state
+    // ======== get event and validation state ========
     onChange && onChange(e, validated);
-    // get event only
+    // ======== get event only ========
     validated && onValidated && onValidated(e, e.target.value);
   };
+
   const errorClass =
-    "text-red-600 text-xs mt-1 capitalize absolute  bottom-[-15px] normal-case";
+    "text-red-600 text-xs mt-1 capitalize absolute  bottom-[-15px] capitalise";
 
   const [inputType, setInputType] = useState(type);
   const changeFieldType = () => {

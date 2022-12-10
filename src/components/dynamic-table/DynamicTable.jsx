@@ -36,10 +36,10 @@ export default function DynamicTable({
   hidePagination,
   defaultFIlterIndex,
 }) {
-  const [data, setData] = useState(!!tableData ? tableData : []);
+  const [data] = useState(!!tableData ? tableData : []);
   const headers = Object.keys(!!data[0] ? data[0] : {});
 
-  //  ------------------  Handle Actions--------------------------------
+  // ========================  Handle Action  ===========================
   const getActions = (row) => {
     if (actions.length > 1) {
       return (
@@ -64,7 +64,7 @@ export default function DynamicTable({
     }
   };
 
-  // ---------------------------------Dynamic styles------------------------
+  // ======================== Dynamic style s========================
   const getcellStyless = (headerName) => {
     const styledColumns = cellStyles.find(
       (item) => item.columnName === headerName
@@ -99,7 +99,7 @@ export default function DynamicTable({
     }
   };
 
-  // ---------Custom components -------
+  // ======================== Custom components ========================
   const getCustomComponents = (colName) => {
     const component = customComponents.find(
       (item) => item.columnName === colName
@@ -110,8 +110,8 @@ export default function DynamicTable({
     return null;
   };
 
-  // ---------- Insertion of Columns ---------
-  // Before
+  // ======================== Insertion of Columns ========================
+  // Insert columns Before
   const getHeadersBefore = (colName) => {
     const columnsToInsert = insertColumnsBefore?.find(
       (item) => item.columnName === colName
@@ -125,12 +125,13 @@ export default function DynamicTable({
               : getHeaderName(item.header)}
           </th>
         );
-        // getHeaderName is defined below with var
+        // ===== getHeaderName is defined below with var so it's accesible here =====
       });
     }
     return null;
   };
-  // After
+
+  // ======================== get headers AFTER ========================
   const getHeadersAfter = (colName) => {
     const columnsToInsert = insertColumnsAfter?.find(
       (item) => item.columnName === colName
@@ -138,11 +139,13 @@ export default function DynamicTable({
     if (!!columnsToInsert) {
       return columnsToInsert.columns.map((item, index) => {
         return <th key={index}>{getHeaderName(item.header)}</th>;
-        // getHeaderName is defined below with var
+        // =====  getHeaderName is defined below with var =====
       });
     }
     return null;
   };
+
+  // ======================== get columns inserted BEFORE columns ========================
   const getColumnsInsertedBefore = (cellData, colName, rowData) => {
     const columnsToInsert = insertColumnsBefore?.find(
       (item) => item.columnName === colName
@@ -154,7 +157,8 @@ export default function DynamicTable({
     }
     return null;
   };
-  // After
+
+  // ======================== get columns inserted AFTER columns ========================
   const getColumnsInsertedAfter = (cellData, colName, rowData) => {
     const columnsToInsert = insertColumnsAfter?.find(
       (item) => item.columnName === colName
@@ -166,7 +170,8 @@ export default function DynamicTable({
     }
     return null;
   };
-  // ----------Get table headers---------
+
+  // ======================== get TABLE HEADERS ========================
   var getHeaderName = (currentHeaderName) => {
     const headerObj = renameTheseHeaders.find(
       (item) => item.renameThis === currentHeaderName
@@ -184,7 +189,8 @@ export default function DynamicTable({
     if (actions.length > 1) {
       headers.push(actions[0].name);
     }
-    // -----Show serial numbers for table -> adding header-------
+
+    // ======================== Show serial numbers for table -> adding header ========================
     if (showRowCount && showRowCount.status) {
       headers.unshift(serialNumberHeader);
     }
@@ -220,7 +226,7 @@ export default function DynamicTable({
     });
   };
 
-  // ------------------- Search, pagination and filter Logic -----------------------
+  // ======================== Search, pagination and filter Logic ========================
   const [rowsToDisplay, setRowsRowsToDisplay] = useState(10);
   const [currentPageNumber, setPageNumber] = useState(1);
   const [paginationData, setPaginationData] = useState(data);
@@ -262,7 +268,6 @@ export default function DynamicTable({
     const searchContains = (dataToSearchIn, searchValue, property) => {
       try {
         let reg = new RegExp("[^,]*" + searchValue + "[^,]*", "ig");
-        // console.log(dataToSearchIn)
         const searchResults = dataToSearchIn.filter((item) =>
           item[property].toString().match(reg)
         );
@@ -282,7 +287,7 @@ export default function DynamicTable({
     return !!searchResult ? searchResult : [];
   };
 
-  // ----------Get table rows---------
+  // ======================== Get table rows ========================
   const getTableRows = () => {
     const tableRowData = paginatedData();
     return tableRowData
@@ -292,8 +297,8 @@ export default function DynamicTable({
         const secondValue = b[filterValue]?.toString().toUpperCase();
         if (firstValue > secondValue) {
           return parseInt(firstValue) ? -1 : 1;
-          //Numbers and non non numbers sort in opposite directions so
-          //this is a check to return different sort values for the sort
+          //====== get table rows ======
+          //====== this is a check to return different sort values for the sort ======
         } else if (firstValue < secondValue) {
           return parseInt(firstValue) ? 1 : -1;
         } else {
@@ -395,7 +400,7 @@ export default function DynamicTable({
   };
   return (
     <div className="w-full h-full bg-white flex flex-col">
-      {/* -----------------------  Search and filter  bar --------------*/}
+      {/* ======================== Search and filter  bar ======================== */}
       {!hideActionBar && (
         <div className="w-full">
           <div className=" flex justify-between h-[60px]  items-center mb-[30px] bg-gray-50 rounded-md px-[20px]">
@@ -438,7 +443,7 @@ export default function DynamicTable({
         </div>
       )}
 
-      {/*--------------------- Table entry point area ------------------- */}
+      {/* ======================== Table entry point area  ======================== */}
       <div className="w-full h-full overflow-auto">
         <table className="w-full">
           <thead className="w-full sticky top-0 bg-white z-[2]">
@@ -495,7 +500,7 @@ export default function DynamicTable({
   );
 }
 
-// Documentation
+/* ======================== Documentation and prop type definitions ======================== */
 DynamicTable.prototype = {
   /**
    * @tableData {ArrayOf(Object)}  - The tableData contains all the data for your table

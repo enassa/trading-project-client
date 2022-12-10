@@ -1,23 +1,16 @@
 import React from "react";
-import { images } from "../../assets/images/images";
-import { FIELDS } from "../../components/form-generator/FormFields";
-import FormGenerator from "../../components/form-generator/FormGenerator";
 import HorizontalBar from "../../components/horizontal-bar/HorizontalBar";
 import OrderForm from "./order-form/OrderForm";
 import PortfolioCard from "../../components/portfolio-card/PortfolioCard";
 import StockStrend from "./stock-trend/StockStrend";
 import { portfolios } from "../../constants/dummy-data";
 import {
-  Add,
   AddCircle,
   FiberManualRecord,
-  HdrStrong,
   RemoveCircle,
-  RemoveCircleOutline,
 } from "@mui/icons-material";
 
 export default function Dashboard() {
-  const handleSubmit = () => {};
   const ejectPortfolio = () => {
     return (
       Array.isArray(portfolios) &&
@@ -52,7 +45,6 @@ export default function Dashboard() {
           </div>
           <div className="min-w-[379px] h-full rounded-md flex bg-white flex-col p-5">
             <div className="w-full flex flex-col items-center ">
-              {/* <span className="text-gray-400 text-lg">{"GOOGL"}</span> */}
               <div className="text-gray-500 text-lg font-bold mt-[10px] flex items-center w-[80%] justify-start">
                 <AddCircle className="mr-[10px]" />
                 <span className="mr-[30px]">${3.1}</span>

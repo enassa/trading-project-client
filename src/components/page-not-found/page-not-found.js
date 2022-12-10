@@ -2,7 +2,6 @@ import { DoNotDisturb } from "@mui/icons-material";
 import React from "react";
 import { makeCall } from "../../constants/reusable-functions";
 
-/* This example requires Tailwind CSS v2.0+ */
 export default function PageNotFound() {
   return (
     <div className="w-full h-full pt-16 pb-12 flex flex-col bg-white">
@@ -41,7 +40,7 @@ export default function PageNotFound() {
       <footer className="flex-shrink-0 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         <nav className="flex justify-center space-x-4">
           <a
-            href="#"
+            href="/#"
             onClick={(e) => {
               e.preventDefault();
               makeCall("+233549546822");

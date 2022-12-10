@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { SideBarData as defaultMenuList } from "./side-bar-data/side-bar-data";
 import BalanceCard from "./../../balance-card/BalanceCard";
 import { images } from "./../../../assets/images/images";
 export default function TSideBar({ menuItems = [] }) {
   const navigate = useNavigate();
 
-  const activeMenu = useLocation().pathname.split("/")[2]; //get active route from url
+  // ================ get active route from url ================
+  const activeMenu = useLocation().pathname.split("/")[2];
 
   const menuList =
     Array.isArray(menuItems) && menuItems.length ? menuItems : defaultMenuList;
@@ -14,7 +15,7 @@ export default function TSideBar({ menuItems = [] }) {
   const MenuItem = ({ menuItem }) => {
     return (
       <a
-        href={menuItem?.url} //just here for screen reader
+        href={menuItem?.url} // ================ just here for screen reader ================
         onClick={(e) => {
           e.preventDefault();
           navigate(menuItem?.url);
@@ -48,17 +49,13 @@ export default function TSideBar({ menuItems = [] }) {
         return <MenuItem key={index} menuItem={menuItem} />;
       });
   };
+
   return (
     <div className="shadow-neumoNav w-[260px] min-w-[260px] h-full z-10  bg-white flex flex-col px-[20.89px]">
       <div className="">
         <div className="flex justify-center mb-[20px] mt-[20px]">
-          {/* <Logo
-            containerClassName="flex-row"
-            imageClassName="h-5 w-5"
-            textClassName="text-lg text-bold"
-          /> */}
           <div className="py-3">
-            <img className="mb-[]" src={images.toukanyaLogo} />
+            <img alt="toukanya logo" src={images.toukanyaLogo} />
           </div>
         </div>
       </div>

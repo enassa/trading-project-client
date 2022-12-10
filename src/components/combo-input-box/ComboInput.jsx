@@ -1,9 +1,6 @@
-import { getOptionsFromChildren } from "@mui/base";
-import { ExpandLess, ExpandMore, GolfCourse } from "@mui/icons-material";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
-import { checkRegexPattern } from "../../constants/reusable-functions";
 import { ClickAwayListener } from "@mui/material";
-import { images } from "./../../assets/images/images";
 
 export default function ComboInput({
   type,
@@ -33,7 +30,6 @@ export default function ComboInput({
   let reg = new RegExp("[^,]*" + searchValue + "[^,]*", "ig");
 
   useEffect(() => {
-    console.log("Hello Nathaniel");
     const event = new Event("input");
     inputRef.current?.dispatchEvent(event);
   }, [selected]);
@@ -60,7 +56,7 @@ export default function ComboInput({
             <div className="mr-3">{option.icon}</div>
           )}
           {typeof option.icon === "string" && (
-            <img className="h-[50%] mr-3" src={option.icon} />
+            <img alt="" className="h-[50%] mr-3" src={option.icon} />
           )}
 
           <span className="w-full whitespace-nowrap text-ellipsis overflow-hidden">
@@ -70,7 +66,9 @@ export default function ComboInput({
       );
     });
   };
+
   const errorClass = "text-red-400 text-xs mt-1";
+
   return (
     <div className="w-full flex flex-col justify-start mb-2 relative">
       <label
@@ -93,9 +91,6 @@ export default function ComboInput({
             e.stopPropagation();
             inputRef.current.select();
             !disabled && setDropOptions(true);
-          }}
-          onBlur={(e) => {
-            // if (onChange()) setSearchValue("");
           }}
           onClick={(e) => {
             e.stopPropagation();

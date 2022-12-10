@@ -7,7 +7,7 @@ export default function PortfolioProfile() {
     <div className="w-full h-[180px] bg-white flex p-[20px] rounded-md ">
       <div className="w-[270px] min-w-[270px] flex flex-col ">
         <div className="w-full mb-[10px]">
-          <span className="w-full text-2xl text-[#364E62] flex font-extrabold text-3xl">
+          <span className="w-full text-[#364E62] flex font-extrabold text-3xl">
             <span className="text-sm">$</span>74,520.88
           </span>
         </div>
