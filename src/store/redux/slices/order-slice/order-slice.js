@@ -6,9 +6,8 @@ export const orderSlice = createSlice({
   name: "ORDER_SLICE",
   initialState,
   reducers: {
-    getOrder: (state, action) => {},
+    getOrderData: (state, action) => {},
     createOrder: (state, action) => {
-      console.log(action);
       state.orders.push(action.payload);
     },
     updateOrder: (state, action) => {},

@@ -1,14 +1,16 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import PageWrapper from "../../components/page-wrapper/PageWrapper";
-import { OrderProvider } from "./../../store/context/order-context";
+import { useAuthService } from "../../store/redux/slices/auth-slice/auth-service";
 
 export default function Home({ children }) {
-  return (
-    <OrderProvider>
-      <PageWrapper>
-        <Outlet />
-      </PageWrapper>
-    </OrderProvider>
+  const { userIsLoggedIn } = useAuthService();
+
+  return !userIsLoggedIn() ? (
+    <PageWrapper>
+      <Outlet />
+    </PageWrapper>
+  ) : (
+    <Navigate to="/" />
   );
 }

@@ -10,16 +10,16 @@ import TAuthInput from "../../../components/auth-input/AuthInput";
 import TButton from "../../../components/button/Button";
 import TFormValidator from "../../../components/form-validator/FormValidator";
 import { emailRegex } from "../../../constants/reusable-functions";
+import { useAuthServices } from "../../../store/context/auth-context";
 import { images } from "./../../../assets/images/images";
 import { svgs } from "./../../../assets/svg/svg";
-import { useAuthServices } from "../../../store/context/auth-context";
 import SlimLoader from "./../../../components/slim-loader/SlimLoader";
+import { useAuthService } from "./../../../store/redux/slices/auth-slice/auth-service";
 
 export default function Login() {
-  const { loginUser, loading, authResponse } = useAuthServices();
+  const { loginAsync, loadingAuth, authResponse } = useAuthService();
   const handleSubmit = (data) => {
-    console.log(data);
-    loginUser(data);
+    loginAsync(data);
   };
 
   const validationSchema = {
@@ -55,7 +55,7 @@ export default function Login() {
         </div>
         <div className="w-[35%] h-full bg-transparent bg-[#F2F3F3] animate-rise p-[30px]  flex justify-center flex-col shadow-neuroInsert rounded-lg overflow-hidden">
           <div className="w-full absolute top-0 left-0  h-[5px]">
-            {loading && <SlimLoader />}
+            {loadingAuth && <SlimLoader />}
           </div>
           <h1 className="text-3xl font-bold">Welcome back!</h1>
           <span className="text-xl">
@@ -65,7 +65,7 @@ export default function Login() {
             validationSchema={validationSchema}
             initialValues={initialValues}
             onSubmit={handleSubmit}
-            isSubmitting={loading}
+            isSubmitting={loadingAuth}
             className="mt-[20px] flex justify-center flex-col"
           >
             {({ errors }) => {
@@ -91,7 +91,9 @@ export default function Login() {
                   />
                   <TButton
                     styles={{
-                      backgroundColor: `${loading ? "#38506494" : "#385064"}`,
+                      backgroundColor: `${
+                        loadingAuth ? "#38506494" : "#385064"
+                      }`,
                     }}
                     className={`mt-[40px] `}
                     icon={<LoginSharp />}
@@ -99,7 +101,7 @@ export default function Login() {
                     Login
                   </TButton>
                   <div className="w-full mt-[20px] h-[5px]">
-                    {authResponse?.message !== undefined && !loading && (
+                    {authResponse?.message !== undefined && !loadingAuth && (
                       <div className="w-full  bottom-[10%] right-0 flex  justify-center items-center text-red-400 animate-rise">
                         <Error className="text-red-400 mr-2" />{" "}
                         {authResponse?.message}.

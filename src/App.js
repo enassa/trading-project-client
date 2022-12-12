@@ -11,7 +11,9 @@ import LandingPage from "./pages/landing-page/LandingPage";
 import Portfolio from "./pages/portfolio/Portfolio";
 import TradeHistroyPage from "./pages/trade-history/TradeHistroyPage";
 import Register from "./pages/auth/register/Register";
+import { API_HANDLER } from "./util/api-handler";
 
+export const API = new API_HANDLER(process.env.REACT_APP_BASE_URL);
 function App() {
   return (
     <Router>
