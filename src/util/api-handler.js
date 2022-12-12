@@ -28,11 +28,10 @@ export class API_HANDLER {
     this.#callBack = callBack;
   }
   setToken(token) {
-    this.token = token;
+    this.#token = token;
   }
   #REQUEST = async (endpoint, data, responseType, method) => {
     let url = `${this.#baseURL}${endpoint}`;
-    console.log(data);
     return fetch(url, {
       method,
       headers: {
@@ -43,7 +42,11 @@ export class API_HANDLER {
       body: method !== "GET" && !!data ? JSON.stringify(data) : undefined,
     })
       .then(async (response) => {
-        return response[responseType]();
+        if (response.ok) {
+          if (responseType === "json") return await response.json();
+          if (responseType === "text") return await response.text();
+        }
+        return response;
       })
       .catch((error) => {
         return error;
@@ -52,19 +55,19 @@ export class API_HANDLER {
         this.#callBack(response);
       });
   };
-  GET(endpoint, data, responseType = this.responseType) {
+  GET(endpoint, data, responseType = this.#responseType) {
     return this.#REQUEST(endpoint, data, responseType, "GET");
   }
-  POST(endpoint, data, responseType = this.responseType) {
+  POST(endpoint, data, responseType = this.#responseType) {
     return this.#REQUEST(endpoint, data, responseType, "POST");
   }
-  PUT(endpoint, data, responseType = this.responseType) {
+  PUT(endpoint, data, responseType = this.#responseType) {
     return this.#REQUEST(endpoint, data, responseType, "PUT");
   }
-  PATCH(endpoint, data, responseType = this.responseType) {
+  PATCH(endpoint, data, responseType = this.#responseType) {
     return this.#REQUEST(endpoint, data, responseType, "PATCH");
   }
-  DELETE(endpoint, data, responseType = this.responseType) {
+  DELETE(endpoint, data, responseType = this.#responseType) {
     return this.#REQUEST(endpoint, data, responseType, "DELETE");
   }
 
@@ -76,12 +79,16 @@ export class API_HANDLER {
         "Content-Type": this.#contentType,
         Accept: this.#accept,
         "Access-Control-Allow-Origin": this.#accessControl,
-        Authorization: `Beearer ${this.token}`,
+        Authorization: `Bearer ${this.#token}`,
       },
       body: method !== "GET" && !!data ? JSON.stringify(data) : undefined,
     })
       .then(async (response) => {
-        return response[responseType]();
+        if (response.ok) {
+          if (responseType === "json") return await response.json();
+          if (responseType === "text") return await response.text();
+        }
+        return await response.json();
       })
       .catch((error) => {
         return error;
@@ -90,19 +97,19 @@ export class API_HANDLER {
         this.#callBack(response);
       });
   };
-  GET_WITH_TOKEN(endpoint, data, responseType = this.responseType) {
+  GET_WITH_TOKEN(endpoint, data, responseType = this.#responseType) {
     return this.#REQUEST_WITH_TOKEN(endpoint, data, responseType, "GET");
   }
-  POST_WITH_TOKEN(endpoint, data, responseType = this.responseType) {
+  POST_WITH_TOKEN(endpoint, data, responseType = this.#responseType) {
     return this.#REQUEST_WITH_TOKEN(endpoint, data, responseType, "POST");
   }
-  PUT_WITH_TOKEN(endpoint, data, responseType = this.responseType) {
+  PUT_WITH_TOKEN(endpoint, data, responseType = this.#responseType) {
     return this.#REQUEST_WITH_TOKEN(endpoint, data, responseType, "PUT");
   }
-  PATCH_WITH_TOKEN(endpoint, data, responseType = this.responseType) {
+  PATCH_WITH_TOKEN(endpoint, data, responseType = this.#responseType) {
     return this.#REQUEST_WITH_TOKEN(endpoint, data, responseType, "PATCH");
   }
-  DELETE_WITH_TOKEN(endpoint, data, responseType = this.responseType) {
+  DELETE_WITH_TOKEN(endpoint, data, responseType = this.#responseType) {
     return this.#REQUEST_WITH_TOKEN(endpoint, data, responseType, "DELETE");
   }
 }

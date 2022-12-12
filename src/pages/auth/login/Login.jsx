@@ -6,18 +6,21 @@ import {
   Error,
 } from "@mui/icons-material";
 import React from "react";
+import { Navigate } from "react-router-dom";
 import TAuthInput from "../../../components/auth-input/AuthInput";
 import TButton from "../../../components/button/Button";
 import TFormValidator from "../../../components/form-validator/FormValidator";
 import { emailRegex } from "../../../constants/reusable-functions";
-import { useAuthServices } from "../../../store/context/auth-context";
 import { images } from "./../../../assets/images/images";
 import { svgs } from "./../../../assets/svg/svg";
 import SlimLoader from "./../../../components/slim-loader/SlimLoader";
 import { useAuthService } from "./../../../store/redux/slices/auth-slice/auth-service";
+import { ROUTES } from "./../../../constants/route-links";
 
 export default function Login() {
-  const { loginAsync, loadingAuth, authResponse } = useAuthService();
+  const { loginAsync, loadingAuth, authResponse, userIsLoggedIn } =
+    useAuthService();
+
   const handleSubmit = (data) => {
     loginAsync(data);
   };
@@ -36,7 +39,10 @@ export default function Login() {
     },
   };
   const initialValues = {};
-  return (
+
+  return userIsLoggedIn() ? (
+    <Navigate to={ROUTES.dashboard.url} />
+  ) : (
     <div className="w-full h-full flex justify-center items-center ">
       <div className="w-[80%] h-[80%]  flex">
         <div className="w-[65%] h-full bg-[#F2F3F3] flex justify-center items-center flex-col">

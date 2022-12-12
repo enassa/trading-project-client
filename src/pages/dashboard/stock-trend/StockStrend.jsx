@@ -10,8 +10,39 @@ import DropMenu from "../../../components/drop-menu/DropMenu";
 import { exchangeData, portfolios } from "../../../constants/dummy-data";
 import ExchangeStatCard from "../exchange-stat-card/ExchangeStatCard";
 import StockChart from "./stock chart/StockChart";
+import { useExchangeDataService } from "../../../store/redux/slices/exchange-slice/exchange-service";
 
 export default function StockStrend() {
+  const [activeStock, setActiveStock] = useState(portfolios[0]);
+  const { marketData } = useExchangeDataService();
+  const seriesData = [];
+  marketData.map((item, index) => {
+    const stock = item.data.find((item) => item.TICKER === activeStock.symbol);
+    seriesData.push({
+      x: item.date,
+      y: [
+        stock.BID_PRICE,
+        stock.ASK_PRICE,
+        stock.LAST_TRADED_PRICE,
+        stock.MAX_PRICE_SHIFT,
+      ],
+    });
+  });
+
+  // O = Bid price
+  // H = ASK price
+  // C = LAST_TRADED_PRICE
+  // L =
+
+  // {
+  //   name: "GOOGL",
+  //   data: [31, 40, 28, 51, 42, 109, 100],
+  // },
+  // {
+  //   name: "APPL",
+  //   data: [11, 32, 45, 32, 34, 52, 41],
+  // },
+
   const ejectMenuItems = () => {
     return (
       Array.isArray(portfolios) &&
@@ -38,7 +69,6 @@ export default function StockStrend() {
       );
     });
   };
-  const [activeStock, setActiveStock] = useState(portfolios[0]);
   return (
     <div className="w-full h-full flex flex-col justify-start ">
       <div className="max-h-[100px] min-h-[20%]  w-full flex justify-start items-start ">

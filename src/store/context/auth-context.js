@@ -22,7 +22,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const processFailedAuth = (error) => {
-    console.log(error);
     if ((error = "unknown")) {
       setAuthReponse({
         error: error,
@@ -77,7 +76,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const registerUser = async (data) => {
-    console.log(data);
     return request(`${END_POINTS.register}`, "POST", data, "auth");
   };
 

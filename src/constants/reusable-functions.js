@@ -50,7 +50,6 @@ export const onlyNumbersRegex = (max = 50) => {
 };
 
 export const createRipple = (event) => {
-  console.log("clicked");
   const button = event.currentTarget;
   const circle = document.createElement("span");
   const diameter = Math.max(button.clientWidth, button.clientHeight);

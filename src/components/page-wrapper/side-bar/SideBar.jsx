@@ -3,21 +3,25 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { SideBarData as defaultMenuList } from "./side-bar-data/side-bar-data";
 import BalanceCard from "./../../balance-card/BalanceCard";
 import { images } from "./../../../assets/images/images";
+import { useAuthService } from "./../../../store/redux/slices/auth-slice/auth-service";
+
 export default function TSideBar({ menuItems = [] }) {
   const navigate = useNavigate();
-
+  const { logOut } = useAuthService();
   // ================ get active route from url ================
   const activeMenu = useLocation().pathname.split("/")[2];
-
   const menuList =
     Array.isArray(menuItems) && menuItems.length ? menuItems : defaultMenuList;
-
   const MenuItem = ({ menuItem }) => {
     return (
       <a
         href={menuItem?.url} // ================ just here for screen reader ================
         onClick={(e) => {
           e.preventDefault();
+          if (menuItem.title === "Logout") {
+            logOut();
+            return;
+          }
           navigate(menuItem?.url);
         }}
         className={`${

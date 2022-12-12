@@ -58,9 +58,21 @@ module.exports = {
           from: { transform: "rotateZ(0deg)" },
           to: { transform: "rotateZ(360deg)" },
         },
+        fadeIn: {
+          from: { opacity: 0.5 },
+          to: { opacity: 1 },
+        },
+        fadeOut: {
+          from: { opacity: 1 },
+          to: { opacity: 0 },
+        },
         rise: {
           from: { transform: "translate(0px,0); opacity: 0.4" },
           to: { transform: "translate(0px,-4px);opacity: 1" },
+        },
+        descend: {
+          from: { transform: "translate(0px,-4px);opacity: 1" },
+          to: { transform: "translate(0px,200px); opacity: 0.4" },
         },
         slideDownVanish: {
           from: {
@@ -101,8 +113,11 @@ module.exports = {
       },
 
       animation: {
+        fadeIn: "fadeIn 0.2s ease 0s 1 normal forwards running",
+        fadeOut: "fadeOut 0.2s ease 0s 1 normal forwards running",
         rotate: "rotate 100s linear infinite",
         rise: "rise 0.2s ease 0s 1 normal forwards running",
+        descend: "descend  0.2s ease 0s 1 normal forwards running",
         bgChange: "bgChange  2s linear 0s infinite normal forwards running",
         slideDownVanish: "slideDownVanish 0.2s linear forwards ",
         zoomIn: "zoomIn 0.2s linear forwards ",

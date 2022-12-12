@@ -6,14 +6,17 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { store } from "./store/redux/store";
 import { AuthProvider } from "./store/context/auth-context";
+import { ModalProvider } from "./components/modal/modal-context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
   <Provider store={store}>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
+    <ModalProvider>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </ModalProvider>
   </Provider>
   // </React.StrictMode>
 );

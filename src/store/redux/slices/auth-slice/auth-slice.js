@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
-  userData: {},
+  userData: undefined,
   authResponse: {},
 };
 export const authSlice = createSlice({
@@ -11,7 +11,6 @@ export const authSlice = createSlice({
       state.userData = payload;
     },
     setAuthResponse: (state, { payload }) => {
-      console.log("payload");
       state.userData = payload;
     },
   },

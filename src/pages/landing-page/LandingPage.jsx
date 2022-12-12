@@ -22,7 +22,10 @@ export default function LandingPage() {
   const ejectPortfolios = () => {
     return portfolios.map((item, index) => {
       return (
-        <div className="min-w-[100px] w-[00px] mr-[5%] h-[100px] bg-white rounded-full flex justify-center items-center shadow-neuroInsert">
+        <div
+          key={"portfolio" + index}
+          className="min-w-[100px] w-[00px] mr-[5%] h-[100px] bg-white rounded-full flex justify-center items-center shadow-neuroInsert"
+        >
           <img
             alt={`${item.title} logo`}
             className="h-[50px]"

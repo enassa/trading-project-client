@@ -10,11 +10,15 @@ export const exchangeDataSlice = createSlice({
     adToMarketData: (state, { payload }) => {
       const now = new Date();
       state.marketData.push({
-        x: now,
-        y: [payload.open, payload.high, payload.low, payload.close],
+        date: now.toString(),
+        data: payload,
+        // x: now.toString,
+        // y: [payload.open, payload.high, payload.low, payload.close],
       });
     },
   },
 });
-export const { getExchangeData } = exchangeDataSlice.actions;
+export const { adToMarketData } = exchangeDataSlice.actions;
 export default exchangeDataSlice.reducer;
+// x: now,
+// y: [payload.open, payload.high, payload.low, payload.close],
