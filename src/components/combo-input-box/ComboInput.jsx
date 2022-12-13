@@ -54,11 +54,13 @@ export default function ComboInput({
           className="w-full min-h-[40px] h-[40px] px-4 cursor-pointer hover:bg-gray-50 flex items-center"
         >
           {typeof option.icon === "object" && (
-            <div className="mr-3">{option?.icon}</div>
+            <div className="mr-3">{option?.icon ?? defaultIcon}</div>
           )}
           {typeof option.icon !== "object" &&
             typeof defaultIcon === "object" && (
-              <div className="mr-3">{option?.icon}</div>
+              <div className="mr-3 text-gray-600">
+                {option?.icon ?? defaultIcon}
+              </div>
             )}
           {typeof option.icon === "string" && (
             <img alt="" className="h-[50%] mr-3" src={option?.icon} />
@@ -100,6 +102,7 @@ export default function ComboInput({
           onClick={(e) => {
             e.stopPropagation();
           }}
+          autocomplete="off"
           onChange={(e) => setSearchValue(e.target.value)}
           className={` ${className} h-full p-3  rounded-[5px] outline-none`}
           type={type}

@@ -43,11 +43,15 @@ export const ROUTES = {
   },
   portfolio: {
     route: "portfolio",
-    url: protectedBaseRoute.url + "/portfolio",
+    url: protectedBaseRoute.url + "/portfolio/list",
   },
-  createPortfolio: {
-    route: "portfolio/create-portfolio",
-    url: protectedBaseRoute.url + "/portfolio/create-portfolio",
+  portfolioDetail: {
+    route: "detail",
+    url: protectedBaseRoute.url + "/portfolio/detail",
+  },
+  portfolioList: {
+    route: "list",
+    url: protectedBaseRoute.url + "/portfolio/list",
   },
   tradeHistory: {
     route: "trade-history",

@@ -39,7 +39,6 @@ export default function Login() {
     },
   };
   const initialValues = {};
-  console.log(userIsLoggedIn());
   return userIsLoggedIn() ? (
     <Navigate to={ROUTES.dashboard.url} />
   ) : (

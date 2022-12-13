@@ -1,23 +1,23 @@
 import React from "react";
 import HorizontalBar from "../../components/horizontal-bar/HorizontalBar";
 import OrderForm from "./order-form/OrderForm";
-import PortfolioCard from "../../components/portfolio-card/PortfolioCard";
 import StockStrend from "./stock-trend/StockStrend";
-import { portfolios } from "../../constants/dummy-data";
+import { stocks } from "../../constants/dummy-data";
 import {
   AddCircle,
   FiberManualRecord,
   RemoveCircle,
 } from "@mui/icons-material";
+import TStockCard from "../../components/stock-card/StockCard";
 
 export default function Dashboard() {
   const ejectPortfolio = () => {
     return (
-      Array.isArray(portfolios) &&
-      portfolios.map((portfolio, index) => {
+      Array.isArray(stocks) &&
+      stocks.map((portfolio, index) => {
         return (
           <div key={index} className="mr-4">
-            <PortfolioCard data={portfolio} />
+            <TStockCard data={portfolio} />
           </div>
         );
       })
@@ -27,7 +27,7 @@ export default function Dashboard() {
     <div className="w-full  h-full max-h-full overflow-y-auto flex flex-col px-5 justify-start pb-[20px] over">
       <div className="w-full  flex-wrap  flex  h-[200px] py-[20px] justify-center">
         <HorizontalBar>
-          {ejectPortfolio()}{" "}
+          {ejectPortfolio()}
           <div className="shadow-neuro w-[193px] h-[80px] bg-white rounded-[10px] cursor-pointer p-3 flex justify-center items-center">
             <div className="h-full flex items-center mr-3">
               <AddCircle />
@@ -38,7 +38,7 @@ export default function Dashboard() {
           </div>
         </HorizontalBar>
       </div>
-      <div className="w-full justify-center flex  h-full ">
+      <div className="w-full justify-center flex  h-full min-h-[750px] ">
         <div className="w-full h-full flex  rounded-md  justify-between ">
           <div className="w-full h-full shadow-md mr-[20px] shadow-[20px] bg-white rounded-md overflow-hidden p-[40px] pt-[20px]">
             <StockStrend />

@@ -34,7 +34,7 @@ function TButton({
       {icon && (
         <>
           <div
-            className={`${iconColor}} h-full  flex justify-center items-center`}
+            className={`${iconColor}} h-full  flex justify-center items-center pointer-events-none`}
             style={{ marginRight: children !== "" && 5, color: iconColor }}
           >
             {icon}
@@ -42,7 +42,7 @@ function TButton({
         </>
       )}
       <div
-        className={`${iconColor}}  h-full  flex justify-center items-center`}
+        className={`${iconColor}}  h-full  flex justify-center items-center pointer-events-none`}
         style={{ marginRight: 5, color: iconColor }}
       >
         {children}

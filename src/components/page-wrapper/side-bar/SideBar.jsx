@@ -7,7 +7,7 @@ import { useAuthService } from "./../../../store/redux/slices/auth-slice/auth-se
 
 export default function TSideBar({ menuItems = [] }) {
   const navigate = useNavigate();
-  const { logOut } = useAuthService();
+  const { logOut, userData } = useAuthService();
   // ================ get active route from url ================
   const activeMenu = useLocation().pathname.split("/")[2];
   const menuList =
@@ -64,7 +64,7 @@ export default function TSideBar({ menuItems = [] }) {
         </div>
       </div>
       <div className="w-full justify-center font-exrabold mt-[10px] mb-[20px]">
-        <BalanceCard />
+        <BalanceCard balance={userData?.balance} />
       </div>
       <div className="w-full h-full flex flex-col">
         <div className="w-full h-full flex flex-col">

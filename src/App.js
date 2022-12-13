@@ -13,6 +13,8 @@ import TradeHistroyPage from "./pages/trade-history/TradeHistroyPage";
 import Register from "./pages/auth/register/Register";
 import { API_HANDLER } from "./util/api-handler";
 import "react-toastify/dist/ReactToastify.css";
+import PortfolioDetail from "./pages/portfolio/portfolio-detail/PortfolioDetail";
+import PortfolioList from "./pages/portfolio/portfolio-list/PortfolioList";
 export const API = new API_HANDLER(process.env.REACT_APP_BASE_URL);
 
 function App() {
@@ -27,12 +29,27 @@ function App() {
         {/*====== Protected routes ======  */}
         <Route path={ROUTES.home.route} element={<Home />}>
           <Route path={ROUTES.dashboard.route} element={<Dashboard />} />
-          <Route path={ROUTES.portfolio.route} element={<Portfolio />} />
+          <Route path={ROUTES.portfolio.route} element={<Portfolio />}>
+            <Route
+              path={ROUTES.tradeHistory.route}
+              element={<TradeHistroyPage />}
+            />
+            <Route
+              path={ROUTES.portfolioDetail.route}
+              element={<PortfolioDetail />}
+            />
+            <Route
+              path={ROUTES.portfolioList.route}
+              element={<PortfolioList />}
+            />
+          </Route>
+
           <Route
             path={ROUTES.tradeHistory.route}
             element={<TradeHistroyPage />}
           />
         </Route>
+
         {/* ====== Non existant route ====== */}
         <Route path={ROUTES.notFound} element={<PageNotFound />} />
       </Routes>

@@ -1,5 +1,5 @@
 import { images } from "./../assets/images/images";
-export const portfolios = [
+export const stocks = [
   {
     title: "Google",
     symbol: "GOOGL",

@@ -1,7 +1,9 @@
 import {
+  AddBox,
   AddCircle,
   BarChart,
   BusinessCenter,
+  IndeterminateCheckBox,
   RemoveCircle,
   TrendingUp,
 } from "@mui/icons-material";
@@ -14,12 +16,26 @@ import TButton from "../../../components/button/Button";
 import ComboInput from "../../../components/combo-input-box/ComboInput";
 import { useOrderDataService } from "../../../store/redux/slices/order-slice/order-service";
 import { usePortfolioService } from "./../../../store/redux/slices/portfolio-slice/portfolio-service";
+import { stocks } from "./../../../constants/dummy-data";
+import { useAuthService } from "../../../store/redux/slices/auth-slice/auth-service";
 
 export default function TOrderForm() {
-  const { createOrder } = useOrderDataService();
+  const { createOrderAsync } = useOrderDataService();
   const { portfolios, openPortfolioForm } = usePortfolioService();
-  const handleSubmit = (data) => {
-    // createOrder(data);
+  const { userData } = useAuthService();
+  const handleSubmit = (data, side) => {
+    const portfolioId = portfolios.find(
+      (item) => item.portfolioName === data.portfolio
+    );
+    const dataToSubmit = {
+      product: data.stock,
+      type: data.trade_type,
+      price: parseInt(data.amount),
+      side: data.side,
+      userId: userData.id,
+    };
+    // console.log(dataToSubmit);
+    createOrderAsync(dataToSubmit, portfolioId?.id);
   };
   console.log(portfolios);
   const validationSchema = {
@@ -37,6 +53,12 @@ export default function TOrderForm() {
       required: true,
       regexPattern: onlyPositiveNumbersRegex(),
     },
+    stock: {
+      required: true,
+    },
+    side: {
+      required: true,
+    },
   };
 
   const initialValues = {
@@ -49,7 +71,7 @@ export default function TOrderForm() {
       <div className=""></div>
       <div className="w-full h-full flex items-center justify-between flex-col ">
         <TFormValidator
-          className={"w-[80%] h-full flex justify-center flex-col mt-[20px]"}
+          className={"w-[80%] h-full flex justify-center flex-col mt-[20px] "}
           validationSchema={validationSchema}
           initialValues={initialValues}
           onSubmit={handleSubmit}
@@ -63,8 +85,19 @@ export default function TOrderForm() {
                     label="Select portfolio"
                     name="portfolio"
                     data={portfolios}
-                    displayProperty={"title"}
+                    displayProperty={"portfolioName"}
                     defaultIcon={<BusinessCenter />}
+                    noBorder
+                    className="bg-[#F5F7F9] border-0 max-w-full w-full"
+                  />
+                </div>
+                <div className="">
+                  <ComboInput
+                    placeholder="Select order type"
+                    label="Select Stock"
+                    name="stock"
+                    data={stocks}
+                    displayProperty={"title"}
                     noBorder
                     className="bg-[#F5F7F9] border-0 max-w-full w-full"
                   />
@@ -78,6 +111,17 @@ export default function TOrderForm() {
                   >
                     <option icon={<BarChart />}>Market order</option>
                     <option icon={<TrendingUp />}> Limit Order</option>
+                  </TSelector>
+                </div>
+                <div className="">
+                  <TSelector
+                    placeholder="Select side"
+                    label="Select side"
+                    name="side"
+                    className="bg-[#F5F7F9] border-0"
+                  >
+                    <option icon={<AddBox />}>BUY</option>
+                    <option icon={<IndeterminateCheckBox />}>SELL</option>
                   </TSelector>
                 </div>
 
@@ -103,20 +147,11 @@ export default function TOrderForm() {
                   <TButton
                     onClick={(e) => e.preventDefault()}
                     className={
-                      "uppercase mb-[10px] bg-red-400 text-white border-0 hover:bg-red-500 duration-75"
+                      "uppercase mb-[10px] bg-bgTrade text-white border-0 hover:bg-red-500 duration-75"
                     }
                     icon={<RemoveCircle />}
                   >
-                    Sell
-                  </TButton>
-                  <TButton
-                    onClick={(e) => e.preventDefault()}
-                    className={
-                      "uppercase bg-green-400 border-0 hover:bg-green-600 transition-all duration-75 "
-                    }
-                    icon={<AddCircle />}
-                  >
-                    Buy
+                    Submit
                   </TButton>
                 </div>
               </>

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { ROUTES } from "./../../constants/route-links";
 import { Login, VpnKey } from "@mui/icons-material";
 import { images } from "./../../assets/images/images";
-import { portfolios } from "./../../constants/dummy-data";
+import { stocks } from "./../../constants/dummy-data";
 import { getImageFromSymbol } from "../../constants/reusable-functions";
 
 const CandleStick = () => {
@@ -20,7 +20,7 @@ const CandleStick = () => {
 
 export default function LandingPage() {
   const ejectPortfolios = () => {
-    return portfolios.map((item, index) => {
+    return stocks.map((item, index) => {
       return (
         <div
           key={"portfolio" + index}

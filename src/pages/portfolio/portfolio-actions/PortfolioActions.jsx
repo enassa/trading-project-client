@@ -1,24 +1,16 @@
-import {
-  AddCircle,
-  Delete,
-  Menu,
-  MoreVert,
-  Search,
-  Settings,
-} from "@mui/icons-material";
+import { AddCircle, BusinessCenter, Delete, Search } from "@mui/icons-material";
 import { ClickAwayListener } from "@mui/material";
 import React, { useState } from "react";
-import TButton from "../../../components/button/Button";
 import ComboInput from "../../../components/combo-input-box/ComboInput";
 import { portfolios } from "../../../constants/dummy-data";
-import { useNavigate } from "react-router-dom";
-import { ROUTES } from "./../../../constants/route-links";
 import { usePortfolioService } from "./../../../store/redux/slices/portfolio-slice/portfolio-service";
+import TextButton from "./../../../components/text-button/TextButton";
 
 export default function PortfolioActions() {
   const [showSettings, setShowSettings] = useState();
-  const { openPortfolioForm } = usePortfolioService();
-  const navigate = useNavigate();
+  const { openPortfolioForm, activePage, setActivePage, portfolios } =
+    usePortfolioService();
+
   return (
     <div className="flex items-center w-full justify-between mb-[30px] bg-white p-[20px] rounded-md mt-[20px]">
       <div className="flex ">
@@ -27,11 +19,12 @@ export default function PortfolioActions() {
         </span>
         <ComboInput
           dropClassName={"h-auto max-h-[500px]"}
-          placeholder="Select your Portfolio"
+          placeholder="Search for portfolio"
           label=""
           name="portfolio"
           data={portfolios}
-          displayProperty={"title"}
+          defaultIcon={<BusinessCenter />}
+          displayProperty={"portfolioName"}
           icon={<Search />}
           noBorder
           className=" bg-transparent border-0 text-bgTrade  text-2xl w-auto self-start"
@@ -39,21 +32,12 @@ export default function PortfolioActions() {
       </div>
 
       <div className="flex ">
-        <TButton
-          onClick={() => {
-            openPortfolioForm();
-          }}
-          className="w-[200px] mr-[10px] hover:bg-blue-900"
-          icon={<AddCircle />}
-        >
-          Create Portfolio
-        </TButton>
         <div className="h-[45px] flex items-center relative">
-          <Settings
-            onClick={() => setShowSettings(!showSettings)}
-            className={`cursor-pointer ${
-              showSettings && "text-red-700"
-            } hover:text-blue-900`}
+          <TextButton
+            onClick={() => openPortfolioForm()}
+            active={false}
+            text={"Create portfolio"}
+            icon={<AddCircle className="text-white" style={{ fontSize: 30 }} />}
           />
           {showSettings && (
             <ClickAwayListener onClickAway={() => setShowSettings(false)}>

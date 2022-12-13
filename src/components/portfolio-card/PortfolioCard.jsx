@@ -1,37 +1,54 @@
-import React from "react";
+import {
+  BusinessCenter,
+  Delete,
+  Edit,
+  MoreVert,
+  Settings,
+  ShowChart,
+} from "@mui/icons-material";
+import { ClickAwayListener } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import DropMenu from "../drop-menu/DropMenu";
+import { usePortfolioService } from "./../../store/redux/slices/portfolio-slice/portfolio-service";
 
-export default function TPortfolioCard({ data }) {
-  const amount = (200 / Math.random(200)).toFixed(1);
+export default function PortfolioCard({ data }) {
+  const { closePortfolio } = usePortfolioService();
+  const [drop, showDrop] = useState(false);
   return (
-    <div className="shadow-neuro w-[193px] h-[80px] bg-white rounded-[10px] cursor-pointer p-3 flex">
-      <div className="h-full flex items-center">
-        <img
-          alt="stock-logo"
-          className="h-[40px] w-[40px] max-w-[40px] mr-3"
-          src={data.icon}
-        />
+    <div className="w-full h-[100px] shadow-md flex items-center p-[10px justify-between bg-white mb-[2px] p-[20px]">
+      <div className="w-full h-full flex items-center cursor-pointer ">
+        <BusinessCenter />
+        <span className="ml-3 text-xl">{data?.portfolioName}</span>
       </div>
-      <div className="w-full h-full flex flex-col">
-        <div className="w-[80%] whitespace-nowrap text-ellipsis overflow-hidden">
-          {data.title}
+      <div className="w-full cursor-pointer h-full flex items-center justify-end relative">
+        <div className=" mr-[20px]  cursor-pointer rounded-full text-bgTrade hover:bg-bgTrade hover:text-white  border-bgTrade border-2 transition-all duration-100 min-h-[40px] min-w-[40px] w-[40px] h-[40px] flex justify-center items-center">
+          <ShowChart className="pointer-events-none" />
         </div>
-        <div className="w-full text-gray-500 ">
-          <span className="mr-[2px]"> {data.symbol} </span>
-          <span
-            className={` ${
-              amount > 300
-                ? "bg-green-50 text-green-800 "
-                : "text-red-800 bg-red-50"
-            }  px-[5px] rounded-md h-[5px]`}
-          >
-            ${amount}
-          </span>
+        <div className=" mr-[20px]  cursor-pointer rounded-full text-bgTrade hover:bg-bgTrade hover:text-white  border-bgTrade border-2 transition-all duration-100 min-h-[40px] min-w-[40px] w-[40px] h-[40px] flex justify-center items-center">
+          <Edit className="pointer-events-none" />
         </div>
-        {/* <div className="w-full text-gray-500 ">$2000</div> */}
+        <div
+          onClick={() => showDrop(true)}
+          className=" mr-[20px]  cursor-pointer rounded-full text-bgTrade hover:bg-bgTrade hover:text-white  border-bgTrade border-2 transition-all duration-100 min-h-[40px] min-w-[40px] w-[40px] h-[40px] flex justify-center items-center relative"
+        >
+          <MoreVert className="pointer-events-none" />
+        </div>
+        {drop && (
+          <ClickAwayListener onClickAway={() => showDrop(false)}>
+            <div className="w-[170px] z-[20] flex flex-col  absolute bg-white top-[70px]  shadow-neuroFlat animate-rise">
+              <div
+                onClick={() => {
+                  showDrop(false);
+                  closePortfolio();
+                }}
+                className=" w-full h-[60px] hover:bg-gray-50 hover:text-red-400  flex items-center justify-start px-[10px]"
+              >
+                <Delete className="" /> <span>Close portfolio</span>
+              </div>
+            </div>
+          </ClickAwayListener>
+        )}
       </div>
-      <div></div>
     </div>
   );
 }
-/* Rectangle 27 */
-/* Rectangle 27 */

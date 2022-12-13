@@ -7,9 +7,11 @@ export const portfolioSlice = createSlice({
   name: "ORDER_SLICE",
   initialState,
   reducers: {
-    getPortfolio: (state, action) => {},
-    addPortfolioToStore: (state, action) => {
-      state.portfolios.push(action.payload);
+    getPortfolios: (state, { payload }) => {
+      state.portfolios = payload;
+    },
+    addPortfolioToStore: (state, { payload }) => {
+      state.portfolios = [...state.portfolios, payload];
     },
     updatePortfolio: (state, action) => {},
     deletePortfolio: (state, action) => {},
@@ -24,7 +26,7 @@ export const portfolioSlice = createSlice({
 });
 
 export const {
-  getPortfolio,
+  getPortfolios,
   addPortfolioToStore,
   updatePortfolio,
   openPortForm,

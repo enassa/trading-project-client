@@ -24,13 +24,17 @@ import { ROUTES } from "./../../../constants/route-links";
 
 export default function Register() {
   // const { registerUser, loadingAuth, authResponse } = useAuthServices();
-  const { registerAsync, userIsLoggedIn, authResponse, loadingAuth } =
-    useAuthService();
+  const {
+    registerAsync,
+    userIsLoggedIn,
+    resetAuthResponse,
+    authResponse,
+    loadingAuth,
+  } = useAuthService();
   const navigate = useNavigate();
   const handleSubmit = (data) => {
     registerAsync(data);
   };
-  console.log(authResponse);
   const validationSchema = {
     email: {
       required: true,
@@ -163,7 +167,10 @@ export default function Register() {
               Registeration was successful!{" "}
               <b
                 className="text-bgTrade cursor-pointer"
-                onClick={() => navigate(ROUTES.login.url)}
+                onClick={() => {
+                  navigate(ROUTES.login.url);
+                  resetAuthResponse();
+                }}
               >
                 {" "}
                 Click here to login{" "}

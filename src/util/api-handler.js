@@ -45,13 +45,13 @@ export class API_HANDLER {
         if (response.ok) {
           if (responseType === "json")
             return {
-              response: await response.json(),
+              data: await response.json(),
               ok: true,
               status: response.status,
             };
           if (responseType === "text")
             return {
-              response: await response.text(),
+              data: await response.text(),
               ok: true,
               status: response.status,
             };
@@ -97,13 +97,13 @@ export class API_HANDLER {
         if (response.ok) {
           if (responseType === "json")
             return {
-              response: await response.json(),
+              data: await response.json(),
               ok: true,
               status: response.status,
             };
           if (responseType === "text")
             return {
-              response: await response.text(),
+              data: await response.text(),
               ok: true,
               status: response.status,
             };

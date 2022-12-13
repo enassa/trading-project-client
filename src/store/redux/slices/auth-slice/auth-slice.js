@@ -11,7 +11,6 @@ export const authSlice = createSlice({
       state.userData = payload;
     },
     setAuthResponse: (state, { payload }) => {
-      console.log(payload);
       state.authResponse = payload;
     },
   },

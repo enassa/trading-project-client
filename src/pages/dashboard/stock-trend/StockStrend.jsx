@@ -7,13 +7,13 @@ import {
 } from "@mui/icons-material";
 import { ClickAwayListener } from "@mui/material";
 import DropMenu from "../../../components/drop-menu/DropMenu";
-import { exchangeData, portfolios } from "../../../constants/dummy-data";
+import { exchangeData, stocks } from "../../../constants/dummy-data";
 import ExchangeStatCard from "../exchange-stat-card/ExchangeStatCard";
 import StockChart from "./stock chart/StockChart";
 import { useExchangeDataService } from "../../../store/redux/slices/exchange-slice/exchange-service";
 
 export default function StockStrend() {
-  const [activeStock, setActiveStock] = useState(portfolios[0]);
+  const [activeStock, setActiveStock] = useState(stocks[0]);
   const { marketData } = useExchangeDataService();
   const seriesData = [];
   marketData.map((item, index) => {
@@ -45,8 +45,8 @@ export default function StockStrend() {
 
   const ejectMenuItems = () => {
     return (
-      Array.isArray(portfolios) &&
-      portfolios.map((data, index) => {
+      Array.isArray(stocks) &&
+      stocks.map((data, index) => {
         return (
           <option data={data} image={data.icon} key={index} className="mr-4">
             {data.title}

@@ -22,39 +22,31 @@ export const useAuthService = () => {
   const userIsLoggedIn = () => {
     if (!!userData) return true;
     const localUserData = getAsObjectFromLocalStorage("tfx3213UserData");
+    console.log(localUserData);
     !!localUserData && dispatch(setUpUser(localUserData));
     !!localUserData && API.setToken(localUserData.token);
-    return false;
+    return !!localUserData;
   };
 
-  const processSuccessAuth = (jwtToken, page) => {
-    API.setToken(jwtToken);
-    API.GET_WITH_TOKEN(END_POINTS.home)
-      .then((response) => {
-        if (response?.status === 500) return processFailedAuth("email", page);
-        if (response?.ok === false) return processFailedAuth("unknown", page);
-        saveObjectInLocalStorage("tfx3213UserData", {
-          token: jwtToken,
-          ...response,
-        });
-        dispatch(
-          setUpUser({
-            token: jwtToken,
-            ...response,
-          })
-        );
-        API.setToken(jwtToken);
-        navigate(ROUTES.dashboard.url);
+  const processLoginSuccess = (response) => {
+    console.log(response);
+    saveObjectInLocalStorage("tfx3213UserData", {
+      ...response.data.data,
+      token: response.data.token,
+    });
+    dispatch(
+      setUpUser({
+        ...response.data.data,
+        token: response.data.token,
       })
-      .catch((err) => console.error(err))
-      .finally(() => {
-        setLoading(false);
-      });
+    );
+    API.setToken(response.data.token);
+    navigate(ROUTES.dashboard.url);
   };
 
-  const processFailedAuth = (error, page) => {
+  const processFailedAuth = (error, response, page) => {
     setLoading(false);
-    if ((error = "unknown")) {
+    if (error === "unknown") {
       dispatch(
         setAuthResponse({
           error: error,
@@ -69,7 +61,7 @@ export const useAuthService = () => {
     dispatch(
       setAuthResponse({
         error: error,
-        message: "Uknown error, check your internet connnection",
+        message: response.message,
         ok: false,
         success: false,
         page,
@@ -79,21 +71,16 @@ export const useAuthService = () => {
 
   const loginAsync = async (data) => {
     setLoading(true);
-    return API.POST(END_POINTS.login, data, "text")
+    return API.POST(END_POINTS.login, data)
       .then(async (response) => {
-        console.log(response);
-        if (response?.status === 500)
-          return processFailedAuth("email", "login");
-        if (response?.ok === false)
-          return processFailedAuth("unknown", "login");
-        alert("i have been called");
-
-        if (response === "Invalid Credentials")
-          return processFailedAuth("password", "login");
-        if (response === "") return processSuccessAuth(response, "login");
+        if (response.data.success) {
+          processLoginSuccess(response.data);
+        } else {
+          processFailedAuth(response.data);
+        }
       })
       .catch((error) => {
-        processFailedAuth("unknown", "register");
+        processFailedAuth("unknown", "login");
       })
       .finally(() => {});
   };
@@ -107,16 +94,22 @@ export const useAuthService = () => {
       password: data.password,
     })
       .then(async (response) => {
-        if (response?.ok === false)
-          return processFailedAuth("unknown", "register");
-        setAuthResponse({
-          message: "Registeration was succesfull",
-          ok: true,
-          success: true,
-        });
+        if (response?.data?.success === true) {
+          dispatch(
+            setAuthResponse({
+              message: "Registeration was succesfull",
+              ok: true,
+              success: true,
+              page: "register",
+            })
+          );
+          return;
+        } else {
+          processFailedAuth("credentials", response.data, "register");
+        }
       })
       .catch((error) => {
-        processFailedAuth("unknown", "register");
+        processFailedAuth("unknown", error, "register");
       })
       .finally(() => {
         setLoading(false);
@@ -132,6 +125,10 @@ export const useAuthService = () => {
       }
     });
   };
+
+  const resetAuthResponse = () => {
+    dispatch(setAuthResponse({}));
+  };
   return {
     logOut,
     loginAsync,
@@ -140,5 +137,6 @@ export const useAuthService = () => {
     loadingAuth,
     authResponse,
     userData,
+    resetAuthResponse,
   };
 };
