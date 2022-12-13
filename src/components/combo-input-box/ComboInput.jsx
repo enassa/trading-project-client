@@ -18,9 +18,10 @@ export default function ComboInput({
   label,
   noBorder,
   data,
-  displayProperty,
+  displayProperty = "title",
   dropClassName,
   icon,
+  defaultIcon,
 }) {
   const inputRef = React.createRef();
   const [dropOptions, setDropOptions] = useState();
@@ -43,9 +44,9 @@ export default function ComboInput({
       return (
         <div
           onClick={() => {
-            setSearchValue(option.title);
-            setSelected(option.title);
-            if (option.title === selected) return;
+            setSearchValue(option[displayProperty]);
+            setSelected(option[displayProperty]);
+            if (option[displayProperty] === selected) return;
             error && setError(false);
             setDropOptions(false);
           }}
@@ -53,14 +54,18 @@ export default function ComboInput({
           className="w-full min-h-[40px] h-[40px] px-4 cursor-pointer hover:bg-gray-50 flex items-center"
         >
           {typeof option.icon === "object" && (
-            <div className="mr-3">{option.icon}</div>
+            <div className="mr-3">{option?.icon}</div>
           )}
+          {typeof option.icon !== "object" &&
+            typeof defaultIcon === "object" && (
+              <div className="mr-3">{option?.icon}</div>
+            )}
           {typeof option.icon === "string" && (
-            <img alt="" className="h-[50%] mr-3" src={option.icon} />
+            <img alt="" className="h-[50%] mr-3" src={option?.icon} />
           )}
 
           <span className="w-full whitespace-nowrap text-ellipsis overflow-hidden">
-            {option.title}
+            {option[displayProperty]}
           </span>
         </div>
       );

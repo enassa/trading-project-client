@@ -53,7 +53,7 @@ export default function PortfolioActions() {
             onClick={() => setShowSettings(!showSettings)}
             className={`cursor-pointer ${
               showSettings && "text-red-700"
-            } hover:bg-blue-900`}
+            } hover:text-blue-900`}
           />
           {showSettings && (
             <ClickAwayListener onClickAway={() => setShowSettings(false)}>

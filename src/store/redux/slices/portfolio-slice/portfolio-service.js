@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  addPortfolioToStore,
   closePortForm,
-  createPortfolio,
   openPortForm,
 } from "./portfolio-slice";
 import { API } from "./../../../../App";
@@ -27,6 +27,12 @@ export const usePortfolioService = () => {
     dispatch(openPortForm());
   };
 
+  const getAllPortfolios = () => {
+    API.GET_WITH_TOKEN(END_POINTS.getAllPortfolio).then((response) => {
+      console.log(response);
+    });
+  };
+
   const creatPortfolioAsync = async (data) => {
     setLoading(true);
     API.POST_WITH_TOKEN(END_POINTS.createPortfolio, {
@@ -35,7 +41,7 @@ export const usePortfolioService = () => {
       .then((response) => {
         if (response?.status === 500) return processFailedRequest();
         if (response?.ok === false) return processFailedRequest();
-        dispatch(createPortfolio(response));
+        dispatch(addPortfolioToStore(response));
         closePortfolioForm();
         successToast("Portfolio created successfully");
       })
@@ -44,6 +50,10 @@ export const usePortfolioService = () => {
         setLoading(false);
       });
   };
+
+  useEffect(() => {
+    getAllPortfolios();
+  }, []);
 
   return {
     creatPortfolioAsync,

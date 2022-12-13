@@ -43,13 +43,23 @@ export class API_HANDLER {
     })
       .then(async (response) => {
         if (response.ok) {
-          if (responseType === "json") return await response.json();
-          if (responseType === "text") return await response.text();
+          if (responseType === "json")
+            return {
+              response: await response.json(),
+              ok: true,
+              status: response.status,
+            };
+          if (responseType === "text")
+            return {
+              response: await response.text(),
+              ok: true,
+              status: response.status,
+            };
         }
-        return response;
+        return { ok: false, error: response, status: response.status };
       })
       .catch((error) => {
-        return error;
+        return { ok: false, error: error, status: undefined };
       })
       .finally((response) => {
         this.#callBack(response);
@@ -85,13 +95,23 @@ export class API_HANDLER {
     })
       .then(async (response) => {
         if (response.ok) {
-          if (responseType === "json") return await response.json();
-          if (responseType === "text") return await response.text();
+          if (responseType === "json")
+            return {
+              response: await response.json(),
+              ok: true,
+              status: response.status,
+            };
+          if (responseType === "text")
+            return {
+              response: await response.text(),
+              ok: true,
+              status: response.status,
+            };
         }
-        return await response.json();
+        return { ok: false, error: response, status: response.status };
       })
       .catch((error) => {
-        return error;
+        return { ok: false, error: error, status: undefined };
       })
       .finally((response) => {
         this.#callBack(response);

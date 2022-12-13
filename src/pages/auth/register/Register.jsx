@@ -137,12 +137,14 @@ export default function Register() {
                       Register
                     </TButton>
                     <div className="w-full mt-[20px] h-[5px]">
-                      {authResponse?.message !== undefined && !loadingAuth && (
-                        <div className="w-full  bottom-[10%] right-0 flex  justify-center items-center text-red-400 animate-rise">
-                          <Error className="text-red-400 mr-2" />{" "}
-                          {authResponse?.message}.
-                        </div>
-                      )}
+                      {authResponse?.message !== undefined &&
+                        authResponse.page === "register" &&
+                        !loadingAuth && (
+                          <div className="w-full  bottom-[10%] right-0 flex  justify-center items-center text-red-400 animate-rise">
+                            <Error className="text-red-400 mr-2" />{" "}
+                            {authResponse?.message}.
+                          </div>
+                        )}
                     </div>
                   </div>
                 );

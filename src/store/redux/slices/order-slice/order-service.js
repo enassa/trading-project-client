@@ -1,16 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getOrder } from "./exhange-slice";
+import { addOrderToStore } from "./order-slice";
 
 export const useOrderDataService = () => {
   const dispatch = useDispatch();
   const orders = useSelector((state) => state?.orderSlice?.orders);
 
-  const getOrderAsync = (data) => async () => {
-    dispatch(getOrder());
+  const createOrderAsync = (data) => async () => {
+    dispatch(addOrderToStore());
   };
 
   return {
-    getOrderAsync,
+    createOrderAsync,
     orders,
   };
 };

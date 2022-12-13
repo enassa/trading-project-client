@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { END_POINTS } from "./../../../../constants/urls";
 import { API } from "./../../../../App";
 import { getAsObjectFromLocalStorage } from "../../../../constants/reusable-functions";
-import { setUpUser } from "./auth-slice";
+import { setAuthResponse, setUpUser } from "./auth-slice";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "./../../../../constants/route-links";
@@ -11,27 +11,28 @@ import { useModal } from "../../../../components/modal/modal-context";
 
 export const useAuthService = () => {
   const userData = useSelector((state) => state?.authSlice?.userData);
+  const authResponse = useSelector((state) => state?.authSlice?.authResponse);
+
   const { showModal } = useModal();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [loadingAuth, setLoading] = useState(false);
-  const [authResponse, setAuthResponse] = useState();
 
   const userIsLoggedIn = () => {
     if (!!userData) return true;
     const localUserData = getAsObjectFromLocalStorage("tfx3213UserData");
     !!localUserData && dispatch(setUpUser(localUserData));
     !!localUserData && API.setToken(localUserData.token);
-    return !!localUserData;
+    return false;
   };
 
-  const processSuccessAuth = (jwtToken) => {
+  const processSuccessAuth = (jwtToken, page) => {
     API.setToken(jwtToken);
     API.GET_WITH_TOKEN(END_POINTS.home)
       .then((response) => {
-        if (response?.status === 500) return processFailedAuth("email");
-        if (response?.ok === false) return processFailedAuth("unknown");
+        if (response?.status === 500) return processFailedAuth("email", page);
+        if (response?.ok === false) return processFailedAuth("unknown", page);
         saveObjectInLocalStorage("tfx3213UserData", {
           token: jwtToken,
           ...response,
@@ -51,37 +52,48 @@ export const useAuthService = () => {
       });
   };
 
-  const processFailedAuth = (error) => {
+  const processFailedAuth = (error, page) => {
+    setLoading(false);
     if ((error = "unknown")) {
+      dispatch(
+        setAuthResponse({
+          error: error,
+          message: "Uknown error, check your internet connnection",
+          ok: false,
+          success: false,
+          page,
+        })
+      );
+      return;
+    }
+    dispatch(
       setAuthResponse({
         error: error,
         message: "Uknown error, check your internet connnection",
         ok: false,
         success: false,
-      });
-      return;
-    }
-    setAuthResponse({
-      error: error,
-      message: "Uknown error, check your internet connnection",
-      ok: false,
-      success: false,
-    });
+        page,
+      })
+    );
   };
 
   const loginAsync = async (data) => {
     setLoading(true);
     return API.POST(END_POINTS.login, data, "text")
       .then(async (response) => {
-        if (response?.status === 500) return processFailedAuth("email");
-        if (response?.ok === false) return processFailedAuth("unknown");
+        console.log(response);
+        if (response?.status === 500)
+          return processFailedAuth("email", "login");
+        if (response?.ok === false)
+          return processFailedAuth("unknown", "login");
+        alert("i have been called");
 
-        return response === "Invalid Credentials"
-          ? processFailedAuth("password", "login")
-          : processSuccessAuth(response);
+        if (response === "Invalid Credentials")
+          return processFailedAuth("password", "login");
+        if (response === "") return processSuccessAuth(response, "login");
       })
       .catch((error) => {
-        processFailedAuth("unknown");
+        processFailedAuth("unknown", "register");
       })
       .finally(() => {});
   };
@@ -95,7 +107,8 @@ export const useAuthService = () => {
       password: data.password,
     })
       .then(async (response) => {
-        if (response?.ok === false) return processFailedAuth("unknown");
+        if (response?.ok === false)
+          return processFailedAuth("unknown", "register");
         setAuthResponse({
           message: "Registeration was succesfull",
           ok: true,
@@ -103,7 +116,7 @@ export const useAuthService = () => {
         });
       })
       .catch((error) => {
-        processFailedAuth("unknown");
+        processFailedAuth("unknown", "register");
       })
       .finally(() => {
         setLoading(false);
