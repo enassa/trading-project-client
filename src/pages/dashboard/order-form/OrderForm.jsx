@@ -1,6 +1,7 @@
 import {
   AddCircle,
   BarChart,
+  BusinessCenter,
   RemoveCircle,
   TrendingUp,
 } from "@mui/icons-material";
@@ -10,14 +11,17 @@ import TFormValidator from "../../../components/form-validator/FormValidator";
 import TSelector from "../../../components/input-selector/Selector";
 import TInput from "../../../components/input-field/Input";
 import TButton from "../../../components/button/Button";
-import { portfolios } from "../../../constants/dummy-data";
 import ComboInput from "../../../components/combo-input-box/ComboInput";
+import { useOrderDataService } from "../../../store/redux/slices/order-slice/order-service";
+import { usePortfolioService } from "./../../../store/redux/slices/portfolio-slice/portfolio-service";
 
 export default function TOrderForm() {
+  const { createOrder } = useOrderDataService();
+  const { portfolios, openPortfolioForm } = usePortfolioService();
   const handleSubmit = (data) => {
-    console.log(data);
+    // createOrder(data);
   };
-
+  console.log(portfolios);
   const validationSchema = {
     portfolio: {
       required: true,
@@ -60,6 +64,7 @@ export default function TOrderForm() {
                     name="portfolio"
                     data={portfolios}
                     displayProperty={"title"}
+                    defaultIcon={<BusinessCenter />}
                     noBorder
                     className="bg-[#F5F7F9] border-0 max-w-full w-full"
                   />
@@ -98,7 +103,7 @@ export default function TOrderForm() {
                   <TButton
                     onClick={(e) => e.preventDefault()}
                     className={
-                      "uppercase mb-[10px] bg-red-600 text-white border-0 "
+                      "uppercase mb-[10px] bg-red-400 text-white border-0 hover:bg-red-500 duration-75"
                     }
                     icon={<RemoveCircle />}
                   >
@@ -106,7 +111,9 @@ export default function TOrderForm() {
                   </TButton>
                   <TButton
                     onClick={(e) => e.preventDefault()}
-                    className={"uppercase bg-green-600 "}
+                    className={
+                      "uppercase bg-green-400 border-0 hover:bg-green-600 transition-all duration-75 "
+                    }
                     icon={<AddCircle />}
                   >
                     Buy

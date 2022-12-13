@@ -6,9 +6,8 @@ export const orderSlice = createSlice({
   name: "ORDER_SLICE",
   initialState,
   reducers: {
-    getOrder: (state, action) => {},
-    createOrder: (state, action) => {
-      console.log(action);
+    getOrderData: (state, action) => {},
+    addOrderToStore: (state, action) => {
       state.orders.push(action.payload);
     },
     updateOrder: (state, action) => {},
@@ -17,5 +16,5 @@ export const orderSlice = createSlice({
 });
 export const createOrderAsync = (data) => async (dispatch) => {};
 
-export const { getOrder, creatOrder, updateOrder } = orderSlice.actions;
+export const { getOrder, addOrderToStore, updateOrder } = orderSlice.actions;
 export default orderSlice.reducer;

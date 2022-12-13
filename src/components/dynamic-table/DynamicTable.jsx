@@ -243,7 +243,6 @@ export default function DynamicTable({
     }
   };
   const changeRowsToDisplay = (value) => {
-    console.log(typeof value);
     setRowsRowsToDisplay(parseInt(value));
   };
 
@@ -339,7 +338,6 @@ export default function DynamicTable({
             {cells.map((headerName, index2) => {
               const styles = getcellStyless(headerName);
               const customeCell = getCustomComponents(headerName);
-              console.log(customeCell);
               const cellData = row[headerName];
               return (
                 <>

@@ -11,10 +11,14 @@ import React, { useState } from "react";
 import TButton from "../../../components/button/Button";
 import ComboInput from "../../../components/combo-input-box/ComboInput";
 import { portfolios } from "../../../constants/dummy-data";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "./../../../constants/route-links";
+import { usePortfolioService } from "./../../../store/redux/slices/portfolio-slice/portfolio-service";
 
 export default function PortfolioActions() {
   const [showSettings, setShowSettings] = useState();
-
+  const { openPortfolioForm } = usePortfolioService();
+  const navigate = useNavigate();
   return (
     <div className="flex items-center w-full justify-between mb-[30px] bg-white p-[20px] rounded-md mt-[20px]">
       <div className="flex ">
@@ -35,13 +39,21 @@ export default function PortfolioActions() {
       </div>
 
       <div className="flex ">
-        <TButton className="w-[200px] mr-[10px]" icon={<AddCircle />}>
+        <TButton
+          onClick={() => {
+            openPortfolioForm();
+          }}
+          className="w-[200px] mr-[10px] hover:bg-blue-900"
+          icon={<AddCircle />}
+        >
           Create Portfolio
         </TButton>
         <div className="h-[45px] flex items-center relative">
           <Settings
             onClick={() => setShowSettings(!showSettings)}
-            className={`cursor-pointer ${showSettings && "text-red-700"}`}
+            className={`cursor-pointer ${
+              showSettings && "text-red-700"
+            } hover:text-blue-900`}
           />
           {showSettings && (
             <ClickAwayListener onClickAway={() => setShowSettings(false)}>

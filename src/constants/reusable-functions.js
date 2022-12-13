@@ -36,18 +36,20 @@ export const checkRegexPattern = (myString, pattern) => {
   let regexState = regex.test(myString);
   return regexState;
 };
+
 export const emailRegex = (max = 50) => {
   return "^[A-Za-z0-9\\._%+-]+@[A-Za-z0-9\\.-]+\\.[A-Za-z]{2," + max + "}$";
 };
+
 export const onlyPositiveNumbersRegex = (max = 50) => {
   return "^[1-9]+[0-9]*$";
 };
+
 export const onlyNumbersRegex = (max = 50) => {
   return "^[1-9]+[0-9]*$";
 };
 
 export const createRipple = (event) => {
-  console.log("clicked");
   const button = event.currentTarget;
   const circle = document.createElement("span");
   const diameter = Math.max(button.clientWidth, button.clientHeight);
@@ -82,6 +84,7 @@ export function formatDate(dateString) {
   const date = dayjs(dateString);
   return date.format("Do MMMM, YYYY");
 }
+
 export const getAsObjectFromLocalStorage = (index) => {
   try {
     const serializedData = localStorage.getItem(index);
@@ -113,7 +116,7 @@ export const getImageFromSymbol = (symbol) => {
       return images.tesla;
     case "IBM":
       return images.ibm;
-    case "APPL":
+    case "AAPL":
       return images.apple;
     case "AMZN":
       return images.amazon;

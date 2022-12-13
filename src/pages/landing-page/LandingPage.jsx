@@ -22,7 +22,10 @@ export default function LandingPage() {
   const ejectPortfolios = () => {
     return portfolios.map((item, index) => {
       return (
-        <div className="min-w-[100px] w-[00px] mr-[5%] h-[100px] bg-white rounded-full flex justify-center items-center shadow-neuroInsert">
+        <div
+          key={"portfolio" + index}
+          className="min-w-[100px] w-[00px] mr-[5%] h-[100px] bg-white rounded-full flex justify-center items-center shadow-neuroInsert"
+        >
           <img
             alt={`${item.title} logo`}
             className="h-[50px]"
@@ -50,9 +53,9 @@ export default function LandingPage() {
           Login
         </TButton>
       </div>
-      <div className="w-full h-full flex items-center mb-[160px]">
+      <div className="w-full h-full flex items-center mb-[160px] ml-[40px]">
         <div className="flex h-full items-center">
-          <div className="h-[350px] w-[350px] rounded-full shadow-neuroRaise relative overflow-hidden">
+          <div className="h-[400px] w-[400px] rounded-full shadow-neuroRaise relative overflow-hidden">
             <div className="h-full w-full flex justify-between rounded-full shadow-neuroRaise top-0 right-0 absolute">
               <div className="h-full overflow-hidden mr-[5px]  relative flex flex-col justify-between">
                 <CandleStick />

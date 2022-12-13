@@ -45,6 +45,10 @@ export const ROUTES = {
     route: "portfolio",
     url: protectedBaseRoute.url + "/portfolio",
   },
+  createPortfolio: {
+    route: "portfolio/create-portfolio",
+    url: protectedBaseRoute.url + "/portfolio/create-portfolio",
+  },
   tradeHistory: {
     route: "trade-history",
     url: protectedBaseRoute.url + "/trade-history",

@@ -22,7 +22,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const processFailedAuth = (error) => {
-    console.log(error);
     if ((error = "unknown")) {
       setAuthReponse({
         error: error,
@@ -42,8 +41,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   const request = async (path, method = "GET", data, token, action) => {
-    let url = `${process.env.REACT_APP_BASE_URL}${path}`;
     setLoading(true);
+    let url = `${process.env.REACT_APP_BASE_URL}${path}`;
 
     return fetch(url, {
       method,
@@ -77,7 +76,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const registerUser = async (data) => {
-    console.log(data);
     return request(`${END_POINTS.register}`, "POST", data, "auth");
   };
 

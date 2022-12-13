@@ -161,8 +161,6 @@ export default function PortfolioStocks() {
         ]}
         defaultFIlterIndex={1}
         rowsToDisplayOptions={["10", "50", "100", "200"]}
-        //   hideActionBar={true}
-        //   hidePagination={true}
       />
     </div>
   );
