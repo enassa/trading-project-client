@@ -5,6 +5,7 @@ class StockChart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      updateValue: 1,
       series: [
         {
           data: this.props.seriesData,
@@ -29,6 +30,11 @@ class StockChart extends React.Component {
         },
       },
     };
+  }
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({ updateValue: Math.random() * 20 });
+    }, 1000);
   }
 
   render() {

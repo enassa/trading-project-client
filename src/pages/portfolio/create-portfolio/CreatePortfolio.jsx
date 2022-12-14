@@ -38,7 +38,7 @@ export default function CreatePortfolio({ message }) {
           <div className="w-full h-full  flex justify-start flex-col p-[20px]">
             <div className="w-full h-full flex justify-center items-center text-xl pointer-events-none relative">
               <div className="absolute  top-0 right-0  ">
-                <CloseButton onClick={() => closePortfolioForm()} />
+                <CloseButton size={40} onClick={() => closePortfolioForm()} />
               </div>
               <TFormValidator
                 validationSchema={validationSchema}

@@ -64,7 +64,7 @@ export default function TSideBar({ menuItems = [] }) {
         </div>
       </div>
       <div className="w-full justify-center font-exrabold mt-[10px] mb-[20px]">
-        <BalanceCard balance={userData?.balance} />
+        <BalanceCard balance={100} />
       </div>
       <div className="w-full h-full flex flex-col">
         <div className="w-full h-full flex flex-col">

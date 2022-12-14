@@ -15,6 +15,7 @@ import { useExchangeDataService } from "../../../store/redux/slices/exchange-sli
 export default function StockStrend() {
   const [activeStock, setActiveStock] = useState(stocks[0]);
   const { marketData } = useExchangeDataService();
+  const [gettingData, setData] = useState(false);
   const seriesData = [];
   marketData.map((item, index) => {
     const stock = item.data.find((item) => item.TICKER === activeStock.symbol);
@@ -90,6 +91,10 @@ export default function StockStrend() {
             <DropMenu
               onChange={(seleced, data) => {
                 setActiveStock(data);
+                setData(true);
+                setTimeout(() => {
+                  setData(false);
+                }, 1300);
               }}
             >
               {ejectMenuItems()}
@@ -97,21 +102,30 @@ export default function StockStrend() {
           </div>
         </div>
       </div>
-      <div className="w-full max-h-[100px] min-h-[30%] flex justify-start items-start ">
-        {ejectExchangeData()}
-      </div>
-      <div className="w-full h-full flex justify-start items-start ">
-        <div
-          style={
-            {
-              // backgroundImage: `url(${images.dummytradeImage})`,
-            }
-          }
-          className="w-full h-auto bg-gray-50 rounded-md"
-        >
-          <StockChart />
+      {gettingData ? (
+        <div className="w-full h-full flex flex-col justify-center items-center">
+          <div className="w-[60px] h-[60px] border-l-4 border-t-4 animate-spin border-t-bgTrade  border-l-bgTrade rounded-full mb-[10px]"></div>
+          <span>Fetching data for {activeStock.title}...</span>
         </div>
-      </div>
+      ) : (
+        <div className="w-full h-full flex flex-col justify-start">
+          <div className="w-full max-h-[100px] min-h-[30%] flex justify-start items-start ">
+            {ejectExchangeData()}
+          </div>
+          <div className="w-full h-full flex justify-start items-start ">
+            <div
+              style={
+                {
+                  // backgroundImage: `url(${images.dummytradeImage})`,
+                }
+              }
+              className="w-full h-auto bg-gray-50 rounded-md"
+            >
+              <StockChart />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

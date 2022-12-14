@@ -6,12 +6,20 @@ import {
   RemoveCircle,
   RemoveCircleOutline,
 } from "@mui/icons-material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CloseButton from "../close-button/CloseButton";
+import SingleChart from "./../../pages/portfolio/charts/SingleChart";
 
 export default function TStockCard({ data }) {
-  const amount = (200 / Math.random(200)).toFixed(1);
+  const amount = (50 / Math.random(20)).toFixed(1);
   const [hovered, setHOvered] = useState(false);
+  const [amountUpdat, setUpdate] = useState(1);
+  useEffect(() => {
+    setInterval(() => {
+      setUpdate(Math.random() * 10);
+    }, 5000);
+  }, []);
+  const amount2 = parseInt(amount) + parseInt(amountUpdat);
   return (
     <div
       onMouseOut={() => setHOvered(false)}
@@ -39,41 +47,42 @@ export default function TStockCard({ data }) {
         <div className="w-full h-full flex flex-col">
           <div className="w-[100%] h-[35px] whitespace-nowrap text-ellipsis overflow-hidden flex flex-col z-[10]">
             {data.title}
+            <div className="h-full w-[100px] flex justify-center">
+              {/* <SingleChart /> */}
+            </div>
           </div>
           <div className="w-full bg-transparent text-gray-500 flex justify-center flex-col h-full mb-[10px] ">
             <span className="flex justify-start flex-row text-sm bg-transparent items-center">
               <span
                 className={` ${
-                  amount > 300
+                  amount > 30
                     ? "bg-green-50 text-green-800 "
                     : "text-red-800 bg-red-50"
                 }  px-[5px] rounded-md mr-1 flex items-center  whitespace-nowrap`}
               >
                 <AddCircle className="mr-2" style={{ fontSize: 15 }} />{" "}
-                <span>${amount}</span>
+                <span>${amount2.toFixed(1)}</span>
               </span>
               <span
                 className={` ${
-                  amount > 300
+                  amount > 30
                     ? "bg-green-50 text-green-800 "
                     : "text-red-800 bg-red-50"
                 }  px-[5px] rounded-md whitespace-nowrap`}
               >
                 <RemoveCircle className="mr-1" style={{ fontSize: 15 }} />
-                <span>${amount}</span>
+                <span
+                  className={` ${
+                    amount > 300
+                      ? "bg-green-50 text-green-800 "
+                      : "text-red-800 bg-red-50"
+                  }  px-[5px] rounded-md h-[5px]`}
+                >
+                  ${amount2.toFixed(1)}
+                </span>
               </span>
-              {/* <span
-              className={` ${
-                amount > 300
-                  ? "bg-green-50 text-green-800 "
-                  : "text-red-800 bg-red-50"
-              }  px-[5px] rounded-md h-[5px]`}
-            >
-              ${amount}
-            </span> */}
             </span>
           </div>
-          {/* <div className="w-full text-gray-500 ">$2000</div> */}
         </div>
       </div>
 

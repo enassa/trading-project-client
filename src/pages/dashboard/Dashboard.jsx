@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HorizontalBar from "../../components/horizontal-bar/HorizontalBar";
 import OrderForm from "./order-form/OrderForm";
 import StockStrend from "./stock-trend/StockStrend";
@@ -11,6 +11,7 @@ import {
 import TStockCard from "../../components/stock-card/StockCard";
 
 export default function Dashboard() {
+  const [renderStocks, setRenderStocks] = useState(1);
   const ejectPortfolio = () => {
     return (
       Array.isArray(stocks) &&
@@ -23,11 +24,12 @@ export default function Dashboard() {
       })
     );
   };
+  useEffect(() => {}, []);
   return (
     <div className="w-full  h-full max-h-full overflow-y-auto flex flex-col px-5 justify-start pb-[20px] over">
       <div className="w-full  flex-wrap  flex  h-[200px] py-[20px] justify-center">
         <HorizontalBar>
-          {ejectPortfolio()}
+          {renderStocks && ejectPortfolio()}
           <div className="shadow-neuro w-[193px] h-[80px] bg-white rounded-[10px] cursor-pointer p-3 flex justify-center items-center">
             <div className="h-full flex items-center mr-3">
               <AddCircle />

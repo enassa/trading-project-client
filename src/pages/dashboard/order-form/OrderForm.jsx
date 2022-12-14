@@ -18,9 +18,10 @@ import { useOrderDataService } from "../../../store/redux/slices/order-slice/ord
 import { usePortfolioService } from "./../../../store/redux/slices/portfolio-slice/portfolio-service";
 import { stocks } from "./../../../constants/dummy-data";
 import { useAuthService } from "../../../store/redux/slices/auth-slice/auth-service";
+import SlimLoader from "../../../components/slim-loader/SlimLoader";
 
 export default function TOrderForm() {
-  const { createOrderAsync } = useOrderDataService();
+  const { createOrderAsync, loadingOrders } = useOrderDataService();
   const { portfolios, openPortfolioForm } = usePortfolioService();
   const { userData } = useAuthService();
   const handleSubmit = (data, side) => {
@@ -67,7 +68,10 @@ export default function TOrderForm() {
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-end mt-[10px]">
+    <div className="w-full h-full flex flex-col justify-end mt-[10px] relative overflow-hidden">
+      <div className="w-full absolute top-[0] left-0  h-[5px]">
+        {loadingOrders && <SlimLoader />}
+      </div>
       <div className=""></div>
       <div className="w-full h-full flex items-center justify-between flex-col ">
         <TFormValidator
@@ -75,6 +79,7 @@ export default function TOrderForm() {
           validationSchema={validationSchema}
           initialValues={initialValues}
           onSubmit={handleSubmit}
+          isSubmitting={loadingOrders}
         >
           {({ errors, values }) => {
             return (
@@ -109,8 +114,8 @@ export default function TOrderForm() {
                     name="trade_type"
                     className="bg-[#F5F7F9] border-0"
                   >
-                    <option icon={<BarChart />}>Market order</option>
-                    <option icon={<TrendingUp />}> Limit Order</option>
+                    <option icon={<BarChart />}>Market</option>
+                    <option icon={<TrendingUp />}> Limit</option>
                   </TSelector>
                 </div>
                 <div className="">
