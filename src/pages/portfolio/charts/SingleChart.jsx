@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Chart from "react-apexcharts";
 
 class SingleChart extends React.Component {

@@ -243,6 +243,7 @@ export default function DynamicTable({
     }
   };
   const changeRowsToDisplay = (value) => {
+    setPageNumber(1);
     setRowsRowsToDisplay(parseInt(value));
   };
 
@@ -450,6 +451,8 @@ export default function DynamicTable({
           <tbody className="w-full">{getTableRows()}</tbody>
         </table>
       </div>
+
+      {/* ======================== Pagination  area ======================== */}
       {!hidePagination && (
         <div className="flex justify-between items-center text-xl text-[#364E62]">
           <div className="flex items-center">

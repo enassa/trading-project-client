@@ -1,11 +1,11 @@
 import { SyncAlt } from "@mui/icons-material";
-import React from "react";
+import React, { memo } from "react";
 import DynamicTable from "../../../components/dynamic-table/DynamicTable";
 import { portfolioRecords } from "../../../constants/dummy-data";
 import { getImageFromSymbol } from "../../../constants/reusable-functions";
 import SingleChart from "./../charts/SingleChart";
 
-export default function PortfolioStocks() {
+export default memo(function PortfolioStocks() {
   return (
     <div className="w-full h-full shadow-md  shadow-[20px] bg-white rounded-md overflow-hidden p-[40px]">
       <DynamicTable
@@ -164,4 +164,4 @@ export default function PortfolioStocks() {
       />
     </div>
   );
-}
+});
