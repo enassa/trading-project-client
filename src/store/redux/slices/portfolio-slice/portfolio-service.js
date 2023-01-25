@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addPortfolioToStore,
   closePortForm,
   getPortfolios,
   openPortForm,
+  closeEditPortForm,
+  openEditPortForm,
+  editMyPortfolio,
 } from "./portfolio-slice";
 import { API } from "./../../../../App";
 import { END_POINTS } from "./../../../../constants/urls";
@@ -22,6 +25,12 @@ export const usePortfolioService = () => {
   const portfolioFormState = useSelector(
     (state) => state?.portfolioSlice?.portfolioFormState
   );
+  const editPortfolioFormState = useSelector(
+    (state) => state?.portfolioSlice?.editPortfolioFormState
+  );
+  const portfolioToEdit = useSelector(
+    (state) => state?.portfolioSlice?.portfolioToEdit
+  );
   const { showModal } = useModal();
   const processFailedRequest = () => {};
 
@@ -31,6 +40,14 @@ export const usePortfolioService = () => {
 
   const openPortfolioForm = () => {
     dispatch(openPortForm());
+  };
+
+  const closeEditPortfolioForm = () => {
+    dispatch(closeEditPortForm());
+  };
+
+  const openEditPortfolioForm = (data) => {
+    dispatch(openEditPortForm(data));
   };
 
   const getAllPortfolios = () => {
@@ -60,7 +77,30 @@ export const usePortfolioService = () => {
       });
   };
   const closePortfolio = () => {
-    showModal("Do you really want to close this portfolio?", (response) => {});
+    showModal("Do you really want to close this portfolio?", (response) => {
+      successToast("Portfolio closed successfully");
+    });
+  };
+  const savePortfolio = () => {
+    setLoading(true);
+    setTimeout(() => {
+      closeEditPortfolioForm();
+      successToast("Portfolio  changes saved succesfully");
+    }, 3000);
+  };
+  const editPortfolio = (value) => {
+    dispatch(editMyPortfolio(value));
+  };
+
+  const createPortFolioMock = (data) => {
+    console.log(data);
+    setLoading(true);
+    setTimeout(() => {
+      dispatch(addPortfolioToStore({ title: data.portfolio, total: 0 }));
+      successToast("Portfolio created successfully");
+      closePortfolioForm();
+      setLoading(false);
+    }, 3000);
   };
 
   return {
@@ -74,5 +114,12 @@ export const usePortfolioService = () => {
     setActivePage,
     closePortfolio,
     getAllPortfolios,
+    closeEditPortfolioForm,
+    openEditPortfolioForm,
+    editPortfolioFormState,
+    savePortfolio,
+    portfolioToEdit,
+    editPortfolio,
+    createPortFolioMock,
   };
 };

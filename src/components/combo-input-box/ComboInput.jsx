@@ -102,7 +102,7 @@ export default function ComboInput({
           onClick={(e) => {
             e.stopPropagation();
           }}
-          autocomplete="off"
+          autoComplete="off"
           onChange={(e) => setSearchValue(e.target.value)}
           className={` ${className} h-full p-3  rounded-[5px] outline-none`}
           type={type}

@@ -22,7 +22,6 @@ export const useAuthService = () => {
   const userIsLoggedIn = () => {
     if (!!userData) return true;
     const localUserData = getAsObjectFromLocalStorage("tfx3213UserData");
-    console.log(localUserData);
     !!localUserData && dispatch(setUpUser(localUserData));
     !!localUserData && API.setToken(localUserData.token);
     return !!localUserData;
@@ -69,22 +68,6 @@ export const useAuthService = () => {
     );
   };
 
-  const loginAsync = async (data) => {
-    setLoading(true);
-    return API.POST(END_POINTS.login, data)
-      .then(async (response) => {
-        if (response.data.success) {
-          processLoginSuccess(response.data);
-        } else {
-          processFailedAuth(response.data);
-        }
-      })
-      .catch((error) => {
-        processFailedAuth("unknown", "login");
-      })
-      .finally(() => {});
-  };
-
   const registerAsync = async (data) => {
     setLoading(true);
     return API.POST(END_POINTS.register, {
@@ -129,6 +112,85 @@ export const useAuthService = () => {
   const resetAuthResponse = () => {
     dispatch(setAuthResponse({}));
   };
+
+  // MOCKED FUNCTIONALITY
+  const loginAsync = async (data) => {
+    setLoading(true);
+    return API.POST(END_POINTS.login, data)
+      .then(async (response) => {
+        if (response.data.success) {
+          processLoginSuccess(response.data);
+        } else {
+          processFailedAuth(response.data);
+        }
+      })
+      .catch((error) => {
+        processFailedAuth("unknown", "login");
+      })
+      .finally(() => {});
+  };
+
+  const Mocktoken =
+    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZW4xQGdtYWlsLmNvbSIsImV4cCI6MTY3MTAxMzQ3OCwiaWF0IjoxNjcwOTk1NDc4LCJqdGkiOiIxNTAifQ.Z9sVRwVI8iXdJ7hJSNaLAEKmPBJ1Rbha9QEAZAPPRG8lvLi43ehueUAllPedhSXoDcMq7VldTlBDKJiuyDLwYA";
+  const loginMock = async (data) => {
+    const localUserData = getAsObjectFromLocalStorage("tfx3213regData");
+    console.log(data.password, localUserData.password);
+    if (
+      !!localUserData &&
+      localUserData.email === data.email &&
+      localUserData.password === data.password
+    ) {
+      const mockData = {
+        id: 150,
+        firstName: localUserData.firstName,
+        lastName: localUserData.lastName,
+        email: data.email,
+        role: "client",
+        balance: 0,
+        Mocktoken,
+      };
+      setLoading(true);
+      setTimeout(() => {
+        saveObjectInLocalStorage("tfx3213UserData", mockData);
+        dispatch(
+          setUpUser({
+            ...mockData,
+            token: Mocktoken,
+          })
+        );
+        API.setToken(Mocktoken);
+        navigate(ROUTES.dashboard.url);
+      }, 5000);
+    } else {
+      dispatch(
+        setAuthResponse({
+          error: "",
+          message: "Your account details are invalid",
+          ok: false,
+          success: false,
+          page: "login",
+        })
+      );
+    }
+  };
+  const registerationMock = async (data) => {
+    setLoading(true);
+    localStorage.removeItem("tfx3213UserData");
+    saveObjectInLocalStorage("tfx3213regData", data);
+    console.log(data);
+    dispatch(setUpUser(undefined));
+    setTimeout(() => {
+      dispatch(
+        setAuthResponse({
+          message: "Registeration was succesfull",
+          ok: true,
+          success: true,
+          page: "register",
+        })
+      );
+    }, 5000);
+  };
+
   return {
     logOut,
     loginAsync,
@@ -138,5 +200,7 @@ export const useAuthService = () => {
     authResponse,
     userData,
     resetAuthResponse,
+    loginMock,
+    registerationMock,
   };
 };

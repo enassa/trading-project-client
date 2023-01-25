@@ -8,7 +8,7 @@ import TextButton from "./../../../components/text-button/TextButton";
 
 export default function PortfolioActions() {
   const [showSettings, setShowSettings] = useState();
-  const { openPortfolioForm, activePage, setActivePage, portfolios } =
+  const { openPortfolioForm, activePage, setActivePage } =
     usePortfolioService();
 
   return (
@@ -24,7 +24,7 @@ export default function PortfolioActions() {
           name="portfolio"
           data={portfolios}
           defaultIcon={<BusinessCenter />}
-          displayProperty={"portfolioName"}
+          displayProperty={"title"}
           icon={<Search />}
           noBorder
           className=" bg-transparent border-0 text-bgTrade  text-2xl w-auto self-start"
@@ -35,7 +35,7 @@ export default function PortfolioActions() {
         <div className="h-[45px] flex items-center relative">
           <TextButton
             onClick={() => openPortfolioForm()}
-            active={false}
+            active={true}
             text={"Create portfolio"}
             icon={<AddCircle className="text-white" style={{ fontSize: 30 }} />}
           />

@@ -19,9 +19,11 @@ import { usePortfolioService } from "./../../../store/redux/slices/portfolio-sli
 import { stocks } from "./../../../constants/dummy-data";
 import { useAuthService } from "../../../store/redux/slices/auth-slice/auth-service";
 import SlimLoader from "../../../components/slim-loader/SlimLoader";
+import { mockMode } from "./../../../config/config";
 
 export default function TOrderForm() {
-  const { createOrderAsync, loadingOrders } = useOrderDataService();
+  const { createOrderAsync, loadingOrders, createOrderMock } =
+    useOrderDataService();
   const { portfolios, openPortfolioForm } = usePortfolioService();
   const { userData } = useAuthService();
   const handleSubmit = (data, side) => {
@@ -36,7 +38,9 @@ export default function TOrderForm() {
       userId: userData.id,
     };
     // console.log(dataToSubmit);
-    createOrderAsync(dataToSubmit, portfolioId?.id);
+    mockMode
+      ? createOrderMock()
+      : createOrderAsync(dataToSubmit, portfolioId?.id);
   };
   console.log(portfolios);
   const validationSchema = {
@@ -90,7 +94,7 @@ export default function TOrderForm() {
                     label="Select portfolio"
                     name="portfolio"
                     data={portfolios}
-                    displayProperty={"portfolioName"}
+                    displayProperty={"title"}
                     defaultIcon={<BusinessCenter />}
                     noBorder
                     className="bg-[#F5F7F9] border-0 max-w-full w-full"

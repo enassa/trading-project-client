@@ -1,4 +1,34 @@
 import { images } from "./../assets/images/images";
+export const portfolios = [
+  {
+    title: "Technology and Computers",
+    total: 2000,
+  },
+  {
+    title: "Agriculture and Farms",
+    total: 50000,
+  },
+  {
+    title: "Space Exploration",
+    total: 43234,
+  },
+  {
+    title: "Meta verse and virtual worlds",
+    total: 34535,
+  },
+  {
+    title: "Books and Written documents",
+    total: 7676575,
+  },
+  {
+    title: "Cars and Motors",
+    total: 65600,
+  },
+  {
+    title: "Energy sector and renewable energies",
+    total: 675676567,
+  },
+];
 export const stocks = [
   {
     title: "Google",
@@ -118,7 +148,7 @@ export const portfolioRecords = [
     week_range: ["1102.3", "120.5"],
   },
   {
-    symbol: "APPL",
+    symbol: "AAPL",
     last_price: 230000,
     change: "+0.51",
     percentage_change: "+1%",

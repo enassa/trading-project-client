@@ -21,6 +21,7 @@ import { images } from "./../../../assets/images/images";
 import { svgs } from "./../../../assets/svg/svg";
 import { Navigate, useNavigate } from "react-router-dom";
 import { ROUTES } from "./../../../constants/route-links";
+import { mockMode } from "./../../../config/config";
 
 export default function Register() {
   // const { registerUser, loadingAuth, authResponse } = useAuthServices();
@@ -30,10 +31,11 @@ export default function Register() {
     resetAuthResponse,
     authResponse,
     loadingAuth,
+    registerationMock,
   } = useAuthService();
   const navigate = useNavigate();
   const handleSubmit = (data) => {
-    registerAsync(data);
+    mockMode ? registerationMock(data) : registerAsync(data);
   };
   const validationSchema = {
     email: {

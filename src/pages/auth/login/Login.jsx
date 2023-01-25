@@ -16,13 +16,14 @@ import { svgs } from "./../../../assets/svg/svg";
 import SlimLoader from "./../../../components/slim-loader/SlimLoader";
 import { useAuthService } from "./../../../store/redux/slices/auth-slice/auth-service";
 import { ROUTES } from "./../../../constants/route-links";
+import { mockMode } from "../../../config/config";
 
 export default function Login() {
-  const { loginAsync, loadingAuth, authResponse, userIsLoggedIn } =
+  const { loginAsync, loadingAuth, authResponse, userIsLoggedIn, loginMock } =
     useAuthService();
 
   const handleSubmit = (data) => {
-    loginAsync(data);
+    mockMode ? loginMock(data) : loginAsync(data)();
   };
 
   const validationSchema = {

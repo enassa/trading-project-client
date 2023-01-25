@@ -6,11 +6,8 @@ import {
   successToast,
 } from "../../../../components/toast/toastify";
 import { END_POINTS } from "../../../../constants/urls";
-import { addOrderToStore } from "./order-slice";
-import { usePortfolioService } from "./../portfolio-slice/portfolio-service";
 
 export const useOrderDataService = () => {
-  const dispatch = useDispatch();
   const [loadingOrders, setLoading] = useState(false);
   const orders = useSelector((state) => state?.orderSlice?.orders);
 
@@ -30,15 +27,18 @@ export const useOrderDataService = () => {
         setLoading(false);
       });
   };
+  const createOrderMock = (data) => {
+    setLoading(true);
+    setTimeout(() => {
+      successToast("Your order has been created successfully");
+      setLoading(false);
+    }, 3000);
+  };
 
   return {
     createOrderAsync,
     loadingOrders,
     orders,
+    createOrderMock,
   };
 };
-// amount: "200";
-// portfolio: "Technology";
-// quantity: "400";
-// stock: "Microsoft cooperation";
-// trade_type: " Limit Order";

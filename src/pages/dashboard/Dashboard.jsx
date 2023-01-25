@@ -26,7 +26,7 @@ export default function Dashboard() {
   };
   useEffect(() => {}, []);
   return (
-    <div className="w-full  h-full max-h-full overflow-y-auto flex flex-col px-5 justify-start pb-[20px] over">
+    <div className="w-full  h-full max-h-full overflow-y-auto flex flex-col px-5 justify-start pb-[20px] over animate-rise">
       <div className="w-full  flex-wrap  flex  h-[200px] py-[20px] justify-center">
         <HorizontalBar>
           {renderStocks && ejectPortfolio()}

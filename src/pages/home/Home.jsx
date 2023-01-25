@@ -11,7 +11,7 @@ export default function Home({ children }) {
   useEffect(() => {
     getMarketDataAsync();
   }, []);
-  return !userIsLoggedIn() ? (
+  return userIsLoggedIn() ? (
     <ModalProvider>
       <PageWrapper>
         <Outlet />

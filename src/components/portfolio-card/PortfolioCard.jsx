@@ -14,14 +14,14 @@ import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../constants/route-links";
 
 export default function PortfolioCard({ data }) {
-  const { closePortfolio } = usePortfolioService();
+  const { closePortfolio, openEditPortfolioForm } = usePortfolioService();
   const navigate = useNavigate();
   const [drop, showDrop] = useState(false);
   return (
     <div className="w-full h-[100px] shadow-md flex items-center p-[10px justify-between bg-white mb-[2px] p-[20px]">
       <div className="w-full h-full flex items-center cursor-pointer ">
         <BusinessCenter />
-        <span className="ml-3 text-xl">{data?.portfolioName}</span>
+        <span className="ml-3 text-xl">{data?.title}</span>
       </div>
       <div className="w-full cursor-pointer h-full flex items-center justify-end relative">
         <Tooltip title="Show detail">
@@ -33,7 +33,10 @@ export default function PortfolioCard({ data }) {
           </div>
         </Tooltip>
         <Tooltip title="Edit detail">
-          <div className=" mr-[20px]  cursor-pointer rounded-full text-bgTrade hover:bg-bgTrade hover:text-white  border-bgTrade border-2 transition-all duration-100 min-h-[40px] min-w-[40px] w-[40px] h-[40px] flex justify-center items-center">
+          <div
+            onClick={() => openEditPortfolioForm(data?.title)}
+            className=" mr-[20px]  cursor-pointer rounded-full text-bgTrade hover:bg-bgTrade hover:text-white  border-bgTrade border-2 transition-all duration-100 min-h-[40px] min-w-[40px] w-[40px] h-[40px] flex justify-center items-center"
+          >
             <Edit className="pointer-events-none" />
           </div>
         </Tooltip>
