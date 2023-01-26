@@ -133,6 +133,7 @@ export const useAuthService = () => {
   const Mocktoken =
     "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZW4xQGdtYWlsLmNvbSIsImV4cCI6MTY3MTAxMzQ3OCwiaWF0IjoxNjcwOTk1NDc4LCJqdGkiOiIxNTAifQ.Z9sVRwVI8iXdJ7hJSNaLAEKmPBJ1Rbha9QEAZAPPRG8lvLi43ehueUAllPedhSXoDcMq7VldTlBDKJiuyDLwYA";
   const loginMock = async (data) => {
+    setLoading(true);
     const localUserData = getAsObjectFromLocalStorage("tfx3213regData");
     console.log(data.password, localUserData.password);
     if (
@@ -149,7 +150,6 @@ export const useAuthService = () => {
         balance: 0,
         Mocktoken,
       };
-      setLoading(true);
       setTimeout(() => {
         saveObjectInLocalStorage("tfx3213UserData", mockData);
         dispatch(
@@ -162,15 +162,18 @@ export const useAuthService = () => {
         navigate(ROUTES.dashboard.url);
       }, 5000);
     } else {
-      dispatch(
-        setAuthResponse({
-          error: "",
-          message: "Your account details are invalid",
-          ok: false,
-          success: false,
-          page: "login",
-        })
-      );
+      setTimeout(() => {
+        dispatch(
+          setAuthResponse({
+            error: "",
+            message: "Your account details are invalid",
+            ok: false,
+            success: false,
+            page: "login",
+          })
+        );
+        setLoading(false);
+      }, 3000);
     }
   };
   const registerationMock = async (data) => {
